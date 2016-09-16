@@ -32,8 +32,12 @@ class SplArrayObject extends \ArrayObject
 	/**
 	 * SplArrayObject::__construct
 	 *
-	 * @param array $array
-	 * @param int   $flag
+	 * @see http://php.net/manual/en/class.arrayobject.php
+	 *
+	 * @param array $array Initial Array
+	 * @param int   $flag  ArrayObject Flags
+	 *
+	 * @return SplArrayObject Returns an SplArrayObject object on success.
 	 */
 	public function __construct( array $array = [ ], $flag = \ArrayObject::ARRAY_AS_PROPS )
 	{

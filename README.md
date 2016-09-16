@@ -9,6 +9,15 @@ The best way to install [O2System SPL](https://packagist.org/packages/o2system/s
 composer require o2system/spl
 ```
 
+Manual Installation
+------------
+1. Download the [master zip file](https://github.com/o2system/spl/archive/master.zip).
+2. Extract into your project folder.
+3. Require the autoload.php file.<br>
+```php
+require your_project_folder_path/spl-master/src/autoload.php
+```
+
 Usage Example
 -------------
 ```php
