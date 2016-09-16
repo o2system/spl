@@ -1,39 +1,12 @@
 <?php
 /**
- * O2System
+ * This file is part of the O2System PHP Framework package.
  *
- * An open source application development framework for PHP 5.4.0 or newer
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2014, O2System Framework Developer Team
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package        O2System\Spl
- * @author         O2System Framework Developer Team
- * @copyright      Copyright (c) 2005 - 2014, O2System PHP Framework
- * @license        http://www.o2system.io/license.html
- * @license        http://opensource.org/licenses/MIT	MIT License
- * @link           http://www.o2system.io
- * @since          Version 2.0
- * @filesource
+ * @author         Steeve Andrian Salim
+ * @copyright      Copyright (c) Steeve Andrian Salim
  */
 // ------------------------------------------------------------------------
 
@@ -54,9 +27,9 @@ use O2System\Spl\Interfaces\SplArrayInterface;
 class SplArrayQueue extends \SplQueue implements SplArrayInterface
 {
 	/**
-	 * SplArrayQueue constructor.
+	 * SplArrayQueue::__construct
 	 *
-	 * @param array $stack
+	 * @param array $queue
 	 */
 	public function __construct( array $queue = [ ] )
 	{
@@ -72,7 +45,7 @@ class SplArrayQueue extends \SplQueue implements SplArrayInterface
 	// -----------------------------------------------------------------------
 
 	/**
-	 * Current
+	 * SplArrayQueue::current
 	 *
 	 * Replacement for \SplQueue current method
 	 *
@@ -91,9 +64,9 @@ class SplArrayQueue extends \SplQueue implements SplArrayInterface
 	// -----------------------------------------------------------------------
 
 	/**
-	 * Is Empty
+	 * SplArrayQueue::isEmpty
 	 *
-	 * Determine if the array container is empty
+	 * Checks if the array storage is empty.
 	 *
 	 * @return bool
 	 */
@@ -105,25 +78,29 @@ class SplArrayQueue extends \SplQueue implements SplArrayInterface
 	// -----------------------------------------------------------------------
 
 	/**
-	 * Has
+	 * SplArrayQueue::has
 	 *
-	 * Determine if the value is in array container
+	 * Checks if a value exists in the storage.
 	 *
-	 * @param mixed $value
+	 * @param mixed $needle The searched value.
+	 * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
+	 *                      the types of the needle in the haystack.
 	 *
 	 * @return bool
 	 */
-	public function has( $value )
+	public function has( $needle, $strict = FALSE )
 	{
-		return in_array( $value, $this->getArrayCopy() );
+		return in_array( $needle, $this->getArrayCopy(), $strict );
 	}
 
 	// -----------------------------------------------------------------------
 
 	/**
-	 * Get Array Copy
+	 * SplArrayStack::getArrayCopy
 	 *
-	 * @return array
+	 * Creates a copy of the storage.
+	 *
+	 * @return array A copy of the storage.
 	 */
 	public function getArrayCopy()
 	{

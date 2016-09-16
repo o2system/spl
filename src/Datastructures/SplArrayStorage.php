@@ -1,39 +1,12 @@
 <?php
 /**
- * O2System
+ * This file is part of the O2System PHP Framework package.
  *
- * An open source application development framework for PHP 5.4.0 or newer
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2014, O2System Framework Developer Team
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package        O2System\Spl
- * @author         O2System Framework Developer Team
- * @copyright      Copyright (c) 2005 - 2014, O2System PHP Framework
- * @license        http://www.o2system.io/license.html
- * @license        http://opensource.org/licenses/MIT	MIT License
- * @link           http://www.o2system.io
- * @since          Version 2.0
- * @filesource
+ * @author         Steeve Andrian Salim
+ * @copyright      Copyright (c) Steeve Andrian Salim
  */
 // ------------------------------------------------------------------------
 
@@ -41,10 +14,15 @@ namespace O2System\Spl\Datastructures;
 
 // ------------------------------------------------------------------------
 
+use O2System\Spl\Traits\ArrayConversionTrait;
+use O2System\Spl\Traits\ArrayFunctionsTrait;
 use Traversable;
 
 class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, \JsonSerializable, \ArrayAccess
 {
+	use ArrayConversionTrait;
+	use ArrayFunctionsTrait;
+
 	/**
 	 * SplArrayStorage
 	 *
@@ -55,62 +33,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Magic method __isset
-	 *
-	 * @param $offset
-	 *
-	 * @return bool
-	 */
-	public function __isset( $offset )
-	{
-		return isset( $this->storage[ $offset ] );
-	}
-
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Magic method __unset
-	 *
-	 * @param $offset
-	 */
-	public function __unset( $offset )
-	{
-		unset( $this->storage[ $offset ] );
-	}
-
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Magic method __set
-	 *
-	 * @param string $offset
-	 * @param mixed  $value
-	 */
-	public function __set( $offset, $value )
-	{
-		$this->offsetSet( $offset, $value );
-	}
-
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Magic method __get
-	 *
-	 * @param $offset
-	 *
-	 * @return mixed|null
-	 */
-	public function &__get( $offset )
-	{
-		return $this->offsetGet( $offset );
-	}
-
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Whether a offset exists
-	 *
-	 * @link  http://php.net/manual/en/arrayaccess.offsetexists.php
+	 * SplArrayStorage::__isset
 	 *
 	 * @param mixed $offset <p>
 	 *                      An offset to check for.
@@ -120,16 +43,70 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	 * </p>
 	 * <p>
 	 * The return value will be casted to boolean if non-boolean was returned.
-	 * @since 5.0.0
 	 */
-	public function offsetExists( $offset )
+	public function __isset( $offset )
 	{
-		return (bool) isset( $this->storage[ $offset ] );
+		return isset( $this->storage[ $offset ] );
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::__unset
+	 *
+	 * Unset a given offset.
+	 *
+	 * @param mixed $offset <p>
+	 *                      The offset to unset.
+	 *                      </p>
+	 *
+	 * @return void
+	 */
+	public function __unset( $offset )
+	{
+		unset( $this->storage[ $offset ] );
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * SplArrayStorage::__get
+	 *
+	 * Offset to retrieve
+	 *
+	 * @param mixed $offset <p>
+	 *                      An offset to check for.
+	 *                      </p>
+	 *
+	 * @return mixed Can return all value types.
+	 */
+	public function &__get( $offset )
+	{
+		return $this->offsetGet( $offset );
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * SplArrayStorage::__set
+	 *
+	 * @param mixed $offset <p>
+	 *                      The offset to assign the value to.
+	 *                      </p>
+	 * @param mixed $value  <p>
+	 *                      The value to set.
+	 *                      </p>
+	 */
+	public function __set( $offset, $value )
+	{
+		$this->offsetSet( $offset, $value );
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * SplArrayStorage::offsetGet
+	 *
 	 * Offset to retrieve
 	 *
 	 * @link  http://php.net/manual/en/arrayaccess.offsetget.php
@@ -158,6 +135,32 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::offsetExists
+	 *
+	 * Whether a offset exists
+	 *
+	 * @link  http://php.net/manual/en/arrayaccess.offsetexists.php
+	 *
+	 * @param mixed $offset <p>
+	 *                      An offset to check for.
+	 *                      </p>
+	 *
+	 * @return boolean true on success or false on failure.
+	 * </p>
+	 * <p>
+	 * The return value will be casted to boolean if non-boolean was returned.
+	 * @since 5.0.0
+	 */
+	public function offsetExists( $offset )
+	{
+		return (bool) isset( $this->storage[ $offset ] );
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * SplArrayStorage::offsetSet
+	 *
 	 * Offset to set
 	 *
 	 * @link  http://php.net/manual/en/arrayaccess.offsetset.php
@@ -180,6 +183,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::offsetUnset
+	 *
 	 * Offset to unset
 	 *
 	 * @link  http://php.net/manual/en/arrayaccess.offsetunset.php
@@ -202,7 +207,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Offset Filter
+	 * SplArrayStorage::offsetGetFilter
 	 *
 	 * Get filtered array storage value
 	 *
@@ -211,7 +216,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	 *
 	 * @return mixed|null
 	 */
-	public function offsetFilter( $offset, $filter = NULL )
+	public function offsetGetFilter( $offset, $filter = NULL )
 	{
 		if ( $this->offsetExists( $offset ) )
 		{
@@ -236,22 +241,19 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 			return $storage;
 		}
 
-		return NULL;
+		return FALSE;
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Append
+	 * SplArrayStorage::append
 	 *
-	 * Appends the value
+	 * append array of values into the storage
 	 *
-	 * @param array $values <p>
-	 *                      The value being appended.
-	 *                      </p>
+	 * @param array $values Variable list of arrays to merge.
 	 *
-	 * @return void
-	 * @since 5.0.0
+	 * @return array The array merged copy of the resulting array
 	 */
 	public function append( array $values )
 	{
@@ -261,23 +263,67 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Merge
+	 * SplArrayStorage::merge
 	 *
-	 * Merge one or more arrays
+	 * Merge array of values into the storage
+	 *
+	 * @param array $values Variable list of arrays to merge.
+	 *
+	 * @return array The array merged copy of the resulting array
 	 */
-	public function merge()
+	public function merge( array $values )
 	{
-		$lists = func_get_args();
+		$storage = $this->getArrayCopy();
+		$storage = array_merge( $storage, $values );
 
-		foreach ( $lists as $array )
-		{
-			$this->append( $array );
-		}
+		$this->exchangeArray( $storage );
+
+		return $storage;
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::getArrayCopy
+	 *
+	 * Creates a copy of the storage.
+	 *
+	 * @return array A copy of the storage.
+	 */
+	public function getArrayCopy()
+	{
+		return $this->storage;
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * SplArrayStorage::exchangeArray
+	 *
+	 * Exchange the array for another one.
+	 *
+	 * @link  http://php.net/manual/en/arrayobject.exchangearray.php
+	 *
+	 * @param array $values <p>
+	 *                      The new array or object to exchange with the current array.
+	 *                      </p>
+	 *
+	 * @return array the old array.
+	 * @since 5.1.0
+	 */
+	public function exchangeArray( array $values )
+	{
+		$oldStorage    = $this->storage;
+		$this->storage = $values;
+
+		return $oldStorage;
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * SplArrayStorage::asort
+	 *
 	 * Sort the entries by value
 	 *
 	 * @link  http://php.net/manual/en/arrayobject.asort.php
@@ -295,6 +341,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::ksort
+	 *
 	 * Sort the entries by key
 	 *
 	 * @link  http://php.net/manual/en/arrayobject.ksort.php
@@ -312,6 +360,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::uasort
+	 *
 	 * Sort the entries with a user-defined comparison function and maintain key association
 	 *
 	 * @link  http://php.net/manual/en/arrayobject.uasort.php
@@ -336,6 +386,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::uksort
+	 *
 	 * Sort the entries by keys using a user-defined comparison function
 	 *
 	 * @link  http://php.net/manual/en/arrayobject.uksort.php
@@ -363,6 +415,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::natsort
+	 *
 	 * Sort entries using a "natural order" algorithm
 	 *
 	 * @link  http://php.net/manual/en/arrayobject.natsort.php
@@ -377,6 +431,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::natcasesort
+	 *
 	 * Sort an array using a case insensitive "natural order" algorithm
 	 *
 	 * @link  http://php.net/manual/en/arrayobject.natcasesort.php
@@ -391,31 +447,9 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Exchange the array for another one.
+	 * SplArrayStorage::isEmpty
 	 *
-	 * @link  http://php.net/manual/en/arrayobject.exchangearray.php
-	 *
-	 * @param array $values <p>
-	 *                      The new array or object to exchange with the current array.
-	 *                      </p>
-	 *
-	 * @return array the old array.
-	 * @since 5.1.0
-	 */
-	public function exchangeArray( array $values )
-	{
-		$oldStorage    = $this->storage;
-		$this->storage = $values;
-
-		return $oldStorage;
-	}
-
-	// ------------------------------------------------------------------------
-
-	/**
-	 * Is Empty
-	 *
-	 * Determine if the array container is empty
+	 * Checks if the array storage is empty.
 	 *
 	 * @return bool
 	 */
@@ -427,36 +461,26 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Has
+	 * SplArrayStorage::has
 	 *
-	 * Determine if the value is in array container
+	 * Checks if a value exists in the storage.
 	 *
-	 * @param mixed $value
+	 * @param mixed $needle The searched value.
+	 * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
+	 *                      the types of the needle in the haystack.
 	 *
 	 * @return bool
 	 */
-	public function has( $value )
+	public function has( $needle, $strict = FALSE )
 	{
-		return (bool) in_array( $value, $this->storage );
+		return in_array( $needle, $this->getArrayCopy(), $strict );
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Array Copy
+	 * SplArrayStorage::serialize
 	 *
-	 * Creates a copy of the SplArray classes storage.
-	 *
-	 * @return array
-	 */
-	public function getArrayCopy()
-	{
-		return $this->storage;
-	}
-
-	// ------------------------------------------------------------------------
-
-	/**
 	 * String representation of object
 	 *
 	 * @link  http://php.net/manual/en/serializable.serialize.php
@@ -471,7 +495,9 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Constructs the object
+	 * SplArrayStorage::unserialize
+	 *
+	 * Constructs the storage
 	 *
 	 * @link  http://php.net/manual/en/serializable.unserialize.php
 	 *
@@ -490,6 +516,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::count
+	 *
 	 * Count elements of an object
 	 *
 	 * @link  http://php.net/manual/en/countable.count.php
@@ -507,6 +535,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::jsonSerialize
+	 *
 	 * Specify data which should be serialized to JSON
 	 *
 	 * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
@@ -522,6 +552,8 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
 	// ------------------------------------------------------------------------
 
 	/**
+	 * SplArrayStorage::getIterator
+	 *
 	 * Retrieve an external iterator
 	 *
 	 * @link  http://php.net/manual/en/iteratoraggregate.getiterator.php

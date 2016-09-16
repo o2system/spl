@@ -1,39 +1,12 @@
 <?php
 /**
- * O2System
+ * This file is part of the O2System PHP Framework package.
  *
- * An open source application development framework for PHP 5.4.0 or newer
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2014, O2System Framework Developer Team
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package        O2System\Core
- * @author         O2System Framework Developer Team
- * @copyright      Copyright (c) 2005 - 2014, O2System PHP Framework
- * @license        http://www.o2system.io/license.html
- * @license        http://opensource.org/licenses/MIT	MIT License
- * @link           http://www.o2system.io
- * @since          Version 2.0
- * @filesource
+ * @author         Steeve Andrian Salim
+ * @copyright      Copyright (c) Steeve Andrian Salim
  */
 // ------------------------------------------------------------------------
 
@@ -53,11 +26,11 @@ use O2System\Spl\Datastructures\SplArrayObject;
 trait ArrayConversionTrait
 {
 	/**
-	 * __toObject
+	 * ArrayConversionTrait::__toObject
 	 *
 	 * Convert storage array into ArrayObject
 	 *
-	 * @param int $depth
+	 * @param int $depth The depth of the conversion
 	 *
 	 * @return SplArrayObject
 	 */
@@ -69,13 +42,13 @@ trait ArrayConversionTrait
 	// --------------------------------------------------------------------
 
 	/**
-	 * __toObjectIterator
+	 * ArrayConversionTrait::__toObjectIterator
 	 *
 	 * Iterate storage array into object
 	 *
-	 * @param        $array
-	 * @param string $depth
-	 * @param int    $counter
+	 * @param array  $array   The array copy
+	 * @param string $depth   The depth of the conversion
+	 * @param int    $counter Internal iterator counter
 	 *
 	 * @return SplArrayObject
 	 */
@@ -133,9 +106,9 @@ trait ArrayConversionTrait
 	// --------------------------------------------------------------------
 
 	/**
-	 * __toString
+	 * ArrayConversionTrait::__toString
 	 *
-	 * Returning JSON Encode array copy of storage ArrayObject
+	 * Returning JSON Encode array copy of the storage
 	 *
 	 * @return string
 	 */
@@ -146,13 +119,13 @@ trait ArrayConversionTrait
 			return $this->render();
 		}
 
-		return json_encode( $this->getArrayCopy() );
+		return $this->__toJSON();
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * __toJSON
+	 * ArrayConversionTrait::__toJSON
 	 *
 	 * @see http://php.net/manual/en/function.json-encode.php
 	 *
@@ -171,14 +144,11 @@ trait ArrayConversionTrait
 	// --------------------------------------------------------------------
 
 	/**
-	 * __toSerialize
+	 * ArrayConversionTrait::__toSerialize
 	 *
 	 * Convert rows into PHP serialize array
 	 *
 	 * @see http://php.net/manual/en/function.serialize.php
-	 *
-	 * @param int $options JSON encode options, default JSON_PRETTY_PRINT
-	 * @param int $depth   Maximum depth of JSON encode. Must be greater than zero.
 	 *
 	 * @return string
 	 */
@@ -190,9 +160,9 @@ trait ArrayConversionTrait
 	// --------------------------------------------------------------------
 
 	/**
-	 * __toArray
+	 * ArrayConversionTrait::__toArray
 	 *
-	 * Returning array copy of storage ArrayObject
+	 * Returning array copy of the storage
 	 *
 	 * @return string
 	 */
@@ -204,11 +174,11 @@ trait ArrayConversionTrait
 	// --------------------------------------------------------------------
 
 	/**
-	 * Implode
+	 * ArrayConversionTrait::implode
 	 *
-	 * Flatten array with glue
+	 * Join the storage elements with a string
 	 *
-	 * @param $glue
+	 * @param string $glue Defaults to an empty string.
 	 *
 	 * @return string
 	 */
@@ -220,11 +190,11 @@ trait ArrayConversionTrait
 	// --------------------------------------------------------------------
 
 	/**
-	 * Join
+	 * ArrayConversionTrait::join
 	 *
-	 * Flatten array with glue
+	 * Join the storage elements with a string
 	 *
-	 * @param $glue
+	 * @param string $glue Defaults to an empty string.
 	 *
 	 * @return string
 	 */

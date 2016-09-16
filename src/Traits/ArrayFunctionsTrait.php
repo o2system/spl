@@ -1,39 +1,12 @@
 <?php
 /**
- * O2System
+ * This file is part of the O2System PHP Framework package.
  *
- * An open source application development framework for PHP 5.4.0 or newer
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2014, O2System Framework Developer Team
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package        O2System\Core
- * @author         O2System Framework Developer Team
- * @copyright      Copyright (c) 2005 - 2014, O2System PHP Framework
- * @license        http://www.o2system.io/license.html
- * @license        http://opensource.org/licenses/MIT	MIT License
- * @link           http://www.o2system.io
- * @since          Version 2.0
- * @filesource
+ * @author         Steeve Andrian Salim
+ * @copyright      Copyright (c) Steeve Andrian Salim
  */
 // ------------------------------------------------------------------------
 
@@ -41,7 +14,7 @@ namespace O2System\Spl\Traits;
 
 // ------------------------------------------------------------------------
 
-use O2System\Core\SPL\ArrayObject;
+use O2System\Spl\Datastructures\SplArrayObject;
 
 /**
  * Trait ArrayFunctionsTrait
@@ -53,32 +26,36 @@ use O2System\Core\SPL\ArrayObject;
 trait ArrayFunctionsTrait
 {
 	/**
-	 * Get Combine
+	 * ArrayFunctionsTrait::getCombine
 	 *
-	 * Creates an ArrayObject by giving keys of the storage array.
+	 * Creates an SplArrayObject by giving keys of the array copy.
 	 *
-	 * @param array $keys
+	 * @see http://php.net/manual/en/function.array-combine.php
 	 *
-	 * @return \O2System\Core\SPL\ArrayObject
+	 * @param array $keys Array of keys to be used. Illegal values for key will be converted to string.
+	 *
+	 * @return SplArrayObject
 	 */
 	public function getCombine( array $keys )
 	{
 		$arrayCombine = array_combine( $keys, $this->getArrayCopy() );
 
-		return new ArrayObject( $arrayCombine );
+		return new SplArrayObject( $arrayCombine );
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Keys
+	 * ArrayFunctionsTrait::getKeys
 	 *
-	 * Return all the keys or a subset of the storage array
+	 * Return all the keys or a subset of the array copy.
+	 *
+	 * @see http://php.net/manual/en/function.array-keys.php
 	 *
 	 * @param mixed $searchValue If specified, then only keys containing these values are returned.
 	 * @param bool  $strict      Determines if strict comparison (===) should be used during the search.
 	 *
-	 * @return array
+	 * @return array Returns an array of all the keys of the array copy.
 	 */
 	public function getKeys( $searchValue = NULL, $strict = FALSE )
 	{
@@ -93,11 +70,13 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Values
+	 * ArrayFunctionsTrait::getValues
 	 *
-	 * Return all the values of the storage array
+	 * Return all the values of the array copy
 	 *
-	 * @return array
+	 * @see http://php.net/manual/en/function.array-values.php
+	 *
+	 * @return array Returns an indexed array of values.
 	 */
 	public function getValues()
 	{
@@ -107,9 +86,11 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Slice
+	 * ArrayFunctionsTrait::getSlice
 	 *
 	 * Return sliced array of storage array.
+	 *
+	 * @see http://php.net/manual/en/function.array-slice.php
 	 *
 	 * @param int  $offset       If offset is non-negative, the sequence will start at that offset in the array. If
 	 *                           offset is negative, the sequence will start that far from the end of the array.
@@ -123,7 +104,7 @@ trait ArrayFunctionsTrait
 	 * @param bool $preserveKeys Note that array_slice() will reorder and reset the numeric array indices by default.
 	 *                           You can change this behaviour by setting preserve_keys to TRUE.
 	 *
-	 * @return array
+	 * @return array Returns the slice. If the offset is larger than the size of the array then returns an empty array.
 	 */
 	public function getSlice( $offset = 0, $length = NULL, $preserveKeys = FALSE )
 	{
@@ -133,16 +114,18 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Slices
+	 * ArrayFunctionsTrait::getSlices
 	 *
-	 * Return slices array of storage array.
+	 * Extract the slices of the array copy.
+	 *
+	 * @see http://php.net/manual/en/function.array-slice.php
 	 *
 	 * @param array $lengths      Array of lengths
 	 *
 	 * @param bool  $preserveKeys Note that array_slice() will reorder and reset the numeric array indices by default.
 	 *                            You can change this behaviour by setting preserve_keys to TRUE.
 	 *
-	 * @return array
+	 * @return array Returns the slices. If the offset is larger than the size of the array then returns an empty array.
 	 */
 	public function getSlices( array $lengths, $preserveKeys = FALSE )
 	{
@@ -159,15 +142,18 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Chunk
+	 * ArrayFunctionsTrait::getChunk
 	 *
-	 * Return chunk array of the storage array.
+	 * Return chunk array of the array copy.
+	 *
+	 * @see http://php.net/manual/en/function.array-chunk.php
 	 *
 	 * @param int  $size         The size of each chunk
 	 * @param bool $preserveKeys When set to TRUE keys will be preserved. Default is FALSE which will reindex the chunk
 	 *                           numerically
 	 *
-	 * @return array
+	 * @return array Returns a multidimensional numerically indexed array, starting with zero, with each dimension
+	 *               containing size elements.
 	 */
 	public function getChunk( $size, $preserveKeys = FALSE )
 	{
@@ -177,15 +163,18 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Chunks
+	 * ArrayFunctionsTrait::getChunks
 	 *
-	 * Return chunk array of the storage array.
+	 * Return chunks array of the array copy.
 	 *
-	 * @param array $sizes        Array sizes of each chunk
+	 * @see http://php.net/manual/en/function.array-chunk.php
+	 *
+	 * @param array $sizes        Array list of sizes of each chunk
 	 * @param bool  $preserveKeys When set to TRUE keys will be preserved. Default is FALSE which will reindex the
 	 *                            chunk numerically
 	 *
-	 * @return array
+	 * @return array Returns a multidimensional numerically indexed array, starting with zero, with each dimension
+	 *               containing size elements.
 	 */
 	public function getChunks( array $sizes, $preserveKeys = FALSE )
 	{
@@ -204,11 +193,13 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Shuffle
+	 * ArrayFunctionsTrait::getShuffle
 	 *
-	 * Return shuffle array of the storage array.
+	 * Shuffle the array copy.
 	 *
-	 * @return array
+	 * @see http://php.net/manual/en/function.shuffle.php
+	 *
+	 * @return array Return shuffle array of the array copy.
 	 */
 	public function getShuffle()
 	{
@@ -221,39 +212,53 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Reverse
+	 * ArrayFunctionsTrait::getReverse
 	 *
-	 * Return the storage array with elements in reverse order
+	 * Return the array copy with elements in reverse order.
 	 *
-	 * @return array
+	 * @param bool $preserveKey If set to TRUE numeric keys are preserved. Non-numeric keys are not affected by this
+	 *                          setting and will always be preserved.
+	 *
+	 * @return array Returns the reversed array.
 	 */
-	public function getReverse()
+	public function getReverse( $preserveKey = FALSE )
 	{
-		return array_reverse( $this->getArrayCopy() );
-	}
-
-	/**
-	 * Get Array Column
-	 *
-	 * Return the values from a single column in the storage
-	 *
-	 * @param $column
-	 *
-	 * @return array
-	 */
-	public function getColumn( $column )
-	{
-		return array_column( $this->getArrayCopy(), $column );
+		return array_reverse( $this->getArrayCopy(), $preserveKey );
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Array Flip
+	 * ArrayFunctionsTrait::getColumn
 	 *
-	 * Returns the flipped array
+	 * Return the values from a single column of the array copy.
 	 *
-	 * @return array
+	 * @see http://php.net/manual/en/function.array-column.php
+	 *
+	 * @param mixed $columnKey The column of values to return. This value may be an integer key of the column you wish
+	 *                         to retrieve, or it may be a string key name for an associative array or property name.
+	 *                         It may also be NULL to return complete arrays or objects (this is useful together with
+	 *                         index_key to reindex the array).
+	 * @param mixed $indexKey  The column to use as the index/keys for the returned array. This value may be the
+	 *                         integer key of the column, or it may be the string key name.
+	 *
+	 * @return array Returns an array of values representing a single column from the input array.
+	 */
+	public function getColumn( $columnKey, $indexKey = NULL )
+	{
+		return array_column( $this->getArrayCopy(), $columnKey, $indexKey );
+	}
+
+	// ------------------------------------------------------------------------
+
+	/**
+	 * ArrayFunctionsTrait::getFlip
+	 *
+	 * Exchanges all keys with their associated values of the array copy.
+	 *
+	 * @see http://php.net/manual/en/function.array-flip.php
+	 *
+	 * @return array Returns the flipped array on success and NULL on failure.
 	 */
 	public function getFlip()
 	{
@@ -263,14 +268,17 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Filter
+	 * ArrayFunctionsTrait::filter
 	 *
-	 * Filters elements of the storage array using a callback function
+	 * Filters elements of the array copy using a callback function.
 	 *
-	 * @param callable $callback
-	 * @param int      $flag
+	 * @see http://php.net/manual/en/function.array-filter.php
 	 *
-	 * @return array
+	 * @param callable $callback The callback function to use, if no callback is supplied, all entries of array equal
+	 *                           to FALSE (see converting to boolean) will be removed.
+	 * @param int      $flag     Flag determining what arguments are sent to callback.
+	 *
+	 * @return array Returns the filtered array.
 	 */
 	public function filter( $callback, $flag = 0 )
 	{
@@ -280,11 +288,13 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Array Sum
+	 * ArrayFunctionsTrait::getSum
 	 *
-	 * Calculate the sum of values in storage
+	 * Calculate the sum of values of the array copy.
 	 *
-	 * @return number
+	 * @see http://php.net/manual/en/function.array-sum.php
+	 *
+	 * @return int|float Returns the sum of values as an integer or float.
 	 */
 	public function getSum()
 	{
@@ -294,11 +304,13 @@ trait ArrayFunctionsTrait
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Get Count Values
+	 * ArrayFunctionsTrait::getCountValues
 	 *
-	 * Counts all the values of storage array
+	 * Counts all the values of the array copy.
 	 *
-	 * @return array
+	 * @see http://php.net/manual/en/function.array-count-values.php
+	 *
+	 * @return array Returns an associative array of values from array as keys and their count as value.
 	 */
 	public function getCountValues()
 	{

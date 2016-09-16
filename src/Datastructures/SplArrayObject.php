@@ -1,45 +1,21 @@
 <?php
 /**
- * O2System
+ * This file is part of the O2System PHP Framework package.
  *
- * An open source application development framework for PHP 5.4.0 or newer
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  *
- * This content is released under the MIT License (MIT)
- *
- * Copyright (c) 2014, O2System Framework Developer Team
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- *
- * @package        O2System\Core
- * @author         O2System Framework Developer Team
- * @copyright      Copyright (c) 2005 - 2014, O2System PHP Framework
- * @license        http://www.o2system.io/license.html
- * @license        http://opensource.org/licenses/MIT	MIT License
- * @link           http://www.o2system.io
- * @since          Version 2.0
- * @filesource
+ * @author         Steeve Andrian Salim
+ * @copyright      Copyright (c) Steeve Andrian Salim
  */
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Datastructures;
 
 // ------------------------------------------------------------------------
+
+use O2System\Spl\Traits\ArrayConversionTrait;
+use O2System\Spl\Traits\ArrayFunctionsTrait;
 
 /**
  * O2System Standard PHP Libraries ArrayObject
@@ -48,20 +24,13 @@ namespace O2System\Spl\Datastructures;
  */
 class SplArrayObject extends \ArrayObject
 {
-	/**
-	 * Trait array conversion functions
-	 */
-	use Traits\ArrayConversionTrait;
-
-	/**
-	 * Trait array manipulations functions
-	 */
-	use Traits\ArrayFunctionsTrait;
+	use ArrayConversionTrait;
+	use ArrayFunctionsTrait;
 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * SplArrayObject constructor.
+	 * SplArrayObject::__construct
 	 *
 	 * @param array $array
 	 * @param int   $flag
@@ -74,11 +43,27 @@ class SplArrayObject extends \ArrayObject
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Magic method __get
+	 * SplArrayObject::isEmpty
 	 *
-	 * @param string $offset
+	 * Checks if the array storage is empty.
 	 *
-	 * @return mixed
+	 * @return bool
+	 */
+	public function isEmpty()
+	{
+		return ( $this->count() == 0 ? TRUE : FALSE );
+	}
+
+	// -----------------------------------------------------------------------
+
+	/**
+	 * SplArrayObject::__get
+	 *
+	 * @see http://php.net/manual/en/arrayobject.offsetget.php
+	 *
+	 * @param string $offset The offset with the value.
+	 *
+	 * @return mixed The value at the specified index or false.
 	 */
 	public function __get( $offset )
 	{
@@ -88,17 +73,17 @@ class SplArrayObject extends \ArrayObject
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Offset Camelcase
+	 * SplArrayObject::exchangeOffset
 	 *
-	 * Perform offset key conversion into camelcase
+	 * Exchange the storage offset into camelcase
 	 *
-	 * @return void
+	 * @return array Returns the new array storage
 	 */
-	public function offsetCamelcase()
+	public function exchangeOffset()
 	{
 		if ( $this->count() > 0 )
 		{
-			$camelcaseStorage = [];
+			$camelcaseStorage = [ ];
 
 			foreach ( $this->getArrayCopy() as $offset => $value )
 			{
@@ -107,22 +92,28 @@ class SplArrayObject extends \ArrayObject
 
 			$this->exchangeArray( $camelcaseStorage );
 		}
+
+		return $this->getArrayCopy();
 	}
 
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Merge
+	 * SplArrayObject::merge
 	 *
-	 * Merge array into storage
+	 * Merge array of values into the storage
 	 *
-	 * @param array $values
+	 * @param array $values Variable list of arrays to merge.
+	 *
+	 * @return array The array merged copy of the resulting array
 	 */
-	public function merge( $values )
+	public function merge( array $values )
 	{
 		$storage = $this->getArrayCopy();
 		$storage = array_merge( $storage, $values );
 
 		$this->exchangeArray( $storage );
+
+		return $storage;
 	}
 }
