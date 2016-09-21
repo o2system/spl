@@ -1,0 +1,45 @@
+{
+  "name": "o2system/spl",
+  "description": "O2System Standard PHP Library (SPL) it's build based on original standard PHP library. It's made up primarily of commonly needed datastructure classes, iterators, handlers and exceptions for O2System PHP Framework, but also can be used independently outside O2System PHP Framework environment.",
+  "type": "php-libraries",
+  "keywords": [
+    "utilities",
+    "php",
+    "framework",
+    "libraries",
+    "interfaces"
+  ],
+  "authors": [
+    {
+      "name": "Steeven Andrian Salim",
+      "email": "steevenz@steevenz.com",
+      "homepage": "http://www.steevenz.com",
+      "role": "Founder and Lead Project"
+    },
+    {
+      "name": "Teguh Rianto",
+      "email": "teguh.rianto22@gmail.com",
+      "homepage": "http://teguhrianto22.pusku.com",
+      "role": "Template Designer"
+    }
+  ],
+  "support": {
+    "email": "o2system.framework@gmail.com",
+    "issues": "https://github.com/o2system/spl/issues",
+    "forum": "https://www.facebook.com/groups/498147006994512"
+  },
+  "links": {
+    "info": "http://www.o2system.id/libraries/spl.html",
+    "documentation": "http://www.o2system.id/libraries/spl/documentation.html",
+    "github-wiki": "http://github.com/o2system/spl/wiki"
+  },
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "spl-4": {
+      "O2System\\Spl\\": "src"
+    }
+  },
+  "minimum-stability": "dev"
+}
