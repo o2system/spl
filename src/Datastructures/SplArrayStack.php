@@ -26,91 +26,87 @@ use O2System\Spl\Interfaces\SplArrayInterface;
  */
 class SplArrayStack extends \SplStack implements SplArrayInterface
 {
-	/**
-	 * SplArrayStack::__construct
-	 *
-	 * @param array $stack
-	 */
-	public function __construct( array $stack = [ ] )
-	{
-		if ( count( $stack ) )
-		{
-			foreach ( $stack as $item )
-			{
-				$this->push( $item );
-			}
-		}
-	}
+    /**
+     * SplArrayStack::__construct
+     *
+     * @param array $stack
+     */
+    public function __construct ( array $stack = [ ] )
+    {
+        if ( count( $stack ) ) {
+            foreach ( $stack as $item ) {
+                $this->push( $item );
+            }
+        }
+    }
 
-	// -----------------------------------------------------------------------
+    // -----------------------------------------------------------------------
 
-	/**
-	 * SplArrayStack::current
-	 *
-	 * Replacement for \SplStack current method
-	 *
-	 * @return mixed
-	 */
-	public function current()
-	{
-		if ( NULL === ( $current = parent::current() ) )
-		{
-			$this->rewind();
-		}
+    /**
+     * SplArrayStack::current
+     *
+     * Replacement for \SplStack current method
+     *
+     * @return mixed
+     */
+    public function current ()
+    {
+        if ( null === ( $current = parent::current() ) ) {
+            $this->rewind();
+        }
 
-		return parent::current();
-	}
+        return parent::current();
+    }
 
-	// -----------------------------------------------------------------------
+    // -----------------------------------------------------------------------
 
-	/**
-	 * SplArrayStack::isEmpty
-	 *
-	 * Checks if the array storage is empty.
-	 *
-	 * @return bool
-	 */
-	public function isEmpty()
-	{
-		return ( $this->count() == 0 ? TRUE : FALSE );
-	}
+    /**
+     * SplArrayStack::isEmpty
+     *
+     * Checks if the array storage is empty.
+     *
+     * @return bool
+     */
+    public function isEmpty ()
+    {
+        return ( $this->count() == 0 ? true : false );
+    }
 
-	// -----------------------------------------------------------------------
+    // -----------------------------------------------------------------------
 
-	/**
-	 * SplArrayStack::has
-	 *
-	 * Checks if a value exists in the storage.
-	 *
-	 * @param mixed $needle The searched value.
-	 * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
-	 *                      the types of the needle in the haystack.
-	 *
-	 * @return bool
-	 */
-	public function has( $needle, $strict = FALSE )
-	{
-		return in_array( $needle, $this->getArrayCopy(), $strict );
-	}
+    /**
+     * SplArrayStack::has
+     *
+     * Checks if a value exists in the storage.
+     *
+     * @param mixed $needle The searched value.
+     * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
+     *                      the types of the needle in the haystack.
+     *
+     * @return bool
+     */
+    public function has ( $needle, $strict = false )
+    {
+        return in_array( $needle, $this->getArrayCopy(), $strict );
+    }
 
-	// -----------------------------------------------------------------------
+    // -----------------------------------------------------------------------
 
-	/**
-	 * SplArrayStack::getArrayCopy
-	 *
-	 * Creates a copy of the storage.
-	 *
-	 * @return array A copy of the storage.
-	 */
-	public function getArrayCopy()
-	{
-		$arrayCopy = [ ];
+    /**
+     * SplArrayStack::getArrayCopy
+     *
+     * Creates a copy of the storage.
+     *
+     * @return array A copy of the storage.
+     */
+    public function getArrayCopy ()
+    {
+        $arrayCopy = [ ];
 
-		foreach ( $this as $key => $value )
-		{
-			$arrayCopy[ $key ] = $value;
-		}
+        foreach ( $this as $key => $value ) {
+            $arrayCopy[ $key ] = $value;
+        }
 
-		return $arrayCopy;
-	}
+        return $arrayCopy;
+    }
 }

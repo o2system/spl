@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Interfaces;
 
-// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
 /**
  * Interface SplArrayInterface
@@ -21,38 +21,38 @@ namespace O2System\Spl\Interfaces;
  */
 interface SplArrayInterface
 {
-	/**
-	 * SplArrayInterface::isEmpty
-	 *
-	 * Checks if the array storage is empty.
-	 *
-	 * @return bool
-	 */
-	public function isEmpty();
+    /**
+     * SplArrayInterface::isEmpty
+     *
+     * Checks if the array storage is empty.
+     *
+     * @return bool
+     */
+    public function isEmpty ();
 
-	// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
-	/**
-	 * SplArrayInterface::has
-	 *
-	 * Checks if a value exists in the storage.
-	 *
-	 * @param mixed $needle The searched value.
-	 * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
-	 *                      the types of the needle in the haystack.
-	 *
-	 * @return bool
-	 */
-	public function has( $needle, $strict = FALSE );
+    /**
+     * SplArrayInterface::has
+     *
+     * Checks if a value exists in the storage.
+     *
+     * @param mixed $needle The searched value.
+     * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
+     *                      the types of the needle in the haystack.
+     *
+     * @return bool
+     */
+    public function has ( $needle, $strict = false );
 
-	// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
-	/**
-	 * SplArrayInterface::getArrayCopy
-	 *
-	 * Creates a copy of the storage.
-	 *
-	 * @return array A copy of the storage.
-	 */
-	public function getArrayCopy();
+    /**
+     * SplArrayInterface::getArrayCopy
+     *
+     * Creates a copy of the storage.
+     *
+     * @return array A copy of the storage.
+     */
+    public function getArrayCopy ();
 }

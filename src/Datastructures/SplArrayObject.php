@@ -12,10 +12,7 @@
 
 namespace O2System\Spl\Datastructures;
 
-// ------------------------------------------------------------------------
-
-use O2System\Spl\Traits\ArrayConversionTrait;
-use O2System\Spl\Traits\ArrayFunctionsTrait;
+    // ------------------------------------------------------------------------
 
 /**
  * O2System Standard PHP Libraries ArrayObject
@@ -24,100 +21,102 @@ use O2System\Spl\Traits\ArrayFunctionsTrait;
  */
 class SplArrayObject extends \ArrayObject
 {
-	use ArrayConversionTrait;
-	use ArrayFunctionsTrait;
+    use Traits\ArrayConversionTrait;
+    use Traits\ArrayFunctionsTrait;
 
-	// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
-	/**
-	 * SplArrayObject::__construct
-	 *
-	 * @see http://php.net/manual/en/class.arrayobject.php
-	 *
-	 * @param array $array Initial Array
-	 * @param int   $flag  ArrayObject Flags
-	 *
-	 * @return SplArrayObject Returns an SplArrayObject object on success.
-	 */
-	public function __construct( array $array = [ ], $flag = \ArrayObject::ARRAY_AS_PROPS )
-	{
-		parent::__construct( $array, $flag );
-	}
+    /**
+     * SplArrayObject::__construct
+     *
+     * @see http://php.net/manual/en/class.arrayobject.php
+     *
+     * @param array $array Initial Array
+     * @param int   $flag  ArrayObject Flags
+     *
+     * @return SplArrayObject Returns an SplArrayObject object on success.
+     */
+    public function __construct ( array $array = [ ], $flag = \ArrayObject::ARRAY_AS_PROPS )
+    {
+        parent::__construct( $array, $flag );
+    }
 
-	// ------------------------------------------------------------------------
+    // ------------------------------------------------------------------------
 
-	/**
-	 * SplArrayObject::isEmpty
-	 *
-	 * Checks if the array storage is empty.
-	 *
-	 * @return bool
-	 */
-	public function isEmpty()
-	{
-		return ( $this->count() == 0 ? TRUE : FALSE );
-	}
+    /**
+     * SplArrayObject::isEmpty
+     *
+     * Checks if the array storage is empty.
+     *
+     * @return bool
+     */
+    public function isEmpty ()
+    {
+        return ( $this->count() == 0 ? true : false );
+    }
 
-	// -----------------------------------------------------------------------
+    // -----------------------------------------------------------------------
 
-	/**
-	 * SplArrayObject::__get
-	 *
-	 * @see http://php.net/manual/en/arrayobject.offsetget.php
-	 *
-	 * @param string $offset The offset with the value.
-	 *
-	 * @return mixed The value at the specified index or false.
-	 */
-	public function __get( $offset )
-	{
-		return $this->offsetGet( $offset );
-	}
+    /**
+     * SplArrayObject::__get
+     *
+     * @see http://php.net/manual/en/arrayobject.offsetget.php
+     *
+     * @param string $offset The offset with the value.
+     *
+     * @return mixed The value at the specified index or false.
+     */
+    public function __get ( $offset )
+    {
+        if ( $this->offsetExists( $offset ) === false ) {
+            return null;
+        }
 
-	// ------------------------------------------------------------------------
+        return $this->offsetGet( $offset );
+    }
 
-	/**
-	 * SplArrayObject::exchangeOffset
-	 *
-	 * Exchange the storage offset into camelcase
-	 *
-	 * @return array Returns the new array storage
-	 */
-	public function exchangeOffset()
-	{
-		if ( $this->count() > 0 )
-		{
-			$camelcaseStorage = [ ];
+    // ------------------------------------------------------------------------
 
-			foreach ( $this->getArrayCopy() as $offset => $value )
-			{
-				$camelcaseStorage[ camelcase( $offset ) ] = $value;
-			}
+    /**
+     * SplArrayObject::exchangeOffset
+     *
+     * Exchange the storage offset into camelcase
+     *
+     * @return array Returns the new array storage
+     */
+    public function exchangeOffset ()
+    {
+        if ( $this->count() > 0 ) {
+            $camelcaseStorage = [ ];
 
-			$this->exchangeArray( $camelcaseStorage );
-		}
+            foreach ( $this->getArrayCopy() as $offset => $value ) {
+                $camelcaseStorage[ camelcase( $offset ) ] = $value;
+            }
 
-		return $this->getArrayCopy();
-	}
+            $this->exchangeArray( $camelcaseStorage );
+        }
 
-	// ------------------------------------------------------------------------
+        return $this->getArrayCopy();
+    }
 
-	/**
-	 * SplArrayObject::merge
-	 *
-	 * Merge array of values into the storage
-	 *
-	 * @param array $values Variable list of arrays to merge.
-	 *
-	 * @return array The array merged copy of the resulting array
-	 */
-	public function merge( array $values )
-	{
-		$storage = $this->getArrayCopy();
-		$storage = array_merge( $storage, $values );
+    // ------------------------------------------------------------------------
 
-		$this->exchangeArray( $storage );
+    /**
+     * SplArrayObject::merge
+     *
+     * Merge array of values into the storage
+     *
+     * @param array $values Variable list of arrays to merge.
+     *
+     * @return array The array merged copy of the resulting array
+     */
+    public function merge ( array $values )
+    {
+        $storage = $this->getArrayCopy();
+        $storage = array_merge( $storage, $values );
 
-		return $storage;
-	}
+        $this->exchangeArray( $storage );
+
+        return $storage;
+    }
 }

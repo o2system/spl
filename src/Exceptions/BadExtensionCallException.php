@@ -10,19 +10,10 @@
  */
 // ------------------------------------------------------------------------
 
-namespace O2System\Spl\Info;
+namespace O2System\Spl\Exceptions;
 
-    // ------------------------------------------------------------------------
 
-/**
- * Class SplFileInfo
- *
- * @package O2System\Spl\Info
- */
-class SplFileInfo extends \SplFileInfo
+class BadExtensionCallException extends \LogicException
 {
-    public function getDirectoryInfo ()
-    {
-        return new SplDirectoryInfo( $this->getRealPath() );
-    }
+
 }

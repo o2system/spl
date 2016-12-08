@@ -10,40 +10,37 @@
  */
 // ------------------------------------------------------------------------
 
-// Define SPL_PATH
-define( 'SPL_PATH', __DIR__ . DIRECTORY_SEPARATOR );
-
 /**
  * O2System Spl Autoload
  *
  * @param $className
  */
 spl_autoload_register(
-	function ( $className )
-	{
-		if ( strpos( $className, 'O2System\Spl\\' ) === FALSE )
-		{
-			return;
-		}
+    function ( $className ) {
+        if ( strpos( $className, 'O2System\Spl\\' ) === false ) {
+            return;
+        }
 
-		$className = ltrim( $className, '\\' );
-		$filePath  = '';
+        $className = ltrim( $className, '\\' );
+        $filePath = '';
 
-		if ( $lastNsPos = strripos( $className, '\\' ) )
-		{
-			$namespace = substr( $className, 0, $lastNsPos );
-			$className = substr( $className, $lastNsPos + 1 );
-			$filePath  = str_replace( '\\', DIRECTORY_SEPARATOR, $namespace ) . DIRECTORY_SEPARATOR;
-		}
+        if ( $lastNsPos = strripos( $className, '\\' ) ) {
+            $namespace = substr( $className, 0, $lastNsPos );
+            $className = substr( $className, $lastNsPos + 1 );
+            $filePath = $namespace . '\\';
+        }
 
-		$filePath .= str_replace( '_', DIRECTORY_SEPARATOR, $className ) . '.php';
+        $filePath .= str_replace( '_', DIRECTORY_SEPARATOR, $className ) . '.php';
 
-		// Fixed Path
-		$filePath = str_replace( 'O2System\Spl\\', SPL_PATH, $filePath );
+        // Fixed Path
+        $filePath = str_replace( 'O2System\Spl\\', __DIR__ . DIRECTORY_SEPARATOR, $filePath );
+        $filePath = str_replace( [ '\\', '/' ], DIRECTORY_SEPARATOR, $filePath );
 
-		if ( file_exists( $filePath ) )
-		{
-			require $filePath;
-		}
+        if ( file_exists( $filePath ) ) {
+            require $filePath;
+        }
 
-	}, TRUE, TRUE );
+    },
+    true,
+    true
+);
