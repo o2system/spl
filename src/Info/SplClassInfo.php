@@ -28,6 +28,8 @@ class SplClassInfo extends \ReflectionClass
      */
     public $name;
 
+    // ------------------------------------------------------------------------
+
     /**
      * SplClassInfo constructor.
      *
@@ -46,13 +48,24 @@ class SplClassInfo extends \ReflectionClass
 
     // ------------------------------------------------------------------------
 
+    /**
+     * SplClassInfo::getClass
+     *
+     * Gets class name.
+     *
+     * @return string
+     */
     public function getClass ()
     {
         return $this->name;
     }
 
+    // ------------------------------------------------------------------------
+
     /**
-     * getFileInfo
+     * SplClassInfo::getFileInfo
+     *
+     * Gets class file info metadata.
      *
      * @return \O2System\Spl\Info\SplFileInfo
      */

@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Info;
 
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 /**
  * Class SplFileInfo
@@ -21,8 +21,39 @@ namespace O2System\Spl\Info;
  */
 class SplFileInfo extends \SplFileInfo
 {
+    /**
+     * SplFileInfo::getFilename
+     *
+     * @return string
+     */
+    public function getFilename ()
+    {
+        return str_replace( '.' . $this->getExtension(), '', parent::getFilename() );
+    }
+
+    /**
+     * SplFileInfo::getBasename
+     *
+     * @param string $suffix
+     *
+     * @return string
+     */
+    public function getBasename ( $suffix = null )
+    {
+        if ( is_null( $suffix ) ) {
+            return parent::getBasename();
+        }
+
+        return str_replace( '.' . $this->getExtension(), '.' . trim( $suffix, '.' ), parent::getFilename() );
+    }
+
+    /**
+     * SplFileInfo::getDirectoryInfo
+     *
+     * @return \O2System\Spl\Info\SplDirectoryInfo
+     */
     public function getDirectoryInfo ()
     {
-        return new SplDirectoryInfo( $this->getRealPath() );
+        return new SplDirectoryInfo( dirname( $this->getRealPath() ) );
     }
 }
