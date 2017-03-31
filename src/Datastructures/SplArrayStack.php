@@ -31,7 +31,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      *
      * @param array $stack
      */
-    public function __construct ( array $stack = [ ] )
+    public function __construct( array $stack = [] )
     {
         if ( count( $stack ) ) {
             foreach ( $stack as $item ) {
@@ -49,7 +49,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      *
      * @return mixed
      */
-    public function current ()
+    public function current()
     {
         if ( null === ( $current = parent::current() ) ) {
             $this->rewind();
@@ -67,7 +67,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      *
      * @return bool
      */
-    public function isEmpty ()
+    public function isEmpty()
     {
         return ( $this->count() == 0 ? true : false );
     }
@@ -85,7 +85,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      *
      * @return bool
      */
-    public function has ( $needle, $strict = false )
+    public function has( $needle, $strict = false )
     {
         return in_array( $needle, $this->getArrayCopy(), $strict );
     }
@@ -99,9 +99,9 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      *
      * @return array A copy of the storage.
      */
-    public function getArrayCopy ()
+    public function getArrayCopy()
     {
-        $arrayCopy = [ ];
+        $arrayCopy = [];
 
         foreach ( $this as $key => $value ) {
             $arrayCopy[ $key ] = $value;

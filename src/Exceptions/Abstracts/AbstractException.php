@@ -54,16 +54,17 @@ abstract class AbstractException extends \Exception
      * @param array           $context
      * @param \Exception|NULL $previous
      */
-    public function __construct ( $message, $code = 0, array $context = [ ], \Exception $previous = null )
+    public function __construct( $message, $code = 0, array $context = [], \Exception $previous = null )
     {
-        if( class_exists( 'O2System\Kernel' ) ) {
+        if ( class_exists( 'O2System\Kernel' ) ) {
             $classInfo = new SplClassInfo( $this );
             $classNameParts = explode( '\\', $classInfo->getClass() );
             $classParameter = strtolower( end( $classNameParts ) );
             $classLanguageDirectory = dirname( $classInfo->getFileInfo()->getRealPath() ) . DIRECTORY_SEPARATOR . 'Languages' . DIRECTORY_SEPARATOR;
 
             if ( false !== ( $exceptionKey = array_search( 'Exception', $classNameParts ) ) OR
-                 false !== ( $exceptionKey = array_search( 'Exceptions', $classNameParts ) ) ) {
+                false !== ( $exceptionKey = array_search( 'Exceptions', $classNameParts ) )
+            ) {
                 if ( isset( $classNameParts[ $exceptionKey - 1 ] ) ) {
                     $classParameter = $classNameParts[ $exceptionKey - 1 ];
 
@@ -92,7 +93,7 @@ abstract class AbstractException extends \Exception
      *
      * @return string
      */
-    public function getHeader ()
+    public function getHeader()
     {
         return $this->header;
     }
@@ -106,7 +107,7 @@ abstract class AbstractException extends \Exception
      *
      * @return string
      */
-    public function getDescription ()
+    public function getDescription()
     {
         return $this->description;
     }
@@ -118,10 +119,10 @@ abstract class AbstractException extends \Exception
      *
      * @return array
      */
-    public function getChronology ()
+    public function getChronology()
     {
-        if( class_exists( 'O2System\Gear\Trace' ) ) {
-            return ( new \O2System\Gear\Trace( $this->getTrace() ) )->chronology();
+        if ( class_exists( 'O2System\Gear\Trace' ) ) {
+            return ( new \O2System\Gear\Trace( $this->getTrace() ) )->getChronology();
         }
 
         return $this->getTrace();
@@ -134,7 +135,7 @@ abstract class AbstractException extends \Exception
      *
      * @return string
      */
-    public function getView ()
+    public function getView()
     {
         return $this->view;
     }

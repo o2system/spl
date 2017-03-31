@@ -36,7 +36,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @return mixed
      */
-    public function first ()
+    public function first()
     {
         $this->rewind();
 
@@ -52,7 +52,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @return mixed
      */
-    public function last ()
+    public function last()
     {
         $this->seek( ( $this->count() ) - 1 );
 
@@ -66,7 +66,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @param mixed $value The new value to store at the index.
      */
-    public function push ( $value )
+    public function push( $value )
     {
         $this->offsetSet( $this->count(), $value );
     }
@@ -80,7 +80,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @param mixed $value The new value to store at the index.
      */
-    public function unshift ( $value )
+    public function unshift( $value )
     {
         $storage = $this->getArrayCopy();
         array_unshift( $storage, $value );
@@ -101,9 +101,9 @@ class ArrayIterator extends \ArrayIterator
      *
      * @return bool
      */
-    public function has ( $needle, $strict = false )
+    public function has( $needle, $strict = false )
     {
-        return (bool) in_array( $needle, $this->getArrayCopy(), $strict );
+        return (bool)in_array( $needle, $this->getArrayCopy(), $strict );
     }
 
     // ------------------------------------------------------------------------
@@ -118,7 +118,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @return mixed Returns the key for needle if it is found in the array, FALSE otherwise.
      */
-    public function search ( $needle, $seek = false )
+    public function search( $needle, $seek = false )
     {
         if ( false !== ( $position = array_search( $needle, $this->getArrayCopy() ) ) ) {
             if ( $seek === true ) {
@@ -145,7 +145,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @return array Returns the filtered array.
      */
-    public function unique ( $sortFlags = SORT_STRING, $exchangeArray = false )
+    public function unique( $sortFlags = SORT_STRING, $exchangeArray = false )
     {
         $unique = array_unique( $this->getArrayCopy(), $sortFlags );
 
@@ -169,7 +169,7 @@ class ArrayIterator extends \ArrayIterator
      * @return array of the old storage.
      * @since 5.1.0
      */
-    public function exchangeArray ( array $values )
+    public function exchangeArray( array $values )
     {
         $oldStorage = $this->getArrayCopy();
         parent::__construct( $values );
@@ -188,7 +188,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge ( array $values )
+    public function merge( array $values )
     {
         $storage = $this->getArrayCopy();
         $storage = array_merge( $storage, $values );
@@ -209,7 +209,7 @@ class ArrayIterator extends \ArrayIterator
      *
      * @return void
      */
-    public function remove ( $needle )
+    public function remove( $needle )
     {
         if ( false !== ( $position = array_search( $needle, $this->getArrayCopy() ) ) ) {
             $firstStorage = array_splice( $this->getArrayCopy(), 0, $position );

@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Info;
 
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 /**
  * Class SplDirectoryInfo
@@ -42,7 +42,7 @@ class SplDirectoryInfo
      *
      * @param string $dir Directory Path
      */
-    public function __construct ( $dir )
+    public function __construct( $dir )
     {
         $this->pathName = str_replace( [ '\\', '/' ], DIRECTORY_SEPARATOR, realpath( $dir ) ) . DIRECTORY_SEPARATOR;
         $this->dirName = pathinfo( $this->pathName, PATHINFO_FILENAME );
@@ -57,9 +57,9 @@ class SplDirectoryInfo
      *
      * @return bool
      */
-    public function isExists ()
+    public function isExists()
     {
-        return (bool) is_dir( $this->pathName );
+        return (bool)is_dir( $this->pathName );
     }
 
     // ------------------------------------------------------------------------
@@ -71,7 +71,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function getParentPath ()
+    public function getParentPath()
     {
         return dirname( $this->pathName );
     }
@@ -85,7 +85,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function getParentRealPath ()
+    public function getParentRealPath()
     {
         return dirname( $this->pathName ) . DIRECTORY_SEPARATOR;
     }
@@ -99,7 +99,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function getParentRelativePath ()
+    public function getParentRelativePath()
     {
         $scriptFilename = str_replace( [ '/', '\\' ], '/', dirname( $_SERVER[ 'SCRIPT_FILENAME' ] ) );
         $relativePath = str_replace( [ '/', '\\' ], '/', dirname( $this->pathName ) ) . '/';
@@ -122,7 +122,7 @@ class SplDirectoryInfo
      *
      * @return \O2System\Spl\Info\SplDirectoryInfo
      */
-    public function getPathInfo ( $className = null )
+    public function getPathInfo( $className = null )
     {
         return isset( $className ) ? new $className( pathinfo( $this->pathName ) ) : $this;
     }
@@ -136,7 +136,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function getDirName ()
+    public function getDirName()
     {
         return $this->dirName;
     }
@@ -150,7 +150,7 @@ class SplDirectoryInfo
      *
      * @return null|string
      */
-    public function getPathName ()
+    public function getPathName()
     {
         return isset( $this->pathName ) ? $this->getPath() : null;
     }
@@ -164,7 +164,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function getPath ()
+    public function getPath()
     {
         return realpath( $this->pathName );
     }
@@ -178,7 +178,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function getRealPath ()
+    public function getRealPath()
     {
         return $this->pathName;
     }
@@ -192,7 +192,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function getRelativePath ()
+    public function getRelativePath()
     {
         $scriptFilename = str_replace( [ '/', '\\' ], '/', dirname( $_SERVER[ 'SCRIPT_FILENAME' ] ) );
         $relativePath = str_replace( [ '/', '\\' ], '/', $this->pathName );
@@ -213,9 +213,9 @@ class SplDirectoryInfo
      *
      * @return bool
      */
-    public function isReadable ()
+    public function isReadable()
     {
-        return (bool) is_dir( $this->pathName );
+        return (bool)is_dir( $this->pathName );
     }
 
     // ------------------------------------------------------------------------
@@ -227,13 +227,13 @@ class SplDirectoryInfo
      *
      * @return bool
      */
-    public function isWritable ()
+    public function isWritable()
     {
         // If we're on a Unix server with safe_mode off we call is_writable
         if ( DIRECTORY_SEPARATOR === '/' AND
-             ( strpos( phpversion(), '5.4' ) !== false OR ! ini_get( 'safe_mode' ) )
+            ( strpos( phpversion(), '5.4' ) !== false OR ! ini_get( 'safe_mode' ) )
         ) {
-            return (bool) is_writable( $this->pathName );
+            return (bool)is_writable( $this->pathName );
         }
 
         /* For Windows servers and safe_mode "on" installations we'll actually
@@ -268,7 +268,7 @@ class SplDirectoryInfo
      *
      * @return int
      */
-    public function getATime ()
+    public function getATime()
     {
         return fileatime( $this->pathName );
     }
@@ -282,7 +282,7 @@ class SplDirectoryInfo
      *
      * @return int
      */
-    public function getCTime ()
+    public function getCTime()
     {
         return filectime( $this->pathName );
     }
@@ -296,7 +296,7 @@ class SplDirectoryInfo
      *
      * @return int
      */
-    public function getMTime ()
+    public function getMTime()
     {
         return filemtime( $this->pathName );
     }
@@ -310,7 +310,7 @@ class SplDirectoryInfo
      *
      * @return int
      */
-    public function getInode ()
+    public function getInode()
     {
         return fileinode( $this->pathName );
     }
@@ -326,7 +326,7 @@ class SplDirectoryInfo
      *
      * @return int
      */
-    public function getPerms ( $octal = false )
+    public function getPerms( $octal = false )
     {
         return $octal === false ? fileperms( $this->pathName ) : 0 . decoct( fileperms( $this->pathName ) & 0777 );
     }
@@ -342,7 +342,7 @@ class SplDirectoryInfo
      *
      * @return array|int|string
      */
-    public function getOwner ( $id = false )
+    public function getOwner( $id = false )
     {
         if ( $id ) {
             if ( false !== ( $uid = fileowner( $this->pathName ) ) ) {
@@ -368,7 +368,7 @@ class SplDirectoryInfo
      *
      * @return array|int|string
      */
-    public function getGroup ( $id = false )
+    public function getGroup( $id = false )
     {
         if ( $id ) {
             if ( false !== ( $grid = fileowner( $this->pathName ) ) ) {
@@ -392,7 +392,7 @@ class SplDirectoryInfo
      *
      * @return array
      */
-    public function getStat ()
+    public function getStat()
     {
         return stat( $this->pathName );
     }
@@ -406,7 +406,7 @@ class SplDirectoryInfo
      *
      * @return int
      */
-    public function getSize ()
+    public function getSize()
     {
         $size = 0;
 
@@ -428,9 +428,9 @@ class SplDirectoryInfo
      *
      * @return array
      */
-    public function getTree ()
+    public function getTree()
     {
-        $tree = [ ];
+        $tree = [];
         $directoryIterator = new \DirectoryIterator( $this->pathName );
 
         foreach ( $directoryIterator as $directoryNode ) {
@@ -457,7 +457,7 @@ class SplDirectoryInfo
      *
      * @return resource
      */
-    public function getHandle ()
+    public function getHandle()
     {
         return dir( $this->pathName )->handle;
     }
@@ -471,7 +471,7 @@ class SplDirectoryInfo
      *
      * @return string
      */
-    public function __toString ()
+    public function __toString()
     {
         return $this->pathName;
     }

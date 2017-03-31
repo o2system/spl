@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Traits\Collectors;
 
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 /**
  * Class ConfigCollectorTrait
@@ -26,7 +26,7 @@ trait ConfigCollectorTrait
      *
      * @type array
      */
-    protected $config = [ ];
+    protected $config = [];
 
     /**
      * Add Config
@@ -36,7 +36,7 @@ trait ConfigCollectorTrait
      *
      * @return $this
      */
-    public function addConfig ( $key, $value )
+    public function addConfig( $key, $value )
     {
         if ( isset( $this->config[ $key ] ) ) {
             if ( is_array( $value ) AND is_array( $this->config[ $key ] ) ) {
@@ -61,7 +61,7 @@ trait ConfigCollectorTrait
      *
      * @return array|null
      */
-    final public function getConfig ( $key = null, $offset = null )
+    final public function getConfig( $key = null, $offset = null )
     {
         if ( isset( $key ) ) {
             if ( isset( $this->config[ $key ] ) ) {
@@ -87,7 +87,7 @@ trait ConfigCollectorTrait
      *
      * @return $this
      */
-    public function setConfig ( $key, $value = null )
+    public function setConfig( $key, $value = null )
     {
         if ( is_array( $key ) ) {
             if ( empty( $this->config ) ) {

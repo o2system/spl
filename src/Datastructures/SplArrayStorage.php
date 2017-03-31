@@ -26,7 +26,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @var array
      */
-    protected $storage = [ ];
+    protected $storage = [];
 
     // ------------------------------------------------------------------------
 
@@ -42,7 +42,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * <p>
      * The return value will be casted to boolean if non-boolean was returned.
      */
-    public function __isset ( $offset )
+    public function __isset( $offset )
     {
         return isset( $this->storage[ $offset ] );
     }
@@ -60,7 +60,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return void
      */
-    public function __unset ( $offset )
+    public function __unset( $offset )
     {
         unset( $this->storage[ $offset ] );
     }
@@ -78,7 +78,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return mixed Can return all value types.
      */
-    public function &__get ( $offset )
+    public function &__get( $offset )
     {
         return $this->offsetGet( $offset );
     }
@@ -95,7 +95,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *                      The value to set.
      *                      </p>
      */
-    public function __set ( $offset, $value )
+    public function __set( $offset, $value )
     {
         $this->offsetSet( $offset, $value );
     }
@@ -116,12 +116,12 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return mixed Can return all value types.
      * @since 5.0.0
      */
-    public function offsetGet ( $offset )
+    public function offsetGet( $offset )
     {
         if ( $this->offsetExists( $offset ) ) {
             return $this->storage[ $offset ];
         } else {
-            $this->storage[ $offset ] = [ ];
+            $this->storage[ $offset ] = [];
 
             return $this->storage[ $offset ];
         }
@@ -146,9 +146,9 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * The return value will be casted to boolean if non-boolean was returned.
      * @since 5.0.0
      */
-    public function offsetExists ( $offset )
+    public function offsetExists( $offset )
     {
-        return (bool) isset( $this->storage[ $offset ] );
+        return (bool)isset( $this->storage[ $offset ] );
     }
 
     // ------------------------------------------------------------------------
@@ -170,7 +170,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.0.0
      */
-    public function offsetSet ( $offset, $value )
+    public function offsetSet( $offset, $value )
     {
         $this->storage[ $offset ] = $value;
     }
@@ -191,7 +191,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.0.0
      */
-    public function offsetUnset ( $offset )
+    public function offsetUnset( $offset )
     {
         if ( isset( $this->storage[ $offset ] ) ) {
             unset( $this->storage[ $offset ] );
@@ -210,7 +210,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return mixed|null
      */
-    public function offsetGetFilter ( $offset, $filter = null )
+    public function offsetGetFilter( $offset, $filter = null )
     {
         if ( $this->offsetExists( $offset ) ) {
             $storage = $this->offsetGet( $offset );
@@ -242,7 +242,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return array The array merged copy of the resulting array
      */
-    public function append ( array $values )
+    public function append( array $values )
     {
         $this->storage = array_merge( $this->storage, $values );
     }
@@ -258,7 +258,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge ( array $values )
+    public function merge( array $values )
     {
         $storage = $this->getArrayCopy();
         $storage = array_merge( $storage, $values );
@@ -277,7 +277,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return array A copy of the storage.
      */
-    public function getArrayCopy ()
+    public function getArrayCopy()
     {
         return $this->storage;
     }
@@ -298,7 +298,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return array the old array.
      * @since 5.1.0
      */
-    public function exchangeArray ( array $values )
+    public function exchangeArray( array $values )
     {
         $oldStorage = $this->storage;
         $this->storage = $values;
@@ -320,7 +320,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.2.0
      */
-    public function asort ( $sortFlags = SORT_REGULAR )
+    public function asort( $sortFlags = SORT_REGULAR )
     {
         asort( $this->storage, $sortFlags );
     }
@@ -339,7 +339,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.2.0
      */
-    public function ksort ( $sortFlags = SORT_REGULAR )
+    public function ksort( $sortFlags = SORT_REGULAR )
     {
         ksort( $this->storage, $sortFlags );
     }
@@ -365,7 +365,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.2.0
      */
-    public function uasort ( $comparisonFunction )
+    public function uasort( $comparisonFunction )
     {
         uasort( $this->storage, $comparisonFunction );
     }
@@ -394,7 +394,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.2.0
      */
-    public function uksort ( $comparisonFunction )
+    public function uksort( $comparisonFunction )
     {
         uksort( $this->storage, $comparisonFunction );
     }
@@ -410,7 +410,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.2.0
      */
-    public function natsort ()
+    public function natsort()
     {
         natsort( $this->storage );
     }
@@ -426,7 +426,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.2.0
      */
-    public function natcasesort ()
+    public function natcasesort()
     {
         natcasesort( $this->storage );
     }
@@ -440,9 +440,9 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return bool
      */
-    public function isEmpty ()
+    public function isEmpty()
     {
-        return (bool) empty( $this->storage );
+        return (bool)empty( $this->storage );
     }
 
     // ------------------------------------------------------------------------
@@ -458,7 +458,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *
      * @return bool
      */
-    public function has ( $needle, $strict = false )
+    public function has( $needle, $strict = false )
     {
         return in_array( $needle, $this->getArrayCopy(), $strict );
     }
@@ -474,7 +474,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return string the string representation of the object or null
      * @since 5.1.0
      */
-    public function serialize ()
+    public function serialize()
     {
         return serialize( $this->storage );
     }
@@ -495,7 +495,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      * @return void
      * @since 5.1.0
      */
-    public function unserialize ( $serialized )
+    public function unserialize( $serialized )
     {
         $this->storage = unserialize( $serialized );
     }
@@ -514,7 +514,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *        The return value is cast to an integer.
      * @since 5.1.0
      */
-    public function count ()
+    public function count()
     {
         return count( $this->storage );
     }
@@ -531,7 +531,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *        which is a value of any type other than a resource.
      * @since 5.4.0
      */
-    public function jsonSerialize ()
+    public function jsonSerialize()
     {
         return json_encode( $this->storage, JSON_PRETTY_PRINT );
     }
@@ -548,7 +548,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      *        <b>Traversable</b>
      * @since 5.0.0
      */
-    public function getIterator ()
+    public function getIterator()
     {
         return new \ArrayIterator( $this->storage );
     }

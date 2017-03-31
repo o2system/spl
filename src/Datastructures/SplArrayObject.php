@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Datastructures;
 
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 /**
  * O2System Standard PHP Libraries ArrayObject
@@ -36,7 +36,7 @@ class SplArrayObject extends \ArrayObject
      *
      * @return SplArrayObject Returns an SplArrayObject object on success.
      */
-    public function __construct ( array $array = [ ], $flag = \ArrayObject::ARRAY_AS_PROPS )
+    public function __construct( array $array = [], $flag = \ArrayObject::ARRAY_AS_PROPS )
     {
         parent::__construct( $array, $flag );
     }
@@ -50,7 +50,7 @@ class SplArrayObject extends \ArrayObject
      *
      * @return bool
      */
-    public function isEmpty ()
+    public function isEmpty()
     {
         return ( $this->count() == 0 ? true : false );
     }
@@ -66,7 +66,7 @@ class SplArrayObject extends \ArrayObject
      *
      * @return mixed The value at the specified index or false.
      */
-    public function __get ( $offset )
+    public function __get( $offset )
     {
         if ( $this->offsetExists( $offset ) === false ) {
             return null;
@@ -84,10 +84,10 @@ class SplArrayObject extends \ArrayObject
      *
      * @return array Returns the new array storage
      */
-    public function exchangeOffset ()
+    public function exchangeOffset()
     {
         if ( $this->count() > 0 ) {
-            $camelcaseStorage = [ ];
+            $camelcaseStorage = [];
 
             foreach ( $this->getArrayCopy() as $offset => $value ) {
                 $camelcaseStorage[ camelcase( $offset ) ] = $value;
@@ -110,7 +110,7 @@ class SplArrayObject extends \ArrayObject
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge ( array $values )
+    public function merge( array $values )
     {
         $storage = $this->getArrayCopy();
         $storage = array_merge( $storage, $values );

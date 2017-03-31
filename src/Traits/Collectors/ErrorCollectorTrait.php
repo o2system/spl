@@ -16,18 +16,18 @@ namespace O2System\Spl\Traits\Collectors;
 
 trait ErrorCollectorTrait
 {
-    private $errors = [ ];
+    private $errors = [];
 
     // ------------------------------------------------------------------------
 
-    public function setErrors ( array $errors )
+    public function setErrors( array $errors )
     {
         $this->errors = $errors;
     }
 
     // ------------------------------------------------------------------------
 
-    public function addErrors ( array $errors )
+    public function addErrors( array $errors )
     {
         foreach ( $errors as $error ) {
             $this->addError( $error[ 'code' ], $error[ 'message' ] );
@@ -36,7 +36,7 @@ trait ErrorCollectorTrait
 
     // ------------------------------------------------------------------------
 
-    public function addError ( $code, $message )
+    public function addError( $code, $message )
     {
         $this->errors[ $code ] = $message;
     }

@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Interfaces;
 
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 /**
  * Interface SplArrayInterface
@@ -28,7 +28,7 @@ interface SplArrayInterface
      *
      * @return bool
      */
-    public function isEmpty ();
+    public function isEmpty();
 
     // ------------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ interface SplArrayInterface
      *
      * @return bool
      */
-    public function has ( $needle, $strict = false );
+    public function has( $needle, $strict = false );
 
     // ------------------------------------------------------------------------
 
@@ -54,5 +54,5 @@ interface SplArrayInterface
      *
      * @return array A copy of the storage.
      */
-    public function getArrayCopy ();
+    public function getArrayCopy();
 }

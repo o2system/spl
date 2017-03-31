@@ -24,7 +24,7 @@ class SplServiceContainer implements \Countable
      *
      * @var array
      */
-    private $registry = [ ];
+    private $registry = [];
 
     // ------------------------------------------------------------------------
 
@@ -33,10 +33,10 @@ class SplServiceContainer implements \Countable
      *
      * Adds an closure object in the registry.
      *
-     * @param string $offset
+     * @param string   $offset
      * @param \Closure $closure
      */
-    public function attach ( $offset, \Closure $closure )
+    public function attach( $offset, \Closure $closure )
     {
         $this->registry[ $offset ] = $closure;
     }
@@ -50,7 +50,7 @@ class SplServiceContainer implements \Countable
      *
      * @param string $offset
      */
-    public function detach ( $offset )
+    public function detach( $offset )
     {
         if ( isset( $this->registry[ $offset ] ) ) {
             unset( $this->registry[ $offset ] );
@@ -68,9 +68,9 @@ class SplServiceContainer implements \Countable
      *
      * @return bool
      */
-    public function contains ( $offset )
+    public function contains( $offset )
     {
-        return (bool) isset( $this->registry[ $offset ] );
+        return (bool)isset( $this->registry[ $offset ] );
     }
 
     // ------------------------------------------------------------------------
@@ -85,7 +85,7 @@ class SplServiceContainer implements \Countable
      *
      * @return mixed Returns FALSE when calling the closure is failed.
      */
-    public function resolve ( $offset, array $arguments = [ ] )
+    public function resolve( $offset, array $arguments = [] )
     {
         return isset( $this->registry[ $offset ] ) ? call_user_func_array(
             $this->registry[ $offset ],
@@ -107,7 +107,7 @@ class SplServiceContainer implements \Countable
      *        The return value is cast to an integer.
      * @since 5.1.0
      */
-    public function count ()
+    public function count()
     {
         return count( $this->registry );
     }

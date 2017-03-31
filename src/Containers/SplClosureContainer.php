@@ -24,7 +24,7 @@ class SplClosureContainer implements \Countable
      *
      * @var array
      */
-    private $closures = [ ];
+    private $closures = [];
 
     // ------------------------------------------------------------------------
 
@@ -36,7 +36,7 @@ class SplClosureContainer implements \Countable
      * @param string   $offset
      * @param \Closure $closure
      */
-    public function attach ( $offset, \Closure $closure )
+    public function attach( $offset, \Closure $closure )
     {
         $this->closures[ $offset ] = $closure;
     }
@@ -53,7 +53,7 @@ class SplClosureContainer implements \Countable
      *
      * @return bool
      */
-    public function __isset ( $offset )
+    public function __isset( $offset )
     {
         return $this->has( $offset );
     }
@@ -69,9 +69,9 @@ class SplClosureContainer implements \Countable
      *
      * @return bool
      */
-    public function has ( $offset )
+    public function has( $offset )
     {
-        return (bool) isset( $this->closures[ $offset ] );
+        return (bool)isset( $this->closures[ $offset ] );
     }
 
     // ------------------------------------------------------------------------
@@ -84,7 +84,7 @@ class SplClosureContainer implements \Countable
      *
      * @param string $offset
      */
-    public function __unset ( $offset )
+    public function __unset( $offset )
     {
         $this->detach( $offset );
     }
@@ -98,7 +98,7 @@ class SplClosureContainer implements \Countable
      *
      * @param string $offset
      */
-    public function detach ( $offset )
+    public function detach( $offset )
     {
         if ( isset( $this->closures[ $offset ] ) ) {
             unset( $this->closures[ $offset ] );
@@ -118,7 +118,7 @@ class SplClosureContainer implements \Countable
      *
      * @return mixed Returns FALSE when calling the closure is failed.
      */
-    public function __call ( $offset, array $arguments = [ ] )
+    public function __call( $offset, array $arguments = [] )
     {
         return $this->get( $offset, $arguments );
     }
@@ -135,7 +135,7 @@ class SplClosureContainer implements \Countable
      *
      * @return mixed Returns FALSE when calling the closure is failed.
      */
-    public function get ( $offset, array $arguments = [ ] )
+    public function get( $offset, array $arguments = [] )
     {
         return isset( $this->closures[ $offset ] ) ? call_user_func_array(
             $this->closures[ $offset ],
@@ -157,7 +157,7 @@ class SplClosureContainer implements \Countable
      *        The return value is cast to an integer.
      * @since 5.1.0
      */
-    public function count ()
+    public function count()
     {
         return count( $this->closures );
     }

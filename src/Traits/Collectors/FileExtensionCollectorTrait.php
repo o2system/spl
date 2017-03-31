@@ -15,21 +15,21 @@ namespace O2System\Spl\Traits\Collectors;
 
 trait FileExtensionCollectorTrait
 {
-    protected $fileExtensions = [ ];
+    protected $fileExtensions = [];
 
-    public function getFileExtensions ()
+    public function getFileExtensions()
     {
         return $this->fileExtensions;
     }
 
-    public function setFileExtensions ( array $fileExtensions )
+    public function setFileExtensions( array $fileExtensions )
     {
         $this->fileExtensions = $fileExtensions;
 
         return $this;
     }
 
-    public function addFileExtensions ( array $fileExtensions )
+    public function addFileExtensions( array $fileExtensions )
     {
         foreach ( $fileExtensions as $fileExtension ) {
             $this->addFileExtension( $fileExtension );
@@ -38,7 +38,7 @@ trait FileExtensionCollectorTrait
         return $this;
     }
 
-    public function addFileExtension ( $fileExtension )
+    public function addFileExtension( $fileExtension )
     {
         $fileExtension = '.' . trim( $fileExtension, '.' );
 

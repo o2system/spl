@@ -34,7 +34,7 @@ trait ArrayConversionTrait
      *
      * @return SplArrayObject
      */
-    public function __toObject ( $depth = 0 )
+    public function __toObject( $depth = 0 )
     {
         return $this->___toObjectIterator( $this->getArrayCopy(), ( $depth == 0 ? 'ALL' : $depth ) );
     }
@@ -52,7 +52,7 @@ trait ArrayConversionTrait
      *
      * @return SplArrayObject
      */
-    private function ___toObjectIterator ( $array, $depth = 'ALL', $counter = 0 )
+    private function ___toObjectIterator( $array, $depth = 'ALL', $counter = 0 )
     {
         $object = new SplArrayObject();
 
@@ -94,7 +94,7 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function __toString ()
+    public function __toString()
     {
         if ( method_exists( $this, 'render' ) ) {
             return $this->render();
@@ -115,7 +115,7 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function __toJSON ( $options = JSON_PRETTY_PRINT, $depth = 512 )
+    public function __toJSON( $options = JSON_PRETTY_PRINT, $depth = 512 )
     {
         $depth = $depth == 0 ? 512 : $depth;
 
@@ -133,7 +133,7 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function __toSerialize ()
+    public function __toSerialize()
     {
         return serialize( $this->__toArray() );
     }
@@ -147,7 +147,7 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function __toArray ()
+    public function __toArray()
     {
         return $this->getArrayCopy();
     }
@@ -163,7 +163,7 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function implode ( $glue = '' )
+    public function implode( $glue = '' )
     {
         return implode( $glue, $this->getArrayCopy() );
     }
@@ -179,7 +179,7 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function join ( $glue = '' )
+    public function join( $glue = '' )
     {
         return join( $glue, $this->getArrayCopy() );
     }

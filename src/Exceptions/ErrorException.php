@@ -47,7 +47,7 @@ class ErrorException extends AbstractException
      * @param int             $line
      * @param \Exception|null $previous
      */
-    public function __construct (
+    public function __construct(
         $message = '',
         $severity = 1,
         $filename = '',
@@ -58,11 +58,11 @@ class ErrorException extends AbstractException
         $this->file = $filename;
         $this->line = $line;
 
-        if( class_exists( 'O2System\Kernel' ) ) {
+        if ( class_exists( 'O2System\Kernel' ) ) {
             $message = language()->getLine( $message, $context );
         }
 
-        parent::__construct( $message, 0, [ ] );
+        parent::__construct( $message, 0, [] );
     }
 
     // ------------------------------------------------------------------------
@@ -74,7 +74,7 @@ class ErrorException extends AbstractException
      *
      * @return int
      */
-    public function getSeverity ()
+    public function getSeverity()
     {
         return $this->severity;
     }
@@ -88,7 +88,7 @@ class ErrorException extends AbstractException
      *
      * @return string
      */
-    public function getStringSeverity ()
+    public function getStringSeverity()
     {
         switch ( $this->severity ) {
             case E_ERROR: // 1 //

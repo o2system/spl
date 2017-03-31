@@ -7,7 +7,7 @@
  * @copyright   Copyright (c) 2016 Steeve Andrian Salim
  */
 
-namespace O2System\Spl\Containers\Registries;
+namespace O2System\Spl\Containers\Datastructures;
 
 
 use O2System\Spl\Info\SplClassInfo;
@@ -21,7 +21,7 @@ class SplServiceRegistry extends SplClassInfo
      */
     private $instance;
 
-    public function __construct ( $service )
+    public function __construct( $service )
     {
         if ( is_object( $service ) ) {
             $this->instance = $service;
@@ -31,12 +31,12 @@ class SplServiceRegistry extends SplClassInfo
         parent::__construct( $service );
     }
 
-    public function getClassName ()
+    public function getClassName()
     {
         return get_class_name( $this->name );
     }
 
-    public function &getInstance ()
+    public function &getInstance()
     {
         if ( empty( $this->instance ) ) {
             $this->instance = $this->newInstance( func_get_args() );

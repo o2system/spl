@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Info;
 
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 /**
  * Class SplClassInfo
@@ -35,7 +35,7 @@ class SplClassInfo extends \ReflectionClass
      *
      * @param mixed $className
      */
-    public function __construct ( $className )
+    public function __construct( $className )
     {
         if ( is_object( $className ) ) {
             $className = get_class( $className );
@@ -55,7 +55,7 @@ class SplClassInfo extends \ReflectionClass
      *
      * @return string
      */
-    public function getClass ()
+    public function getClass()
     {
         return $this->name;
     }
@@ -69,7 +69,7 @@ class SplClassInfo extends \ReflectionClass
      *
      * @return \O2System\Spl\Info\SplFileInfo
      */
-    public function getFileInfo ()
+    public function getFileInfo()
     {
         if ( empty( $this->name ) ) {
             throw new \RuntimeException( 'Internal error: SplClassInfo failed to retrieve the reflection object' );

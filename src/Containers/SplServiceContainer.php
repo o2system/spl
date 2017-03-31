@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Containers;
 
-use O2System\Spl\Containers\Registries\SplServiceRegistry;
+use O2System\Spl\Containers\Datastructures\SplServiceRegistry;
 
 /**
  * Class SplServiceContainer
@@ -26,7 +26,7 @@ class SplServiceContainer implements \Countable
      *
      * @var array
      */
-    private $services = [ ];
+    private $services = [];
 
     // ------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ class SplServiceContainer implements \Countable
      * @param string             $offset
      * @param SplServiceRegistry $service
      */
-    public function attach ( $offset, SplServiceRegistry $service )
+    public function attach( $offset, SplServiceRegistry $service )
     {
         $this->services[ $offset ] = $service;
     }
@@ -53,7 +53,7 @@ class SplServiceContainer implements \Countable
      *
      * @param string $offset
      */
-    public function __unset ( $offset )
+    public function __unset( $offset )
     {
         $this->detach( $offset );
     }
@@ -67,7 +67,7 @@ class SplServiceContainer implements \Countable
      *
      * @param string $offset
      */
-    public function detach ( $offset )
+    public function detach( $offset )
     {
         if ( isset( $this->services[ $offset ] ) ) {
             unset( $this->services[ $offset ] );
@@ -86,7 +86,7 @@ class SplServiceContainer implements \Countable
      *
      * @return bool
      */
-    public function __isset ( $offset )
+    public function __isset( $offset )
     {
         return $this->has( $offset );
     }
@@ -102,9 +102,9 @@ class SplServiceContainer implements \Countable
      *
      * @return bool
      */
-    public function has ( $offset )
+    public function has( $offset )
     {
-        return (bool) isset( $this->services[ $offset ] );
+        return (bool)isset( $this->services[ $offset ] );
     }
 
     // ------------------------------------------------------------------------
@@ -119,7 +119,7 @@ class SplServiceContainer implements \Countable
      *
      * @return bool
      */
-    public function &__get ( $offset )
+    public function &__get( $offset )
     {
         $get[ $offset ] = $this->get( $offset );
 
@@ -138,7 +138,7 @@ class SplServiceContainer implements \Countable
      *
      * @return mixed Returns FALSE when calling the service is failed.
      */
-    public function &get ( $offset, array $arguments = [ ] )
+    public function &get( $offset, array $arguments = [] )
     {
         $get[ $offset ] = false;
 
@@ -211,7 +211,7 @@ class SplServiceContainer implements \Countable
      *        The return value is cast to an integer.
      * @since 5.1.0
      */
-    public function count ()
+    public function count()
     {
         return count( $this->services );
     }

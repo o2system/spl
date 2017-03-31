@@ -24,7 +24,7 @@ class SplClosureContainer implements \Countable
      *
      * @var array
      */
-    private $registry = [ ];
+    private $registry = [];
 
     // ------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ class SplClosureContainer implements \Countable
      *
      * @return bool
      */
-    public function __get ( $offset )
+    public function __get( $offset )
     {
         return $this->resolve( $offset );
     }
@@ -58,24 +58,9 @@ class SplClosureContainer implements \Countable
      *
      * @return bool
      */
-    public function __set ( $offset, \Closure $closure )
+    public function __set( $offset, \Closure $closure )
     {
         $this->attach( $offset, $closure );
-    }
-
-    // ------------------------------------------------------------------------
-
-    /**
-     * SplClosureContainer::attach
-     *
-     * Adds an closure object in the registry.
-     *
-     * @param string   $offset
-     * @param \Closure $closure
-     */
-    public function attach ( $offset, \Closure $closure )
-    {
-        $this->registry[ $offset ] = $closure;
     }
 
     // ------------------------------------------------------------------------
@@ -90,12 +75,27 @@ class SplClosureContainer implements \Countable
      *
      * @return mixed Returns FALSE when calling the closure is failed.
      */
-    public function resolve ( $offset, array $arguments = [ ] )
+    public function resolve( $offset, array $arguments = [] )
     {
         return isset( $this->registry[ $offset ] ) ? call_user_func_array(
             $this->registry[ $offset ],
             $arguments
         ) : false;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplClosureContainer::attach
+     *
+     * Adds an closure object in the registry.
+     *
+     * @param string   $offset
+     * @param \Closure $closure
+     */
+    public function attach( $offset, \Closure $closure )
+    {
+        $this->registry[ $offset ] = $closure;
     }
 
     // ------------------------------------------------------------------------
@@ -110,7 +110,7 @@ class SplClosureContainer implements \Countable
      *
      * @return bool
      */
-    public function __isset ( $offset )
+    public function __isset( $offset )
     {
         return $this->contains( $offset );
     }
@@ -126,9 +126,9 @@ class SplClosureContainer implements \Countable
      *
      * @return bool
      */
-    public function contains ( $offset )
+    public function contains( $offset )
     {
-        return (bool) isset( $this->registry[ $offset ] );
+        return (bool)isset( $this->registry[ $offset ] );
     }
 
     // ------------------------------------------------------------------------
@@ -141,7 +141,7 @@ class SplClosureContainer implements \Countable
      *
      * @param string $offset
      */
-    public function __unset ( $offset )
+    public function __unset( $offset )
     {
         $this->detach( $offset );
     }
@@ -155,7 +155,7 @@ class SplClosureContainer implements \Countable
      *
      * @param string $offset
      */
-    public function detach ( $offset )
+    public function detach( $offset )
     {
         if ( isset( $this->registry[ $offset ] ) ) {
             unset( $this->registry[ $offset ] );
@@ -175,7 +175,7 @@ class SplClosureContainer implements \Countable
      *
      * @return mixed Returns FALSE when calling the closure is failed.
      */
-    public function __call ( $offset, array $arguments = [ ] )
+    public function __call( $offset, array $arguments = [] )
     {
         return $this->resolve( $offset, $arguments );
     }
@@ -194,7 +194,7 @@ class SplClosureContainer implements \Countable
      *        The return value is cast to an integer.
      * @since 5.1.0
      */
-    public function count ()
+    public function count()
     {
         return count( $this->registry );
     }

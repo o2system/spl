@@ -22,11 +22,37 @@ namespace O2System\Spl\Info;
 class SplFileInfo extends \SplFileInfo
 {
     /**
+     * SplFileInfo::$mime
+     *
+     * File mime type.
+     *
+     * @var
+     */
+    private $mime;
+
+    /**
+     * SplFileInfo::__construct
+     *
+     * @param string $filePath File Path.
+     */
+    public function __construct( $filePath )
+    {
+        parent::__construct( $filePath );
+
+        $this->mime = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $filePath );
+    }
+
+    public function getMime()
+    {
+        return $this->mime;
+    }
+
+    /**
      * SplFileInfo::getFilename
      *
      * @return string
      */
-    public function getFilename ()
+    public function getFilename()
     {
         return str_replace( '.' . $this->getExtension(), '', parent::getFilename() );
     }
@@ -38,7 +64,7 @@ class SplFileInfo extends \SplFileInfo
      *
      * @return string
      */
-    public function getBasename ( $suffix = null )
+    public function getBasename( $suffix = null )
     {
         if ( is_null( $suffix ) ) {
             return parent::getBasename();
@@ -52,7 +78,7 @@ class SplFileInfo extends \SplFileInfo
      *
      * @return \O2System\Spl\Info\SplDirectoryInfo
      */
-    public function getDirectoryInfo ()
+    public function getDirectoryInfo()
     {
         return new SplDirectoryInfo( dirname( $this->getRealPath() ) );
     }

@@ -12,7 +12,7 @@
 
 namespace O2System\Spl\Info;
 
-    // ------------------------------------------------------------------------
+// ------------------------------------------------------------------------
 
 /**
  * Class SplNamespaceInfo
@@ -33,7 +33,7 @@ class SplNamespaceInfo
      *
      * @var array
      */
-    public $paths = [ ];
+    public $paths = [];
 
     /**
      * SplNamespaceInfo::__construct
@@ -41,7 +41,7 @@ class SplNamespaceInfo
      * @param mixed             $namespace
      * @param null|string|array $path
      */
-    public function __construct ( $namespace, $path = null )
+    public function __construct( $namespace, $path = null )
     {
         if ( is_object( $namespace ) ) {
             $className = get_class( $namespace );
@@ -75,7 +75,7 @@ class SplNamespaceInfo
      *
      * @return mixed|null
      */
-    public function __call ( $method, array $args = [ ] )
+    public function __call( $method, array $args = [] )
     {
         if ( method_exists( $this, $method ) ) {
             return call_user_func_array( [ &$this, $method ], $args );
@@ -95,7 +95,7 @@ class SplNamespaceInfo
      *
      * @return string
      */
-    public function getParent ()
+    public function getParent()
     {
         return str_replace( DIRECTORY_SEPARATOR, '\\', pathinfo( $this->name, PATHINFO_DIRNAME ) ) . '\\';
     }
