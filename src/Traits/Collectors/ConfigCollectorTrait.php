@@ -59,7 +59,7 @@ trait ConfigCollectorTrait
      *
      * @param string|null $key Config item index name
      *
-     * @return array|null
+     * @return mixed
      */
     final public function getConfig( $key = null, $offset = null )
     {
@@ -78,6 +78,8 @@ trait ConfigCollectorTrait
         return $this->config;
     }
 
+    // ------------------------------------------------------------------------
+
     /**
      * Set Config
      *
@@ -85,7 +87,7 @@ trait ConfigCollectorTrait
      *
      * @param array|string $key
      *
-     * @return $this
+     * @return static
      */
     public function setConfig( $key, $value = null )
     {
