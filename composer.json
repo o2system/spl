@@ -41,5 +41,5 @@
       "O2System\\Spl\\": "src"
     }
   },
-  "minimum-stability": "dev-master"
+  "minimum-stability": "dev"
 }
