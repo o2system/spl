@@ -1,6 +1,7 @@
 {
   "name": "o2system/spl",
   "license": "MIT",
+  "version": "1.0.0.-dev",
   "description": "O2System Standard PHP Library (SPL) it's build based on original standard PHP library. It's made up primarily of commonly needed datastructure classes, iterators, handlers and exceptions for O2System PHP Framework, but also can be used independently outside O2System PHP Framework environment.",
   "type": "php-libraries",
   "keywords": [
