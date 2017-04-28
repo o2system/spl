@@ -12,7 +12,13 @@
 
 namespace O2System\Spl\Traits\Collectors;
 
+// ------------------------------------------------------------------------
 
+/**
+ * Class FileExtensionCollectorTrait
+ *
+ * @package O2System\Spl\Traits\Collectors
+ */
 trait FileExtensionCollectorTrait
 {
     protected $fileExtensions = [];

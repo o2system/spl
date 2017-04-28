@@ -12,6 +12,8 @@
 
 namespace O2System\Spl\Containers;
 
+// ------------------------------------------------------------------------
+
 use O2System\Spl\Containers\Datastructures\SplServiceRegistry;
 
 /**

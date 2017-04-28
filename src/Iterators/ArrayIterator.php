@@ -14,8 +14,8 @@ namespace O2System\Spl\Iterators;
 
 // ------------------------------------------------------------------------
 
-use O2System\Spl\Traits\ArrayConversionTrait;
-use O2System\Spl\Traits\ArrayFunctionsTrait;
+use O2System\Spl\Datastructures\Traits\ArrayConversionTrait;
+use O2System\Spl\Datastructures\Traits\ArrayFunctionsTrait;
 
 /**
  * O2System Standard PHP Libraries ArrayIterator

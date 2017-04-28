@@ -12,6 +12,8 @@
 
 namespace O2System\Spl\Containers;
 
+// ------------------------------------------------------------------------
+
 /**
  * Class SplClosureContainer
  *
