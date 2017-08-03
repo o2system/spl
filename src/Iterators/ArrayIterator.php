@@ -22,7 +22,7 @@ use O2System\Spl\Datastructures\Traits\ArrayFunctionsTrait;
  *
  * @package O2System\Core\SPL
  */
-class ArrayIterator extends \ArrayIterator
+class ArrayIterator extends \ArrayIterator implements \JsonSerializable
 {
     use ArrayConversionTrait;
     use ArrayFunctionsTrait;
@@ -69,6 +69,7 @@ class ArrayIterator extends \ArrayIterator
     public function push( $value )
     {
         $this->offsetSet( $this->count(), $value );
+        $this->seek( $this->count() - 1 );
     }
 
     // ------------------------------------------------------------------------
@@ -89,6 +90,22 @@ class ArrayIterator extends \ArrayIterator
     }
 
     // ------------------------------------------------------------------------
+
+    public function shift()
+    {
+        $storage = $this->getArrayCopy();
+        array_shift( $storage );
+
+        parent::__construct( $storage );
+    }
+
+    public function pop()
+    {
+        $storage = $this->getArrayCopy();
+        array_pop( $storage );
+
+        parent::__construct( $storage );
+    }
 
     /**
      * ArrayIterator::has
@@ -217,5 +234,22 @@ class ArrayIterator extends \ArrayIterator
 
             parent::__construct( array_merge( $firstStorage, $endStorage ) );
         }
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * ArrayIterator::jsonSerialize
+     *
+     * Specify data which should be serialized to JSON
+     *
+     * @link  http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     *        which is a value of any type other than a resource.
+     * @since 5.4.0
+     */
+    public function jsonSerialize()
+    {
+        return json_encode( $this->getArrayCopy() );
     }
 }

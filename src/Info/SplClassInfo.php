@@ -67,6 +67,22 @@ class SplClassInfo extends \ReflectionClass
      *
      * Gets class file info metadata.
      *
+     * @return \O2System\Spl\Info\SplNamespaceInfo
+     */
+    public function getNamespaceInfo()
+    {
+        if ( empty( $this->name ) ) {
+            throw new \RuntimeException( 'Internal error: SplClassInfo failed to retrieve the reflection object' );
+        }
+
+        return new SplNamespaceInfo( $this->name, $this->getFileName() );
+    }
+
+    /**
+     * SplClassInfo::getFileInfo
+     *
+     * Gets class file info metadata.
+     *
      * @return \O2System\Spl\Info\SplFileInfo
      */
     public function getFileInfo()

@@ -39,7 +39,9 @@ class SplFileInfo extends \SplFileInfo
     {
         parent::__construct( $filePath );
 
-        $this->mime = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $filePath );
+        if ( file_exists( $filePath ) ) {
+            $this->mime = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $filePath );
+        }
     }
 
     public function getMime()

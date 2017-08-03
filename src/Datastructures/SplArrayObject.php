@@ -69,10 +69,21 @@ class SplArrayObject extends \ArrayObject
     public function __get( $offset )
     {
         if ( $this->offsetExists( $offset ) === false ) {
-            return null;
+            return false;
         }
 
         return $this->offsetGet( $offset );
+    }
+
+    // ------------------------------------------------------------------------
+
+    public function offsetGet( $offset )
+    {
+        if ( $this->offsetExists( $offset ) === false ) {
+            return false;
+        }
+
+        return parent::offsetGet( $offset );
     }
 
     // ------------------------------------------------------------------------
