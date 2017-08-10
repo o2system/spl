@@ -36,6 +36,5 @@
     "psr-4": {
       "O2System\\Spl\\": "src"
     }
-  },
-  "minimum-stability": "dev"
+  }
 }
