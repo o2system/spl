@@ -63,6 +63,22 @@ class SplClassInfo extends \ReflectionClass
     // ------------------------------------------------------------------------
 
     /**
+     * SplClassInfo::getParameter
+     *
+     * Gets class name.
+     *
+     * @return string
+     */
+    public function getParameter()
+    {
+        $parts = explode('\\', $this->name );
+
+        return strtolower( end( $parts ) );
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
      * SplClassInfo::getFileInfo
      *
      * Gets class file info metadata.
@@ -77,6 +93,8 @@ class SplClassInfo extends \ReflectionClass
 
         return new SplNamespaceInfo( $this->name, $this->getFileName() );
     }
+
+    // ------------------------------------------------------------------------
 
     /**
      * SplClassInfo::getFileInfo
