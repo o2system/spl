@@ -2,7 +2,7 @@
 O2System Standard PHP Library (SPL) it's build based on original [standard PHP library](http://php.net/manual/en/book.spl.php).
 It's made up primarily of commonly needed data structure classes, iterators, handlers and exceptions for O2System PHP Framework, but also can be used independently outside O2System PHP Framework environment.
 
-### Composer Instalation
+### Composer Installation
 The best way to install O2System Spl is to use [Composer](https://getcomposer.org)
 ```
 composer require o2system/spl --prefer-dist dev-master

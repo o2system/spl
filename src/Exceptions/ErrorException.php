@@ -59,7 +59,11 @@ class ErrorException extends AbstractException
         $this->line = $line;
 
         if ( class_exists( 'O2System\Kernel' ) ) {
-            $message = language()->getLine( $message, $context );
+            if ( is_array( $context ) ) {
+                $message = language()->getLine( $message, $context );
+            } else {
+                $message = language()->getLine( $message );
+            }
         }
 
         parent::__construct( $message, 0, [] );
