@@ -85,7 +85,7 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
-    public function addFilePath( $filePath )
+    public function addFilePath( $filePath, $offset = null )
     {
         $filePath = rtrim(
                 str_replace( [ '\\', '/' ], DIRECTORY_SEPARATOR, $filePath ),
@@ -101,7 +101,11 @@ trait FilePathCollectorTrait
         }
 
         if ( is_dir( $filePath ) AND ! in_array( $filePath, $this->filePaths ) ) {
-            $this->filePaths[] = $filePath;
+            if( isset( $offset ) ) {
+                $this->filePaths[ $offset ] = $filePath;
+            } else {
+                $this->filePaths[] = $filePath;
+            }
         }
 
         return $this;
