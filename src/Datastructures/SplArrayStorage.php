@@ -16,7 +16,12 @@ namespace O2System\Spl\Datastructures;
 
 use Traversable;
 
-class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, \JsonSerializable, \ArrayAccess
+class SplArrayStorage implements
+    \Countable,
+    \IteratorAggregate,
+    \Serializable,
+    \JsonSerializable,
+    \ArrayAccess
 {
     use Traits\ArrayConversionTrait;
     use Traits\ArrayFunctionsTrait;
@@ -533,7 +538,7 @@ class SplArrayStorage implements \Countable, \IteratorAggregate, \Serializable, 
      */
     public function jsonSerialize()
     {
-        return json_encode( $this->storage, JSON_PRETTY_PRINT );
+        return $this->storage;
     }
 
     // ------------------------------------------------------------------------

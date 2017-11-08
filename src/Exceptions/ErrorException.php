@@ -58,7 +58,7 @@ class ErrorException extends AbstractException
         $this->file = $filename;
         $this->line = $line;
 
-        if ( class_exists( 'O2System\Kernel' ) ) {
+        if ( class_exists( 'O2System\Kernel',false ) ) {
             if ( is_array( $context ) ) {
                 $message = language()->getLine( $message, $context );
             } else {

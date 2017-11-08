@@ -56,7 +56,7 @@ abstract class AbstractException extends \Exception
      */
     public function __construct( $message, $code = 0, array $context = [], \Exception $previous = null )
     {
-        if ( class_exists( 'O2System\Kernel' ) ) {
+        if ( class_exists( 'O2System\Kernel', false ) ) {
             $classInfo = new SplClassInfo( $this );
             $classNameParts = explode( '\\', $classInfo->getClass() );
             $classParameter = strtolower( end( $classNameParts ) );
