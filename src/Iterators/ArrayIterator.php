@@ -250,6 +250,6 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      */
     public function jsonSerialize()
     {
-        return json_encode( $this->getArrayCopy() );
+        return $this->getArrayCopy();
     }
 }

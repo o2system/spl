@@ -14,6 +14,7 @@ namespace O2System\Spl\Datastructures;
 
 // ------------------------------------------------------------------------
 
+use O2System\Spl\Iterators\ArrayIterator;
 use Traversable;
 
 class SplArrayStorage implements
@@ -555,6 +556,6 @@ class SplArrayStorage implements
      */
     public function getIterator()
     {
-        return new \ArrayIterator( $this->storage );
+        return new ArrayIterator( $this->storage );
     }
 }
