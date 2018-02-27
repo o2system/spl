@@ -14,20 +14,45 @@ namespace O2System\Spl\Traits\Collectors;
 
 // ------------------------------------------------------------------------
 
+/**
+ * Trait ErrorCollectorTrait
+ * @package O2System\Spl\Traits\Collectors
+ */
 trait ErrorCollectorTrait
 {
+    /**
+     * ErrorCollectorTrait::$errors
+     *
+     * List of errors.
+     *
+     * @var array
+     */
     private $errors = [];
 
     // ------------------------------------------------------------------------
 
-    public function setErrors( array $errors )
+    /**
+     * ErrorCollectorTrait::setErrors
+     *
+     * Sets errors.
+     *
+     * @param array $errors
+     */
+    protected function setErrors( array $errors )
     {
         $this->errors = $errors;
     }
 
     // ------------------------------------------------------------------------
 
-    public function addErrors( array $errors )
+    /**
+     * ErrorCollectorTrait::addErrors
+     *
+     * Adds errors.
+     *
+     * @param array $errors
+     */
+    protected function addErrors( array $errors )
     {
         foreach ( $errors as $error ) {
             $this->addError( $error[ 'code' ], $error[ 'message' ] );
@@ -36,8 +61,30 @@ trait ErrorCollectorTrait
 
     // ------------------------------------------------------------------------
 
-    public function addError( $code, $message )
+    /**
+     * ErrorCollectorTrait::addError
+     *
+     * Add error.
+     *
+     * @param int    $code      Error code.
+     * @param string $message   Error message.
+     */
+    protected function addError( $code, $message )
     {
         $this->errors[ $code ] = $message;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * ErrorCollectorTrait
+     *
+     * Gets errors.
+     *
+     * @return array
+     */
+    public function getErrors()
+    {
+        return $this->errors;
     }
 }

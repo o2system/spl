@@ -44,6 +44,8 @@ trait ConfigCollectorTrait
             } else {
                 $this->config[ $key ] = $value;
             }
+        } else {
+            $this->config[ $key ] = $value;
         }
 
         return $this;
@@ -103,6 +105,8 @@ trait ConfigCollectorTrait
             } else {
                 $this->config[ $key ] = $value;
             }
+        } else {
+            $this->config[ $key ] = $value;
         }
 
         return $this;
