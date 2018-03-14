@@ -77,7 +77,7 @@ trait ErrorCollectorTrait
     // ------------------------------------------------------------------------
 
     /**
-     * ErrorCollectorTrait
+     * ErrorCollectorTrait::getErrors
      *
      * Gets errors.
      *
@@ -86,5 +86,17 @@ trait ErrorCollectorTrait
     public function getErrors()
     {
         return $this->errors;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * ErrorCollectorTrait::hasErrors
+     *
+     * @return bool
+     */
+    public function hasErrors()
+    {
+        return (bool) count($this->errors) ? true : false;
     }
 }
