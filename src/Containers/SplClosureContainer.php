@@ -14,12 +14,14 @@ namespace O2System\Spl\Containers;
 
 // ------------------------------------------------------------------------
 
+use O2System\Psr\Container\ContainerInterface;
+
 /**
  * Class SplClosureContainer
  *
  * @package O2System\Spl\Dependency
  */
-class SplClosureContainer implements \Countable
+class SplClosureContainer implements \Countable, ContainerInterface
 {
     /**
      * Inversion Control Closure Container

@@ -13,6 +13,7 @@
 namespace O2System\Spl\Traits\Collectors;
 
 // ------------------------------------------------------------------------
+use O2System\Kernel\Datastructures\Config;
 
 /**
  * Class ConfigCollectorTrait
@@ -99,6 +100,8 @@ trait ConfigCollectorTrait
             } else {
                 $this->config = array_merge( $this->config, $key );
             }
+        } elseif( $key instanceof Config ) {
+            $this->config = $key;
         } elseif ( isset( $this->config[ $key ] ) ) {
             if ( is_array( $value ) AND is_array( $this->config[ $key ] ) ) {
                 $this->config[ $key ] = array_merge( $this->config[ $key ], $value );

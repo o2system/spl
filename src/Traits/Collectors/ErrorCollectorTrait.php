@@ -54,8 +54,8 @@ trait ErrorCollectorTrait
      */
     protected function addErrors( array $errors )
     {
-        foreach ( $errors as $error ) {
-            $this->addError( $error[ 'code' ], $error[ 'message' ] );
+        foreach ( $errors as $code => $message ) {
+            $this->addError( $code, $message );
         }
     }
 

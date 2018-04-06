@@ -14,6 +14,7 @@ namespace O2System\Spl\Containers;
 
 // ------------------------------------------------------------------------
 
+use O2System\Psr\Container\ContainerInterface;
 use O2System\Spl\Containers\Datastructures\SplServiceRegistry;
 
 /**
@@ -21,7 +22,7 @@ use O2System\Spl\Containers\Datastructures\SplServiceRegistry;
  *
  * @package O2System\Spl\Dependency
  */
-class SplServiceContainer implements \Countable
+class SplServiceContainer implements \Countable, ContainerInterface
 {
     /**
      * Inversion Control Closure Container
