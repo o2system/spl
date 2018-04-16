@@ -27,7 +27,7 @@ trait ErrorCollectorTrait
      *
      * @var array
      */
-    private $errors = [];
+    protected $errors = [];
 
     // ------------------------------------------------------------------------
 
