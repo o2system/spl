@@ -115,7 +115,7 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function __toJSON( $options = JSON_PRETTY_PRINT, $depth = 512 )
+    public function __toJson( $options = JSON_PRETTY_PRINT, $depth = 512 )
     {
         $depth = $depth == 0 ? 512 : $depth;
 
