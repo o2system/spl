@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Datastructures;
@@ -36,9 +37,9 @@ class SplArrayObject extends \ArrayObject
      *
      * @return SplArrayObject Returns an SplArrayObject object on success.
      */
-    public function __construct( array $array = [], $flag = \ArrayObject::ARRAY_AS_PROPS )
+    public function __construct(array $array = [], $flag = \ArrayObject::ARRAY_AS_PROPS)
     {
-        parent::__construct( $array, $flag );
+        parent::__construct($array, $flag);
     }
 
     // ------------------------------------------------------------------------
@@ -52,7 +53,7 @@ class SplArrayObject extends \ArrayObject
      */
     public function isEmpty()
     {
-        return ( $this->count() == 0 ? true : false );
+        return ($this->count() == 0 ? true : false);
     }
 
     // -----------------------------------------------------------------------
@@ -66,20 +67,20 @@ class SplArrayObject extends \ArrayObject
      *
      * @return mixed The value at the specified index or false.
      */
-    public function __get( $offset )
+    public function __get($offset)
     {
-       return $this->offsetGet( $offset );
+        return $this->offsetGet($offset);
     }
 
     // ------------------------------------------------------------------------
 
-    public function offsetGet( $offset )
+    public function offsetGet($offset)
     {
-        if ( $this->offsetExists( $offset ) === false ) {
+        if ($this->offsetExists($offset) === false) {
             return false;
         }
 
-        return parent::offsetGet( $offset );
+        return parent::offsetGet($offset);
     }
 
     // ------------------------------------------------------------------------
@@ -93,14 +94,14 @@ class SplArrayObject extends \ArrayObject
      */
     public function exchangeOffset()
     {
-        if ( $this->count() > 0 ) {
+        if ($this->count() > 0) {
             $camelcaseStorage = [];
 
-            foreach ( $this->getArrayCopy() as $offset => $value ) {
-                $camelcaseStorage[ camelcase( $offset ) ] = $value;
+            foreach ($this->getArrayCopy() as $offset => $value) {
+                $camelcaseStorage[ camelcase($offset) ] = $value;
             }
 
-            $this->exchangeArray( $camelcaseStorage );
+            $this->exchangeArray($camelcaseStorage);
         }
 
         return $this->getArrayCopy();
@@ -117,12 +118,12 @@ class SplArrayObject extends \ArrayObject
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge( array $values )
+    public function merge(array $values)
     {
         $storage = $this->getArrayCopy();
-        $storage = array_merge( $storage, $values );
+        $storage = array_merge($storage, $values);
 
-        $this->exchangeArray( $storage );
+        $this->exchangeArray($storage);
 
         return $storage;
     }

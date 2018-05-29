@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Datastructures;
@@ -48,9 +49,9 @@ class SplArrayStorage implements
      * <p>
      * The return value will be casted to boolean if non-boolean was returned.
      */
-    public function __isset( $offset )
+    public function __isset($offset)
     {
-        return isset( $this->storage[ $offset ] );
+        return isset($this->storage[ $offset ]);
     }
 
     // ------------------------------------------------------------------------
@@ -66,9 +67,9 @@ class SplArrayStorage implements
      *
      * @return void
      */
-    public function __unset( $offset )
+    public function __unset($offset)
     {
-        unset( $this->storage[ $offset ] );
+        unset($this->storage[ $offset ]);
     }
 
     // ------------------------------------------------------------------------
@@ -84,9 +85,9 @@ class SplArrayStorage implements
      *
      * @return mixed Can return all value types.
      */
-    public function &__get( $offset )
+    public function &__get($offset)
     {
-        return $this->offsetGet( $offset );
+        return $this->offsetGet($offset);
     }
 
     // ------------------------------------------------------------------------
@@ -101,9 +102,9 @@ class SplArrayStorage implements
      *                      The value to set.
      *                      </p>
      */
-    public function __set( $offset, $value )
+    public function __set($offset, $value)
     {
-        $this->offsetSet( $offset, $value );
+        $this->offsetSet($offset, $value);
     }
 
     // ------------------------------------------------------------------------
@@ -122,9 +123,9 @@ class SplArrayStorage implements
      * @return mixed Can return all value types.
      * @since 5.0.0
      */
-    public function offsetGet( $offset )
+    public function offsetGet($offset)
     {
-        if ( $this->offsetExists( $offset ) ) {
+        if ($this->offsetExists($offset)) {
             return $this->storage[ $offset ];
         } else {
             $this->storage[ $offset ] = [];
@@ -152,9 +153,9 @@ class SplArrayStorage implements
      * The return value will be casted to boolean if non-boolean was returned.
      * @since 5.0.0
      */
-    public function offsetExists( $offset )
+    public function offsetExists($offset)
     {
-        return (bool)isset( $this->storage[ $offset ] );
+        return (bool)isset($this->storage[ $offset ]);
     }
 
     // ------------------------------------------------------------------------
@@ -176,7 +177,7 @@ class SplArrayStorage implements
      * @return void
      * @since 5.0.0
      */
-    public function offsetSet( $offset, $value )
+    public function offsetSet($offset, $value)
     {
         $this->storage[ $offset ] = $value;
     }
@@ -197,10 +198,10 @@ class SplArrayStorage implements
      * @return void
      * @since 5.0.0
      */
-    public function offsetUnset( $offset )
+    public function offsetUnset($offset)
     {
-        if ( isset( $this->storage[ $offset ] ) ) {
-            unset( $this->storage[ $offset ] );
+        if (isset($this->storage[ $offset ])) {
+            unset($this->storage[ $offset ]);
         }
     }
 
@@ -216,19 +217,19 @@ class SplArrayStorage implements
      *
      * @return mixed|null
      */
-    public function offsetGetFilter( $offset, $filter = null )
+    public function offsetGetFilter($offset, $filter = null)
     {
-        if ( $this->offsetExists( $offset ) ) {
-            $storage = $this->offsetGet( $offset );
+        if ($this->offsetExists($offset)) {
+            $storage = $this->offsetGet($offset);
 
-            if ( is_array( $storage ) AND is_array( $filter ) ) {
-                return filter_var_array( $offset, $filter );
-            } elseif ( is_array( $storage ) AND isset( $filter ) ) {
-                foreach ( $storage as $key => $value ) {
-                    $storage[ $key ] = filter_var( $value, $filter );
+            if (is_array($storage) AND is_array($filter)) {
+                return filter_var_array($offset, $filter);
+            } elseif (is_array($storage) AND isset($filter)) {
+                foreach ($storage as $key => $value) {
+                    $storage[ $key ] = filter_var($value, $filter);
                 }
-            } elseif ( isset( $filter ) ) {
-                return filter_var( $storage, $filter );
+            } elseif (isset($filter)) {
+                return filter_var($storage, $filter);
             }
 
             return $storage;
@@ -248,9 +249,9 @@ class SplArrayStorage implements
      *
      * @return array The array merged copy of the resulting array
      */
-    public function append( array $values )
+    public function append(array $values)
     {
-        $this->storage = array_merge( $this->storage, $values );
+        $this->storage = array_merge($this->storage, $values);
     }
 
     // ------------------------------------------------------------------------
@@ -264,12 +265,12 @@ class SplArrayStorage implements
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge( array $values )
+    public function merge(array $values)
     {
         $storage = $this->getArrayCopy();
-        $storage = array_merge( $storage, $values );
+        $storage = array_merge($storage, $values);
 
-        $this->exchangeArray( $storage );
+        $this->exchangeArray($storage);
 
         return $storage;
     }
@@ -304,7 +305,7 @@ class SplArrayStorage implements
      * @return array the old array.
      * @since 5.1.0
      */
-    public function exchangeArray( array $values )
+    public function exchangeArray(array $values)
     {
         $oldStorage = $this->storage;
         $this->storage = $values;
@@ -326,9 +327,9 @@ class SplArrayStorage implements
      * @return void
      * @since 5.2.0
      */
-    public function asort( $sortFlags = SORT_REGULAR )
+    public function asort($sortFlags = SORT_REGULAR)
     {
-        asort( $this->storage, $sortFlags );
+        asort($this->storage, $sortFlags);
     }
 
     // ------------------------------------------------------------------------
@@ -345,9 +346,9 @@ class SplArrayStorage implements
      * @return void
      * @since 5.2.0
      */
-    public function ksort( $sortFlags = SORT_REGULAR )
+    public function ksort($sortFlags = SORT_REGULAR)
     {
-        ksort( $this->storage, $sortFlags );
+        ksort($this->storage, $sortFlags);
     }
 
     // ------------------------------------------------------------------------
@@ -371,9 +372,9 @@ class SplArrayStorage implements
      * @return void
      * @since 5.2.0
      */
-    public function uasort( $comparisonFunction )
+    public function uasort($comparisonFunction)
     {
-        uasort( $this->storage, $comparisonFunction );
+        uasort($this->storage, $comparisonFunction);
     }
 
     // ------------------------------------------------------------------------
@@ -400,9 +401,9 @@ class SplArrayStorage implements
      * @return void
      * @since 5.2.0
      */
-    public function uksort( $comparisonFunction )
+    public function uksort($comparisonFunction)
     {
-        uksort( $this->storage, $comparisonFunction );
+        uksort($this->storage, $comparisonFunction);
     }
 
     // ------------------------------------------------------------------------
@@ -418,7 +419,7 @@ class SplArrayStorage implements
      */
     public function natsort()
     {
-        natsort( $this->storage );
+        natsort($this->storage);
     }
 
     // ------------------------------------------------------------------------
@@ -434,7 +435,7 @@ class SplArrayStorage implements
      */
     public function natcasesort()
     {
-        natcasesort( $this->storage );
+        natcasesort($this->storage);
     }
 
     // ------------------------------------------------------------------------
@@ -448,7 +449,7 @@ class SplArrayStorage implements
      */
     public function isEmpty()
     {
-        return (bool)empty( $this->storage );
+        return (bool)empty($this->storage);
     }
 
     // ------------------------------------------------------------------------
@@ -464,9 +465,9 @@ class SplArrayStorage implements
      *
      * @return bool
      */
-    public function has( $needle, $strict = false )
+    public function has($needle, $strict = false)
     {
-        return in_array( $needle, $this->getArrayCopy(), $strict );
+        return in_array($needle, $this->getArrayCopy(), $strict);
     }
 
     // ------------------------------------------------------------------------
@@ -482,7 +483,7 @@ class SplArrayStorage implements
      */
     public function serialize()
     {
-        return serialize( $this->storage );
+        return serialize($this->storage);
     }
 
     // ------------------------------------------------------------------------
@@ -501,9 +502,9 @@ class SplArrayStorage implements
      * @return void
      * @since 5.1.0
      */
-    public function unserialize( $serialized )
+    public function unserialize($serialized)
     {
-        $this->storage = unserialize( $serialized );
+        $this->storage = unserialize($serialized);
     }
 
     // ------------------------------------------------------------------------
@@ -522,7 +523,7 @@ class SplArrayStorage implements
      */
     public function count()
     {
-        return count( $this->storage );
+        return count($this->storage);
     }
 
     // ------------------------------------------------------------------------
@@ -556,6 +557,6 @@ class SplArrayStorage implements
      */
     public function getIterator()
     {
-        return new ArrayIterator( $this->storage );
+        return new ArrayIterator($this->storage);
     }
 }

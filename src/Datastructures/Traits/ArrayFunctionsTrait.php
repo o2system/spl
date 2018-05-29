@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Datastructures\Traits;
@@ -36,11 +37,11 @@ trait ArrayFunctionsTrait
      *
      * @return SplArrayObject
      */
-    public function getCombine( array $keys )
+    public function getCombine(array $keys)
     {
-        $arrayCombine = array_combine( $keys, $this->getArrayCopy() );
+        $arrayCombine = array_combine($keys, $this->getArrayCopy());
 
-        return new SplArrayObject( $arrayCombine );
+        return new SplArrayObject($arrayCombine);
     }
 
     // ------------------------------------------------------------------------
@@ -57,13 +58,13 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns an array of all the keys of the array copy.
      */
-    public function getKeys( $searchValue = null, $strict = false )
+    public function getKeys($searchValue = null, $strict = false)
     {
-        if ( isset( $searchValue ) ) {
-            return array_keys( $this->getArrayCopy(), $searchValue, $strict );
+        if (isset($searchValue)) {
+            return array_keys($this->getArrayCopy(), $searchValue, $strict);
         }
 
-        return array_keys( $this->getArrayCopy() );
+        return array_keys($this->getArrayCopy());
     }
 
     // ------------------------------------------------------------------------
@@ -79,7 +80,7 @@ trait ArrayFunctionsTrait
      */
     public function getValues()
     {
-        return array_values( $this->getArrayCopy() );
+        return array_values($this->getArrayCopy());
     }
 
     // ------------------------------------------------------------------------
@@ -105,9 +106,9 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the slice. If the offset is larger than the size of the array then returns an empty array.
      */
-    public function getSlice( $offset = 0, $length = null, $preserveKeys = false )
+    public function getSlice($offset = 0, $length = null, $preserveKeys = false)
     {
-        return array_slice( $this->getArrayCopy(), $offset, $length, $preserveKeys );
+        return array_slice($this->getArrayCopy(), $offset, $length, $preserveKeys);
     }
 
     // ------------------------------------------------------------------------
@@ -126,12 +127,12 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the slices. If the offset is larger than the size of the array then returns an empty array.
      */
-    public function getSlices( array $lengths, $preserveKeys = false )
+    public function getSlices(array $lengths, $preserveKeys = false)
     {
         $arraySlices = [];
 
-        foreach ( $lengths as $key => $length ) {
-            $arraySlices[ $key ] = array_slice( $this->getArrayCopy(), 0, $length, $preserveKeys );
+        foreach ($lengths as $key => $length) {
+            $arraySlices[ $key ] = array_slice($this->getArrayCopy(), 0, $length, $preserveKeys);
         }
 
         return $arraySlices;
@@ -153,9 +154,9 @@ trait ArrayFunctionsTrait
      * @return array Returns a multidimensional numerically indexed array, starting with zero, with each dimension
      *               containing size elements.
      */
-    public function getChunk( $size, $preserveKeys = false )
+    public function getChunk($size, $preserveKeys = false)
     {
-        return array_chunk( $this->getArrayCopy(), $size, $preserveKeys );
+        return array_chunk($this->getArrayCopy(), $size, $preserveKeys);
     }
 
     // ------------------------------------------------------------------------
@@ -174,13 +175,13 @@ trait ArrayFunctionsTrait
      * @return array Returns a multidimensional numerically indexed array, starting with zero, with each dimension
      *               containing size elements.
      */
-    public function getChunks( array $sizes, $preserveKeys = false )
+    public function getChunks(array $sizes, $preserveKeys = false)
     {
         $arrayChunks = [];
 
         $offset = 0;
-        foreach ( $sizes as $key => $limit ) {
-            $arrayChunks[ $key ] = array_slice( $this->getArrayCopy(), $offset, $limit, $preserveKeys );
+        foreach ($sizes as $key => $limit) {
+            $arrayChunks[ $key ] = array_slice($this->getArrayCopy(), $offset, $limit, $preserveKeys);
             $offset = $limit;
         }
 
@@ -201,7 +202,7 @@ trait ArrayFunctionsTrait
     public function getShuffle()
     {
         $arrayCopy = $this->getArrayCopy();
-        shuffle( $arrayCopy );
+        shuffle($arrayCopy);
 
         return $arrayCopy;
     }
@@ -218,9 +219,9 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the reversed array.
      */
-    public function getReverse( $preserveKey = false )
+    public function getReverse($preserveKey = false)
     {
-        return array_reverse( $this->getArrayCopy(), $preserveKey );
+        return array_reverse($this->getArrayCopy(), $preserveKey);
     }
 
     // ------------------------------------------------------------------------
@@ -241,9 +242,9 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns an array of values representing a single column from the input array.
      */
-    public function getColumn( $columnKey, $indexKey = null )
+    public function getColumn($columnKey, $indexKey = null)
     {
-        return array_column( $this->getArrayCopy(), $columnKey, $indexKey );
+        return array_column($this->getArrayCopy(), $columnKey, $indexKey);
     }
 
     // ------------------------------------------------------------------------
@@ -259,7 +260,7 @@ trait ArrayFunctionsTrait
      */
     public function getFlip()
     {
-        return array_flip( $this->getArrayCopy() );
+        return array_flip($this->getArrayCopy());
     }
 
     // ------------------------------------------------------------------------
@@ -277,9 +278,9 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the filtered array.
      */
-    public function filter( $callback, $flag = 0 )
+    public function filter($callback, $flag = 0)
     {
-        return array_filter( $this->getArrayCopy(), $callback, $flag );
+        return array_filter($this->getArrayCopy(), $callback, $flag);
     }
 
     // ------------------------------------------------------------------------
@@ -295,7 +296,7 @@ trait ArrayFunctionsTrait
      */
     public function getSum()
     {
-        return array_sum( $this->getArrayCopy() );
+        return array_sum($this->getArrayCopy());
     }
 
     // ------------------------------------------------------------------------
@@ -311,6 +312,6 @@ trait ArrayFunctionsTrait
      */
     public function getCountValues()
     {
-        return array_count_values( $this->getArrayCopy() );
+        return array_count_values($this->getArrayCopy());
     }
 }

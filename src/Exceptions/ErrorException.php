@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Exceptions;
@@ -58,15 +59,15 @@ class ErrorException extends AbstractException
         $this->file = $filename;
         $this->line = $line;
 
-        if ( class_exists( 'O2System\Kernel',false ) ) {
-            if ( is_array( $context ) ) {
-                $message = language()->getLine( $message, $context );
+        if (class_exists('O2System\Kernel', false)) {
+            if (is_array($context)) {
+                $message = language()->getLine($message, $context);
             } else {
-                $message = language()->getLine( $message );
+                $message = language()->getLine($message);
             }
         }
 
-        parent::__construct( $message, 0, [] );
+        parent::__construct($message, 0, []);
     }
 
     // ------------------------------------------------------------------------
@@ -94,7 +95,7 @@ class ErrorException extends AbstractException
      */
     public function getStringSeverity()
     {
-        switch ( $this->severity ) {
+        switch ($this->severity) {
             case E_ERROR: // 1 //
                 return 'E_ERROR';
             case E_WARNING: // 2 //

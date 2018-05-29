@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Traits\Collectors;
@@ -37,11 +38,11 @@ trait ConfigCollectorTrait
      *
      * @return $this
      */
-    public function addConfig( $key, $value )
+    public function addConfig($key, $value)
     {
-        if ( isset( $this->config[ $key ] ) ) {
-            if ( is_array( $value ) AND is_array( $this->config[ $key ] ) ) {
-                $this->config[ $key ] = array_merge( $this->config[ $key ], $value );
+        if (isset($this->config[ $key ])) {
+            if (is_array($value) AND is_array($this->config[ $key ])) {
+                $this->config[ $key ] = array_merge($this->config[ $key ], $value);
             } else {
                 $this->config[ $key ] = $value;
             }
@@ -64,12 +65,12 @@ trait ConfigCollectorTrait
      *
      * @return mixed
      */
-    final public function getConfig( $key = null, $offset = null )
+    final public function getConfig($key = null, $offset = null)
     {
-        if ( isset( $key ) ) {
-            if ( isset( $this->config[ $key ] ) ) {
-                if ( isset( $offset ) ) {
-                    return isset( $this->config[ $key ][ $offset ] ) ? $this->config[ $key ][ $offset ] : null;
+        if (isset($key)) {
+            if (isset($this->config[ $key ])) {
+                if (isset($offset)) {
+                    return isset($this->config[ $key ][ $offset ]) ? $this->config[ $key ][ $offset ] : null;
                 }
 
                 return $this->config[ $key ];
@@ -92,19 +93,19 @@ trait ConfigCollectorTrait
      *
      * @return static
      */
-    public function setConfig( $key, $value = null )
+    public function setConfig($key, $value = null)
     {
-        if ( is_array( $key ) ) {
-            if ( empty( $this->config ) ) {
+        if (is_array($key)) {
+            if (empty($this->config)) {
                 $this->config = $key;
             } else {
-                $this->config = array_merge( $this->config, $key );
+                $this->config = array_merge($this->config, $key);
             }
-        } elseif( $key instanceof Config ) {
+        } elseif ($key instanceof Config) {
             $this->config = $key;
-        } elseif ( isset( $this->config[ $key ] ) ) {
-            if ( is_array( $value ) AND is_array( $this->config[ $key ] ) ) {
-                $this->config[ $key ] = array_merge( $this->config[ $key ], $value );
+        } elseif (isset($this->config[ $key ])) {
+            if (is_array($value) AND is_array($this->config[ $key ])) {
+                $this->config[ $key ] = array_merge($this->config[ $key ], $value);
             } else {
                 $this->config[ $key ] = $value;
             }

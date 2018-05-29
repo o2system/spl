@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Datastructures\Traits;
@@ -34,9 +35,9 @@ trait ArrayConversionTrait
      *
      * @return SplArrayObject
      */
-    public function __toObject( $depth = 0 )
+    public function __toObject($depth = 0)
     {
-        return $this->___toObjectIterator( $this->getArrayCopy(), ( $depth == 0 ? 'ALL' : $depth ) );
+        return $this->___toObjectIterator($this->getArrayCopy(), ($depth == 0 ? 'ALL' : $depth));
     }
 
     // --------------------------------------------------------------------
@@ -52,31 +53,31 @@ trait ArrayConversionTrait
      *
      * @return SplArrayObject
      */
-    private function ___toObjectIterator( $array, $depth = 'ALL', $counter = 0 )
+    private function ___toObjectIterator($array, $depth = 'ALL', $counter = 0)
     {
         $object = new SplArrayObject();
 
-        if ( $this->count() > 0 ) {
-            foreach ( $array as $key => $value ) {
-                if ( strlen( $key ) ) {
-                    if ( is_array( $value ) ) {
-                        if ( $depth == 'ALL' ) {
-                            $object->offsetSet( $key, $this->___toObjectIterator( $value, $depth ) );
-                        } elseif ( is_numeric( $depth ) ) {
-                            if ( $counter != $depth ) {
-                                $object->offsetSet( $key, $this->___toObjectIterator( $value, $depth, $counter ) );
+        if ($this->count() > 0) {
+            foreach ($array as $key => $value) {
+                if (strlen($key)) {
+                    if (is_array($value)) {
+                        if ($depth == 'ALL') {
+                            $object->offsetSet($key, $this->___toObjectIterator($value, $depth));
+                        } elseif (is_numeric($depth)) {
+                            if ($counter != $depth) {
+                                $object->offsetSet($key, $this->___toObjectIterator($value, $depth, $counter));
                             } else {
-                                $object->offsetSet( $key, $value );
+                                $object->offsetSet($key, $value);
                             }
-                        } elseif ( is_string( $depth ) && $key == $depth ) {
-                            $object->offsetSet( $key, $value );
-                        } elseif ( is_array( $depth ) && in_array( $key, $depth ) ) {
-                            $object->offsetSet( $key, $value );
+                        } elseif (is_string($depth) && $key == $depth) {
+                            $object->offsetSet($key, $value);
+                        } elseif (is_array($depth) && in_array($key, $depth)) {
+                            $object->offsetSet($key, $value);
                         } else {
-                            $object->offsetSet( $key, $this->___toObjectIterator( $value, $depth ) );
+                            $object->offsetSet($key, $this->___toObjectIterator($value, $depth));
                         }
                     } else {
-                        $object->offsetSet( $key, $value );
+                        $object->offsetSet($key, $value);
                     }
                 }
             }
@@ -96,7 +97,7 @@ trait ArrayConversionTrait
      */
     public function __toString()
     {
-        if ( method_exists( $this, 'render' ) ) {
+        if (method_exists($this, 'render')) {
             return $this->render();
         }
 
@@ -115,11 +116,11 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function __toJson( $options = JSON_PRETTY_PRINT, $depth = 512 )
+    public function __toJson($options = JSON_PRETTY_PRINT, $depth = 512)
     {
         $depth = $depth == 0 ? 512 : $depth;
 
-        return call_user_func_array( 'json_encode', [ $this->getArrayCopy(), $options, $depth ] );
+        return call_user_func_array('json_encode', [$this->getArrayCopy(), $options, $depth]);
     }
 
     // --------------------------------------------------------------------
@@ -135,7 +136,7 @@ trait ArrayConversionTrait
      */
     public function __toSerialize()
     {
-        return serialize( $this->__toArray() );
+        return serialize($this->__toArray());
     }
 
     // --------------------------------------------------------------------
@@ -163,9 +164,9 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function implode( $glue = '' )
+    public function implode($glue = '')
     {
-        return implode( $glue, $this->getArrayCopy() );
+        return implode($glue, $this->getArrayCopy());
     }
 
     // --------------------------------------------------------------------
@@ -179,8 +180,8 @@ trait ArrayConversionTrait
      *
      * @return string
      */
-    public function join( $glue = '' )
+    public function join($glue = '')
     {
-        return join( $glue, $this->getArrayCopy() );
+        return join($glue, $this->getArrayCopy());
     }
 }

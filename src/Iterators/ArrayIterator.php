@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Iterators;
@@ -54,7 +55,7 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      */
     public function last()
     {
-        $this->seek( ( $this->count() ) - 1 );
+        $this->seek(($this->count()) - 1);
 
         return $this->current();
     }
@@ -66,10 +67,10 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @param mixed $value The new value to store at the index.
      */
-    public function push( $value )
+    public function push($value)
     {
-        $this->offsetSet( $this->count(), $value );
-        $this->seek( $this->count() - 1 );
+        $this->offsetSet($this->count(), $value);
+        $this->seek($this->count() - 1);
     }
 
     // ------------------------------------------------------------------------
@@ -81,12 +82,12 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @param mixed $value The new value to store at the index.
      */
-    public function unshift( $value )
+    public function unshift($value)
     {
         $storage = $this->getArrayCopy();
-        array_unshift( $storage, $value );
+        array_unshift($storage, $value);
 
-        parent::__construct( $storage );
+        parent::__construct($storage);
     }
 
     // ------------------------------------------------------------------------
@@ -94,17 +95,17 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
     public function shift()
     {
         $storage = $this->getArrayCopy();
-        array_shift( $storage );
+        array_shift($storage);
 
-        parent::__construct( $storage );
+        parent::__construct($storage);
     }
 
     public function pop()
     {
         $storage = $this->getArrayCopy();
-        array_pop( $storage );
+        array_pop($storage);
 
-        parent::__construct( $storage );
+        parent::__construct($storage);
     }
 
     /**
@@ -118,9 +119,9 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @return bool
      */
-    public function has( $needle, $strict = false )
+    public function has($needle, $strict = false)
     {
-        return (bool)in_array( $needle, $this->getArrayCopy(), $strict );
+        return (bool)in_array($needle, $this->getArrayCopy(), $strict);
     }
 
     // ------------------------------------------------------------------------
@@ -135,11 +136,11 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @return mixed Returns the key for needle if it is found in the array, FALSE otherwise.
      */
-    public function search( $needle, $seek = false )
+    public function search($needle, $seek = false)
     {
-        if ( false !== ( $position = array_search( $needle, $this->getArrayCopy() ) ) ) {
-            if ( $seek === true ) {
-                $this->seek( $position );
+        if (false !== ($position = array_search($needle, $this->getArrayCopy()))) {
+            if ($seek === true) {
+                $this->seek($position);
             }
 
             return $position;
@@ -162,12 +163,12 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @return array Returns the filtered array.
      */
-    public function unique( $sortFlags = SORT_STRING, $exchangeArray = false )
+    public function unique($sortFlags = SORT_STRING, $exchangeArray = false)
     {
-        $unique = array_unique( $this->getArrayCopy(), $sortFlags );
+        $unique = array_unique($this->getArrayCopy(), $sortFlags);
 
-        if ( $exchangeArray ) {
-            $this->exchangeArray( $unique );
+        if ($exchangeArray) {
+            $this->exchangeArray($unique);
         }
 
         return $unique;
@@ -186,10 +187,10 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      * @return array of the old storage.
      * @since 5.1.0
      */
-    public function exchangeArray( array $values )
+    public function exchangeArray(array $values)
     {
         $oldStorage = $this->getArrayCopy();
-        parent::__construct( $values );
+        parent::__construct($values);
 
         return $oldStorage;
     }
@@ -205,12 +206,12 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge( array $values )
+    public function merge(array $values)
     {
         $storage = $this->getArrayCopy();
-        $storage = array_merge( $storage, $values );
+        $storage = array_merge($storage, $values);
 
-        $this->exchangeArray( $storage );
+        $this->exchangeArray($storage);
 
         return $storage;
     }
@@ -226,13 +227,13 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @return void
      */
-    public function remove( $needle )
+    public function remove($needle)
     {
-        if ( false !== ( $position = array_search( $needle, $this->getArrayCopy() ) ) ) {
-            $firstStorage = array_splice( $this->getArrayCopy(), 0, $position );
-            $endStorage = array_splice( $this->getArrayCopy(), $position + 1 );
+        if (false !== ($position = array_search($needle, $this->getArrayCopy()))) {
+            $firstStorage = array_splice($this->getArrayCopy(), 0, $position);
+            $endStorage = array_splice($this->getArrayCopy(), $position + 1);
 
-            parent::__construct( array_merge( $firstStorage, $endStorage ) );
+            parent::__construct(array_merge($firstStorage, $endStorage));
         }
     }
 

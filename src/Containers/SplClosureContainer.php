@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Containers;
@@ -40,7 +41,7 @@ class SplClosureContainer implements \Countable, ContainerInterface
      * @param string   $offset
      * @param \Closure $closure
      */
-    public function attach( $offset, \Closure $closure )
+    public function attach($offset, \Closure $closure)
     {
         $this->closures[ $offset ] = $closure;
     }
@@ -57,9 +58,9 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @return bool
      */
-    public function __isset( $offset )
+    public function __isset($offset)
     {
-        return $this->has( $offset );
+        return $this->has($offset);
     }
 
     // ------------------------------------------------------------------------
@@ -73,9 +74,9 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @return bool
      */
-    public function has( $offset )
+    public function has($offset)
     {
-        return (bool)isset( $this->closures[ $offset ] );
+        return (bool)isset($this->closures[ $offset ]);
     }
 
     // ------------------------------------------------------------------------
@@ -88,9 +89,9 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @param string $offset
      */
-    public function __unset( $offset )
+    public function __unset($offset)
     {
-        $this->detach( $offset );
+        $this->detach($offset);
     }
 
     // ------------------------------------------------------------------------
@@ -102,10 +103,10 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @param string $offset
      */
-    public function detach( $offset )
+    public function detach($offset)
     {
-        if ( isset( $this->closures[ $offset ] ) ) {
-            unset( $this->closures[ $offset ] );
+        if (isset($this->closures[ $offset ])) {
+            unset($this->closures[ $offset ]);
         }
     }
 
@@ -122,9 +123,9 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @return mixed Returns FALSE when calling the closure is failed.
      */
-    public function __call( $offset, array $arguments = [] )
+    public function __call($offset, array $arguments = [])
     {
-        return $this->get( $offset, $arguments );
+        return $this->get($offset, $arguments);
     }
 
     // ------------------------------------------------------------------------
@@ -139,9 +140,9 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @return mixed Returns FALSE when calling the closure is failed.
      */
-    public function get( $offset, array $arguments = [] )
+    public function get($offset, array $arguments = [])
     {
-        return isset( $this->closures[ $offset ] ) ? call_user_func_array(
+        return isset($this->closures[ $offset ]) ? call_user_func_array(
             $this->closures[ $offset ],
             $arguments
         ) : false;
@@ -163,6 +164,6 @@ class SplClosureContainer implements \Countable, ContainerInterface
      */
     public function count()
     {
-        return count( $this->closures );
+        return count($this->closures);
     }
 }

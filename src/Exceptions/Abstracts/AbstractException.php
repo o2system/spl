@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Exceptions\Abstracts;
@@ -54,34 +55,34 @@ abstract class AbstractException extends \Exception
      * @param array           $context
      * @param \Exception|NULL $previous
      */
-    public function __construct( $message, $code = 0, array $context = [], \Exception $previous = null )
+    public function __construct($message, $code = 0, array $context = [], \Exception $previous = null)
     {
-        if ( class_exists( 'O2System\Kernel', false ) ) {
-            $classInfo = new SplClassInfo( $this );
-            $classNameParts = explode( '\\', $classInfo->getClass() );
-            $classParameter = strtolower( end( $classNameParts ) );
-            $classLanguageDirectory = dirname( $classInfo->getFileInfo()->getRealPath() ) . DIRECTORY_SEPARATOR . 'Languages' . DIRECTORY_SEPARATOR;
+        if (class_exists('O2System\Kernel', false)) {
+            $classInfo = new SplClassInfo($this);
+            $classNameParts = explode('\\', $classInfo->getClass());
+            $classParameter = strtolower(end($classNameParts));
+            $classLanguageDirectory = dirname($classInfo->getFileInfo()->getRealPath()) . DIRECTORY_SEPARATOR . 'Languages' . DIRECTORY_SEPARATOR;
 
-            if ( false !== ( $exceptionKey = array_search( 'Exception', $classNameParts ) ) OR
-                false !== ( $exceptionKey = array_search( 'Exceptions', $classNameParts ) )
+            if (false !== ($exceptionKey = array_search('Exception', $classNameParts)) OR
+                false !== ($exceptionKey = array_search('Exceptions', $classNameParts))
             ) {
-                if ( isset( $classNameParts[ $exceptionKey - 1 ] ) ) {
+                if (isset($classNameParts[ $exceptionKey - 1 ])) {
                     $classParameter = $classNameParts[ $exceptionKey - 1 ];
 
                 }
             }
 
-            $this->view = strtolower( $classParameter . '_' . $this->view );
-            $languageFilename = strtolower( $classParameter ) . '_' . language()->getDefault() . '.ini';
-            $languageKey = strtoupper( $classParameter . '_exception' );
-            language()->loadFile( $classLanguageDirectory . $languageFilename );
+            $this->view = strtolower($classParameter . '_' . $this->view);
+            $languageFilename = strtolower($classParameter) . '_' . language()->getDefault() . '.ini';
+            $languageKey = strtoupper($classParameter . '_exception');
+            language()->loadFile($classLanguageDirectory . $languageFilename);
 
-            $this->header = language()->getLine( 'E_HEADER_' . $languageKey );
-            $this->description = language()->getLine( 'E_DESCRIPTION_' . $languageKey );
-            $message = language()->getLine( $message, $context );
+            $this->header = language()->getLine('E_HEADER_' . $languageKey);
+            $this->description = language()->getLine('E_DESCRIPTION_' . $languageKey);
+            $message = language()->getLine($message, $context);
         }
 
-        parent::__construct( $message, $code, $previous );
+        parent::__construct($message, $code, $previous);
     }
 
     // ------------------------------------------------------------------------
@@ -121,8 +122,8 @@ abstract class AbstractException extends \Exception
      */
     public function getChronology()
     {
-        if ( class_exists( 'O2System\Gear\Trace' ) ) {
-            return ( new \O2System\Gear\Trace( $this->getTrace() ) )->getChronology();
+        if (class_exists('O2System\Gear\Trace')) {
+            return (new \O2System\Gear\Trace($this->getTrace()))->getChronology();
         }
 
         return $this->getTrace();

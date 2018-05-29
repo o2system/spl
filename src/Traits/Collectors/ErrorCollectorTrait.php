@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Traits\Collectors;
@@ -32,51 +33,6 @@ trait ErrorCollectorTrait
     // ------------------------------------------------------------------------
 
     /**
-     * ErrorCollectorTrait::setErrors
-     *
-     * Sets errors.
-     *
-     * @param array $errors
-     */
-    protected function setErrors( array $errors )
-    {
-        $this->errors = $errors;
-    }
-
-    // ------------------------------------------------------------------------
-
-    /**
-     * ErrorCollectorTrait::addErrors
-     *
-     * Adds errors.
-     *
-     * @param array $errors
-     */
-    protected function addErrors( array $errors )
-    {
-        foreach ( $errors as $code => $message ) {
-            $this->addError( $code, $message );
-        }
-    }
-
-    // ------------------------------------------------------------------------
-
-    /**
-     * ErrorCollectorTrait::addError
-     *
-     * Add error.
-     *
-     * @param int    $code      Error code.
-     * @param string $message   Error message.
-     */
-    protected function addError( $code, $message )
-    {
-        $this->errors[ $code ] = $message;
-    }
-
-    // ------------------------------------------------------------------------
-
-    /**
      * ErrorCollectorTrait::getErrors
      *
      * Gets errors.
@@ -91,12 +47,57 @@ trait ErrorCollectorTrait
     // ------------------------------------------------------------------------
 
     /**
+     * ErrorCollectorTrait::setErrors
+     *
+     * Sets errors.
+     *
+     * @param array $errors
+     */
+    protected function setErrors(array $errors)
+    {
+        $this->errors = $errors;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
      * ErrorCollectorTrait::hasErrors
      *
      * @return bool
      */
     public function hasErrors()
     {
-        return (bool) count($this->errors) ? true : false;
+        return (bool)count($this->errors) ? true : false;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * ErrorCollectorTrait::addErrors
+     *
+     * Adds errors.
+     *
+     * @param array $errors
+     */
+    protected function addErrors(array $errors)
+    {
+        foreach ($errors as $code => $message) {
+            $this->addError($code, $message);
+        }
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * ErrorCollectorTrait::addError
+     *
+     * Add error.
+     *
+     * @param int    $code    Error code.
+     * @param string $message Error message.
+     */
+    protected function addError($code, $message)
+    {
+        $this->errors[ $code ] = $message;
     }
 }

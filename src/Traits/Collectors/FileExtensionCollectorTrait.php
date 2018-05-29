@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Traits\Collectors;
@@ -28,28 +29,28 @@ trait FileExtensionCollectorTrait
         return $this->fileExtensions;
     }
 
-    public function setFileExtensions( array $fileExtensions )
+    public function setFileExtensions(array $fileExtensions)
     {
         $this->fileExtensions = $fileExtensions;
 
         return $this;
     }
 
-    public function addFileExtensions( array $fileExtensions )
+    public function addFileExtensions(array $fileExtensions)
     {
-        foreach ( $fileExtensions as $fileExtension ) {
-            $this->addFileExtension( $fileExtension );
+        foreach ($fileExtensions as $fileExtension) {
+            $this->addFileExtension($fileExtension);
         }
 
         return $this;
     }
 
-    public function addFileExtension( $fileExtension )
+    public function addFileExtension($fileExtension)
     {
-        $fileExtension = '.' . trim( $fileExtension, '.' );
+        $fileExtension = '.' . trim($fileExtension, '.');
 
-        if ( ! in_array( $fileExtension, $this->fileExtensions ) ) {
-            array_push( $this->fileExtensions, $fileExtension );
+        if ( ! in_array($fileExtension, $this->fileExtensions)) {
+            array_push($this->fileExtensions, $fileExtension);
         }
 
         return $this;

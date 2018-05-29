@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Info;
@@ -35,14 +36,14 @@ class SplClassInfo extends \ReflectionClass
      *
      * @param mixed $className
      */
-    public function __construct( $className )
+    public function __construct($className)
     {
-        if ( is_object( $className ) ) {
-            $className = get_class( $className );
+        if (is_object($className)) {
+            $className = get_class($className);
         }
 
-        if ( class_exists( $className ) ) {
-            parent::__construct( $className );
+        if (class_exists($className)) {
+            parent::__construct($className);
         }
     }
 
@@ -71,9 +72,9 @@ class SplClassInfo extends \ReflectionClass
      */
     public function getParameter()
     {
-        $parts = explode('\\', $this->name );
+        $parts = explode('\\', $this->name);
 
-        return strtolower( end( $parts ) );
+        return strtolower(end($parts));
     }
 
     // ------------------------------------------------------------------------
@@ -87,11 +88,11 @@ class SplClassInfo extends \ReflectionClass
      */
     public function getNamespaceInfo()
     {
-        if ( empty( $this->name ) ) {
-            throw new \RuntimeException( 'Internal error: SplClassInfo failed to retrieve the reflection object' );
+        if (empty($this->name)) {
+            throw new \RuntimeException('Internal error: SplClassInfo failed to retrieve the reflection object');
         }
 
-        return new SplNamespaceInfo( $this->name, $this->getFileName() );
+        return new SplNamespaceInfo($this->name, $this->getFileName());
     }
 
     // ------------------------------------------------------------------------
@@ -105,10 +106,10 @@ class SplClassInfo extends \ReflectionClass
      */
     public function getFileInfo()
     {
-        if ( empty( $this->name ) ) {
-            throw new \RuntimeException( 'Internal error: SplClassInfo failed to retrieve the reflection object' );
+        if (empty($this->name)) {
+            throw new \RuntimeException('Internal error: SplClassInfo failed to retrieve the reflection object');
         }
 
-        return new SplFileInfo( $this->getFileName() );
+        return new SplFileInfo($this->getFileName());
     }
 }

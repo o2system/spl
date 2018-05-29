@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Info;
@@ -41,25 +42,25 @@ class SplNamespaceInfo
      * @param mixed             $namespace
      * @param null|string|array $path
      */
-    public function __construct( $namespace, $path = null )
+    public function __construct($namespace, $path = null)
     {
-        if ( is_object( $namespace ) ) {
-            $className = get_class( $namespace );
-            $namespace = pathinfo( $className, PATHINFO_DIRNAME );
+        if (is_object($namespace)) {
+            $className = get_class($namespace);
+            $namespace = pathinfo($className, PATHINFO_DIRNAME);
 
-            $reflection = new \ReflectionClass( $className );
+            $reflection = new \ReflectionClass($className);
 
-            $path = pathinfo( $reflection->getFileName(), PATHINFO_DIRNAME );
+            $path = pathinfo($reflection->getFileName(), PATHINFO_DIRNAME);
         }
 
         $this->name = $namespace;
 
-        if ( isset( $path ) ) {
-            if ( is_string( $path ) ) {
-                $this->paths[] = new SplDirectoryInfo( $path );
-            } elseif ( is_array( $path ) ) {
-                foreach ( $path as $directory ) {
-                    $this->paths[] = new SplDirectoryInfo( $directory );
+        if (isset($path)) {
+            if (is_string($path)) {
+                $this->paths[] = new SplDirectoryInfo($path);
+            } elseif (is_array($path)) {
+                foreach ($path as $directory) {
+                    $this->paths[] = new SplDirectoryInfo($directory);
                 }
             }
         }
@@ -75,12 +76,12 @@ class SplNamespaceInfo
      *
      * @return mixed|null
      */
-    public function __call( $method, array $args = [] )
+    public function __call($method, array $args = [])
     {
-        if ( method_exists( $this, $method ) ) {
-            return call_user_func_array( [ &$this, $method ], $args );
-        } elseif ( method_exists( $this->directoryInfo, $method ) ) {
-            return call_user_func_array( [ &$this->directoryInfo, $method ], $args );
+        if (method_exists($this, $method)) {
+            return call_user_func_array([&$this, $method], $args);
+        } elseif (method_exists($this->directoryInfo, $method)) {
+            return call_user_func_array([&$this->directoryInfo, $method], $args);
         }
 
         return null;
@@ -97,6 +98,6 @@ class SplNamespaceInfo
      */
     public function getParent()
     {
-        return str_replace( DIRECTORY_SEPARATOR, '\\', pathinfo( $this->name, PATHINFO_DIRNAME ) ) . '\\';
+        return str_replace(DIRECTORY_SEPARATOR, '\\', pathinfo($this->name, PATHINFO_DIRNAME)) . '\\';
     }
 }

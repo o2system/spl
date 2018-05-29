@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Info;
@@ -35,12 +36,12 @@ class SplFileInfo extends \SplFileInfo
      *
      * @param string $filePath File Path.
      */
-    public function __construct( $filePath )
+    public function __construct($filePath)
     {
-        parent::__construct( $filePath );
+        parent::__construct($filePath);
 
-        if ( file_exists( $filePath ) ) {
-            $this->mime = finfo_file( finfo_open( FILEINFO_MIME_TYPE ), $filePath );
+        if (file_exists($filePath)) {
+            $this->mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $filePath);
         }
     }
 
@@ -56,7 +57,7 @@ class SplFileInfo extends \SplFileInfo
      */
     public function getFilename()
     {
-        return str_replace( '.' . $this->getExtension(), '', parent::getFilename() );
+        return str_replace('.' . $this->getExtension(), '', parent::getFilename());
     }
 
     /**
@@ -66,13 +67,13 @@ class SplFileInfo extends \SplFileInfo
      *
      * @return string
      */
-    public function getBasename( $suffix = null )
+    public function getBasename($suffix = null)
     {
-        if ( is_null( $suffix ) ) {
+        if (is_null($suffix)) {
             return parent::getBasename();
         }
 
-        return str_replace( '.' . $this->getExtension(), '.' . trim( $suffix, '.' ), parent::getFilename() );
+        return str_replace('.' . $this->getExtension(), '.' . trim($suffix, '.'), parent::getFilename());
     }
 
     /**
@@ -82,6 +83,6 @@ class SplFileInfo extends \SplFileInfo
      */
     public function getDirectoryInfo()
     {
-        return new SplDirectoryInfo( dirname( $this->getRealPath() ) );
+        return new SplDirectoryInfo(dirname($this->getRealPath()));
     }
 }

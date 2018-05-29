@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Traits\Collectors;
@@ -37,7 +38,7 @@ trait FilePathCollectorTrait
      */
     protected $filePaths = [];
 
-    public function setFileDirName( $fileDirName )
+    public function setFileDirName($fileDirName)
     {
         $this->fileDirName = $fileDirName;
 
@@ -46,10 +47,10 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
-    public function removeFilePath( $filePath )
+    public function removeFilePath($filePath)
     {
-        if ( false !== ( $key = array_search( $filePath, $this->filePaths ) ) ) {
-            unset( $this->filePaths[ $key ] );
+        if (false !== ($key = array_search($filePath, $this->filePaths))) {
+            unset($this->filePaths[ $key ]);
         }
 
         return $this;
@@ -57,27 +58,27 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
-    public function getFilePaths( $reverse = false )
+    public function getFilePaths($reverse = false)
     {
-        return ( $reverse === true ? array_reverse( $this->filePaths ) : $this->filePaths );
+        return ($reverse === true ? array_reverse($this->filePaths) : $this->filePaths);
     }
 
     // ------------------------------------------------------------------------
 
-    public function setFilePaths( array $filePaths )
+    public function setFilePaths(array $filePaths)
     {
         $this->filePaths = [];
-        $this->addFilePaths( $filePaths );
+        $this->addFilePaths($filePaths);
 
         return $this;
     }
 
     // ------------------------------------------------------------------------
 
-    public function addFilePaths( array $filePaths )
+    public function addFilePaths(array $filePaths)
     {
-        foreach ( $filePaths as $filePath ) {
-            $this->addFilePath( $filePath );
+        foreach ($filePaths as $filePath) {
+            $this->addFilePath($filePath);
         }
 
         return $this;
@@ -85,14 +86,14 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
-    public function addFilePath( $filePath, $offset = null )
+    public function addFilePath($filePath, $offset = null)
     {
         $filePath = rtrim(
-                str_replace( [ '\\', '/' ], DIRECTORY_SEPARATOR, $filePath ),
+                str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $filePath),
                 DIRECTORY_SEPARATOR
             ) . DIRECTORY_SEPARATOR;
 
-        if ( isset( $this->fileDirName ) ) {
+        if (isset($this->fileDirName)) {
             $filePath = str_replace(
                     $this->fileDirName . DIRECTORY_SEPARATOR,
                     '',
@@ -100,8 +101,8 @@ trait FilePathCollectorTrait
                 ) . $this->fileDirName . DIRECTORY_SEPARATOR;
         }
 
-        if ( is_dir( $filePath ) AND ! in_array( $filePath, $this->filePaths ) ) {
-            if( isset( $offset ) ) {
+        if (is_dir($filePath) AND ! in_array($filePath, $this->filePaths)) {
+            if (isset($offset)) {
                 $this->filePaths[ $offset ] = $filePath;
             } else {
                 $this->filePaths[] = $filePath;

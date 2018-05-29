@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Traits;
@@ -28,14 +29,14 @@ trait OptionsSetterTrait
      *
      * @return $this
      */
-    public function setOptions( array $options )
+    public function setOptions(array $options)
     {
-        if ( count( $options ) ) {
-            foreach ( $options as $method => $value ) {
-                $method = camelcase( 'set_' . $method );
+        if (count($options)) {
+            foreach ($options as $method => $value) {
+                $method = camelcase('set_' . $method);
 
-                if ( method_exists( $this, $method ) ) {
-                    call_user_func_array( [ &$this, $method ], [ $value ] );
+                if (method_exists($this, $method)) {
+                    call_user_func_array([&$this, $method], [$value]);
                 }
             }
         }

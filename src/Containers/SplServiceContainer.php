@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Containers;
@@ -41,7 +42,7 @@ class SplServiceContainer implements \Countable, ContainerInterface
      * @param string             $offset
      * @param SplServiceRegistry $service
      */
-    public function attach( $offset, SplServiceRegistry $service )
+    public function attach($offset, SplServiceRegistry $service)
     {
         $this->services[ $offset ] = $service;
     }
@@ -56,9 +57,9 @@ class SplServiceContainer implements \Countable, ContainerInterface
      *
      * @param string $offset
      */
-    public function __unset( $offset )
+    public function __unset($offset)
     {
-        $this->detach( $offset );
+        $this->detach($offset);
     }
 
     // ------------------------------------------------------------------------
@@ -70,10 +71,10 @@ class SplServiceContainer implements \Countable, ContainerInterface
      *
      * @param string $offset
      */
-    public function detach( $offset )
+    public function detach($offset)
     {
-        if ( isset( $this->services[ $offset ] ) ) {
-            unset( $this->services[ $offset ] );
+        if (isset($this->services[ $offset ])) {
+            unset($this->services[ $offset ]);
         }
     }
 
@@ -89,9 +90,9 @@ class SplServiceContainer implements \Countable, ContainerInterface
      *
      * @return bool
      */
-    public function __isset( $offset )
+    public function __isset($offset)
     {
-        return $this->has( $offset );
+        return $this->has($offset);
     }
 
     // ------------------------------------------------------------------------
@@ -105,9 +106,9 @@ class SplServiceContainer implements \Countable, ContainerInterface
      *
      * @return bool
      */
-    public function has( $offset )
+    public function has($offset)
     {
-        return (bool)isset( $this->services[ $offset ] );
+        return (bool)isset($this->services[ $offset ]);
     }
 
     // ------------------------------------------------------------------------
@@ -122,9 +123,9 @@ class SplServiceContainer implements \Countable, ContainerInterface
      *
      * @return bool
      */
-    public function &__get( $offset )
+    public function &__get($offset)
     {
-        $get[ $offset ] = $this->get( $offset );
+        $get[ $offset ] = $this->get($offset);
 
         return $get[ $offset ];
     }
@@ -141,50 +142,50 @@ class SplServiceContainer implements \Countable, ContainerInterface
      *
      * @return mixed Returns FALSE when calling the service is failed.
      */
-    public function &get( $offset, array $arguments = [] )
+    public function &get($offset, array $arguments = [])
     {
         $get[ $offset ] = false;
 
-        if ( $this->has( $offset ) ) {
+        if ($this->has($offset)) {
             $service = $this->services[ $offset ];
 
-            if ( $service instanceof SplServiceRegistry ) {
-                if ( empty( $arguments ) ) {
+            if ($service instanceof SplServiceRegistry) {
+                if (empty($arguments)) {
                     return $service->getInstance();
                 } else {
-                    $newServiceInstance = $service->newInstanceArgs( $arguments );
+                    $newServiceInstance = $service->newInstanceArgs($arguments);
 
-                    if ( $DocComment = $service->getDocComment() ) {
-                        preg_match_all( '/@inject\s(.*)/', $DocComment, $matches );
+                    if ($DocComment = $service->getDocComment()) {
+                        preg_match_all('/@inject\s(.*)/', $DocComment, $matches);
 
-                        if ( count( $matches[ 1 ] ) ) {
-                            foreach ( $matches[ 1 ] as $className ) {
-                                $className = trim( $className, '\\' );
-                                $className = trim( $className );
+                        if (count($matches[ 1 ])) {
+                            foreach ($matches[ 1 ] as $className) {
+                                $className = trim($className, '\\');
+                                $className = trim($className);
 
-                                $map = strtolower( get_class_name( $className ) );
+                                $map = strtolower(get_class_name($className));
 
-                                if ( isset( $this->map[ $className ] ) ) {
+                                if (isset($this->map[ $className ])) {
                                     $map = $this->map[ $className ];
                                 }
 
                                 $variable = $map;
-                                $object =& $this->get( $map );
+                                $object =& $this->get($map);
 
-                                preg_match_all( '/[$](.*)\s(.*)/', trim( $className ), $classMatches );
+                                preg_match_all('/[$](.*)\s(.*)/', trim($className), $classMatches);
 
-                                if ( count( $classMatches[ 1 ] ) ) {
+                                if (count($classMatches[ 1 ])) {
                                     $variable = $classMatches[ 1 ][ 0 ];
                                 }
 
-                                $setterMethod = ucwords( str_replace( [ '-', '_' ], ' ', $variable ) );
-                                $setterMethod = str_replace( ' ', '', $setterMethod );
+                                $setterMethod = ucwords(str_replace(['-', '_'], ' ', $variable));
+                                $setterMethod = str_replace(' ', '', $setterMethod);
                                 $setterMethod = 'set' . $setterMethod;
 
-                                if ( method_exists( $newServiceInstance, $setterMethod ) ) {
-                                    $newServiceInstance->{$setterMethod}( $object );
-                                } elseif ( method_exists( $newServiceInstance, '__set' ) ) {
-                                    $newServiceInstance->__set( $variable, $object );
+                                if (method_exists($newServiceInstance, $setterMethod)) {
+                                    $newServiceInstance->{$setterMethod}($object);
+                                } elseif (method_exists($newServiceInstance, '__set')) {
+                                    $newServiceInstance->__set($variable, $object);
                                 } else {
                                     $newServiceInstance->{$variable} =& $object;
                                 }
@@ -216,6 +217,6 @@ class SplServiceContainer implements \Countable, ContainerInterface
      */
     public function count()
     {
-        return count( $this->services );
+        return count($this->services);
     }
 }

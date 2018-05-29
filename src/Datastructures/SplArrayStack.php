@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Datastructures;
@@ -31,11 +32,11 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      *
      * @param array $stack
      */
-    public function __construct( array $stack = [] )
+    public function __construct(array $stack = [])
     {
-        if ( count( $stack ) ) {
-            foreach ( $stack as $item ) {
-                $this->push( $item );
+        if (count($stack)) {
+            foreach ($stack as $item) {
+                $this->push($item);
             }
         }
     }
@@ -51,7 +52,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      */
     public function current()
     {
-        if ( null === ( $current = parent::current() ) ) {
+        if (null === ($current = parent::current())) {
             $this->rewind();
         }
 
@@ -69,7 +70,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      */
     public function isEmpty()
     {
-        return ( $this->count() == 0 ? true : false );
+        return ($this->count() == 0 ? true : false);
     }
 
     // -----------------------------------------------------------------------
@@ -85,9 +86,9 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
      *
      * @return bool
      */
-    public function has( $needle, $strict = false )
+    public function has($needle, $strict = false)
     {
-        return in_array( $needle, $this->getArrayCopy(), $strict );
+        return in_array($needle, $this->getArrayCopy(), $strict);
     }
 
     // -----------------------------------------------------------------------
@@ -103,7 +104,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
     {
         $arrayCopy = [];
 
-        foreach ( $this as $key => $value ) {
+        foreach ($this as $key => $value) {
             $arrayCopy[ $key ] = $value;
         }
 

@@ -8,6 +8,7 @@
  * @author         Steeve Andrian Salim
  * @copyright      Copyright (c) Steeve Andrian Salim
  */
+
 // ------------------------------------------------------------------------
 
 namespace O2System\Spl\Interfaces;
@@ -43,7 +44,7 @@ interface SplArrayInterface
      *
      * @return bool
      */
-    public function has( $needle, $strict = false );
+    public function has($needle, $strict = false);
 
     // ------------------------------------------------------------------------
 
