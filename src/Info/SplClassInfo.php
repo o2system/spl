@@ -74,7 +74,7 @@ class SplClassInfo extends \ReflectionClass
     {
         $parts = explode('\\', $this->name);
 
-        return strtolower(end($parts));
+        return dash(end($parts));
     }
 
     // ------------------------------------------------------------------------
