@@ -153,7 +153,11 @@ class SplServiceContainer implements \Countable, ContainerInterface
                 if (empty($arguments)) {
                     return $service->getInstance();
                 } else {
-                    $newServiceInstance = $service->newInstanceArgs($arguments);
+                    if($service->hasMethod('__construct')) {
+                        $newServiceInstance = $service->newInstanceArgs($arguments);
+                    } else {
+                        $newServiceInstance = $service->getInstance();
+                    }
 
                     if ($DocComment = $service->getDocComment()) {
                         preg_match_all('/@inject\s(.*)/', $DocComment, $matches);

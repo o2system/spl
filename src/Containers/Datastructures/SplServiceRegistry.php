@@ -49,7 +49,17 @@ class SplServiceRegistry extends SplClassInfo
     public function &getInstance()
     {
         if (empty($this->instance)) {
-            $this->instance = $this->newInstance(func_get_args());
+            if (null !== ($constructor = $this->getConstructor())) {
+                $args = func_get_args();
+
+                if (count($args)) {
+                    $this->instance = $this->newInstance();
+                } else {
+                    $this->instance = $this->newInstanceArgs(func_get_args());
+                }
+            } else {
+                $this->instance = $this->newInstanceWithoutConstructor();
+            }
         }
 
         return $this->instance;
