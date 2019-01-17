@@ -1,3 +1,18 @@
+<div align="center" markdown="1">
+
+[![O2System Framework](http://o2system.id/assets/img/logo/logo-white-200px.png?logo)](http://o2system.id)
+</div>
+
+<div align="center" markdown="1">
+
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/o2system/spl/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/o2system/spl/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/o2system/spl/badges/build.png?b=master)](https://scrutinizer-ci.com/g/o2system/spl/build-status/master)
+[![Latest Stable Version](https://poser.pugx.org/o2system/spl/v/stable)](https://packagist.org/packages/o2system/spl)
+[![Total Downloads](https://poser.pugx.org/o2system/spl/downloads)](https://packagist.org/packages/o2system/spl)
+[![License](https://poser.pugx.org/o2system/spl/license)](https://packagist.org/packages/o2system/spl)
+
+</div>
+
 # O2System Standard PHP Libraries (SPL)
 O2System Standard PHP Library (SPL) it's build based on original [standard PHP library](http://php.net/manual/en/book.spl.php).
 It's made up primarily of commonly needed data structure classes, iterators, handlers and exceptions for O2System PHP Framework, but also can be used independently outside O2System PHP Framework environment.
