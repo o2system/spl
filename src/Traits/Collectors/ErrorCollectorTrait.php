@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the O2System PHP Framework package.
+ * This file is part of the O2System Framework package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -68,6 +68,44 @@ trait ErrorCollectorTrait
     public function hasErrors()
     {
         return (bool)count($this->errors) ? true : false;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * ErrorCollectorTrait::getLatestErrorMessage
+     *
+     * Returns latest error message.
+     *
+     * @return string|bool Returns FALSE if Failed.
+     */
+    public function getLatestErrorMessage()
+    {
+        if (count($this->errors)) {
+            return end($this->errors);
+        }
+
+        return false;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * ErrorCollectorTrait::getLatestErrorCode
+     *
+     * Returns latest error code.
+     *
+     * @return int|bool Returns FALSE if Failed.
+     */
+    public function getLatestErrorCode()
+    {
+        if (count($this->errors)) {
+            end($this->errors);
+
+            return key($this->errors);
+        }
+
+        return false;
     }
 
     // ------------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the O2System PHP Framework package.
+ * This file is part of the O2System Framework package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -16,7 +16,7 @@ namespace O2System\Spl\Containers;
 // ------------------------------------------------------------------------
 
 use O2System\Psr\Container\ContainerInterface;
-use O2System\Spl\Containers\Datastructures\SplServiceRegistry;
+use O2System\Spl\Containers\DataStructures\SplServiceRegistry;
 
 /**
  * Class SplServiceContainer
@@ -153,7 +153,7 @@ class SplServiceContainer implements \Countable, ContainerInterface
                 if (empty($arguments)) {
                     return $service->getInstance();
                 } else {
-                    if($service->hasMethod('__construct')) {
+                    if ($service->hasMethod('__construct')) {
                         $newServiceInstance = $service->newInstanceArgs($arguments);
                     } else {
                         $newServiceInstance = $service->getInstance();

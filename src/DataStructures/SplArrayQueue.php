@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the O2System PHP Framework package.
+ * This file is part of the O2System Framework package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,31 +11,31 @@
 
 // ------------------------------------------------------------------------
 
-namespace O2System\Spl\Datastructures;
+namespace O2System\Spl\DataStructures;
 
 // ------------------------------------------------------------------------
 
 use O2System\Spl\Interfaces\SplArrayInterface;
 
 /**
- * Class SplArrayStack
+ * Class SplArrayQueue
  *
  * The SplStack class provides the main functionalities of a stack implemented using a doubly linked list and
- * the iterator mode is based on LIFO (Last In First Out).
+ * the iterator mode is based on FIFO (First In First Out).
  *
- * @package O2System\Spl\Datastructures
+ * @package O2System\Spl\DataStructures
  */
-class SplArrayStack extends \SplStack implements SplArrayInterface
+class SplArrayQueue extends \SplQueue implements SplArrayInterface
 {
     /**
-     * SplArrayStack::__construct
+     * SplArrayQueue::__construct
      *
-     * @param array $stack
+     * @param array $queue
      */
-    public function __construct(array $stack = [])
+    public function __construct(array $queue = [])
     {
-        if (count($stack)) {
-            foreach ($stack as $item) {
+        if (count($queue)) {
+            foreach ($queue as $item) {
                 $this->push($item);
             }
         }
@@ -44,9 +44,9 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
     // -----------------------------------------------------------------------
 
     /**
-     * SplArrayStack::current
+     * SplArrayQueue::current
      *
-     * Replacement for \SplStack current method
+     * Replacement for \SplQueue current method
      *
      * @return mixed
      */
@@ -62,7 +62,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
     // -----------------------------------------------------------------------
 
     /**
-     * SplArrayStack::isEmpty
+     * SplArrayQueue::isEmpty
      *
      * Checks if the array storage is empty.
      *
@@ -76,7 +76,7 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
     // -----------------------------------------------------------------------
 
     /**
-     * SplArrayStack::has
+     * SplArrayQueue::has
      *
      * Checks if a value exists in the storage.
      *

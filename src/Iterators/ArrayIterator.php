@@ -1,6 +1,6 @@
 <?php
 /**
- * This file is part of the O2System PHP Framework package.
+ * This file is part of the O2System Framework package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,8 +15,8 @@ namespace O2System\Spl\Iterators;
 
 // ------------------------------------------------------------------------
 
-use O2System\Spl\Datastructures\Traits\ArrayConversionTrait;
-use O2System\Spl\Datastructures\Traits\ArrayFunctionsTrait;
+use O2System\Spl\DataStructures\Traits\ArrayConversionTrait;
+use O2System\Spl\DataStructures\Traits\ArrayFunctionsTrait;
 
 /**
  * O2System Standard PHP Libraries ArrayIterator
