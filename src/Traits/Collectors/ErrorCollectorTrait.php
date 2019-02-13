@@ -53,7 +53,7 @@ trait ErrorCollectorTrait
      *
      * @param array $errors
      */
-    protected function setErrors(array $errors)
+    public function setErrors(array $errors)
     {
         $this->errors = $errors;
     }
@@ -117,7 +117,7 @@ trait ErrorCollectorTrait
      *
      * @param array $errors
      */
-    protected function addErrors(array $errors)
+    public function addErrors(array $errors)
     {
         foreach ($errors as $code => $message) {
             $this->addError($code, $message);
@@ -134,7 +134,7 @@ trait ErrorCollectorTrait
      * @param int    $code    Error code.
      * @param string $message Error message.
      */
-    protected function addError($code, $message)
+    public function addError($code, $message)
     {
         $this->errors[ $code ] = $message;
     }
