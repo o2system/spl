@@ -44,24 +44,6 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
     // -----------------------------------------------------------------------
 
     /**
-     * SplArrayStack::current
-     *
-     * Replacement for \SplStack current method
-     *
-     * @return mixed
-     */
-    public function current()
-    {
-        if (null === ($current = parent::current())) {
-            $this->rewind();
-        }
-
-        return parent::current();
-    }
-
-    // -----------------------------------------------------------------------
-
-    /**
      * SplArrayStack::isEmpty
      *
      * Checks if the array storage is empty.
@@ -104,8 +86,8 @@ class SplArrayStack extends \SplStack implements SplArrayInterface
     {
         $arrayCopy = [];
 
-        foreach ($this as $key => $value) {
-            $arrayCopy[ $key ] = $value;
+        for ($this->rewind(); $this->valid(); $this->next()) {
+            $arrayCopy[] = $this->current();
         }
 
         return $arrayCopy;

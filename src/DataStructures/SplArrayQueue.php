@@ -94,7 +94,7 @@ class SplArrayQueue extends \SplQueue implements SplArrayInterface
     // -----------------------------------------------------------------------
 
     /**
-     * SplArrayStack::getArrayCopy
+     * SplArrayQueue::getArrayCopy
      *
      * Creates a copy of the storage.
      *
@@ -104,8 +104,8 @@ class SplArrayQueue extends \SplQueue implements SplArrayInterface
     {
         $arrayCopy = [];
 
-        foreach ($this as $key => $value) {
-            $arrayCopy[ $key ] = $value;
+        for ($this->rewind(); $this->valid(); $this->next()) {
+            $arrayCopy[] = $this->current();
         }
 
         return $arrayCopy;

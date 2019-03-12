@@ -101,6 +101,13 @@ trait FilePathCollectorTrait
                 ) . $this->fileDirName . DIRECTORY_SEPARATOR;
         }
 
+        return $this->pushFilePath($filePath, $offset);
+    }
+
+    // ------------------------------------------------------------------------
+    
+    public function pushFilePath($filePath, $offset = null)
+    {
         if (is_dir($filePath) AND ! in_array($filePath, $this->filePaths)) {
             if (isset($offset)) {
                 $this->filePaths[ $offset ] = $filePath;
@@ -111,6 +118,4 @@ trait FilePathCollectorTrait
 
         return $this;
     }
-
-    // ------------------------------------------------------------------------
 }
