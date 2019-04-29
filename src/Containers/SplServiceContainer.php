@@ -15,7 +15,7 @@ namespace O2System\Spl\Containers;
 
 // ------------------------------------------------------------------------
 
-use O2System\Psr\Container\ContainerInterface;
+use Psr\Container\ContainerInterface;
 use O2System\Spl\Containers\DataStructures\SplServiceRegistry;
 
 /**
