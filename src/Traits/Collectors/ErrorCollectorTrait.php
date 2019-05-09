@@ -136,6 +136,6 @@ trait ErrorCollectorTrait
      */
     public function addError($code, $message)
     {
-        $this->errors[ $code ] = $message;
+        $this->errors[ $code ] = language($message);
     }
 }

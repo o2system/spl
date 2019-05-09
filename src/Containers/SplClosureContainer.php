@@ -29,7 +29,7 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @var array
      */
-    private $closures = [];
+    protected $closures = [];
 
     // ------------------------------------------------------------------------
 
