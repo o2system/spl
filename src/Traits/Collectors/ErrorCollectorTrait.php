@@ -136,6 +136,10 @@ trait ErrorCollectorTrait
      */
     public function addError($code, $message)
     {
-        $this->errors[ $code ] = language($message);
+        if(class_exists('\O2System\Kernel')) {
+            $this->errors[ $code ] = language($message);
+        } else {
+            $this->errors[ $code ] = $message;
+        }
     }
 }
