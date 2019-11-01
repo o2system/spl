@@ -38,6 +38,23 @@ class SplArrayStorage implements
     // ------------------------------------------------------------------------
 
     /**
+     * SplArrayStorage::exists
+     *
+     * Checks if the data exists on the storage.
+     * An alias of AbstractInput::__isset method.
+     *
+     * @param string $offset The object offset key.
+     *
+     * @return bool Returns TRUE on success or FALSE on failure.
+     */
+    public function exists($offset)
+    {
+        return $this->__isset($offset);
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
      * SplArrayStorage::__isset
      *
      * @param mixed $offset <p>
@@ -52,6 +69,23 @@ class SplArrayStorage implements
     public function __isset($offset)
     {
         return isset($this->storage[ $offset ]);
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplArrayStorage::remove
+     *
+     * Removes a data from the storage.
+     * An alias of AbstractInput::__unset method.
+     *
+     * @param string $offset The object offset key.
+     *
+     * @return void
+     */
+    public function remove($offset)
+    {
+        $this->__unset($offset);
     }
 
     // ------------------------------------------------------------------------
@@ -85,9 +119,27 @@ class SplArrayStorage implements
      *
      * @return mixed Can return all value types.
      */
-    public function &__get($offset)
+    public function __get($offset)
     {
         return $this->offsetGet($offset);
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplArrayStorage::store
+     *
+     * Store the data into the storage.
+     * An alias of AbstractInput::__set method.
+     *
+     * @param string $offset The data offset key.
+     * @param mixed  $value  The data to be stored.
+     *
+     * @return void
+     */
+    public function store($offset, $value)
+    {
+        $this->__set($offset, $value);
     }
 
     // ------------------------------------------------------------------------
@@ -292,6 +344,49 @@ class SplArrayStorage implements
     // ------------------------------------------------------------------------
 
     /**
+     * Env::destroy
+     *
+     * Removes all object from the storage and perform each object destruction.
+     * 
+     * @param callable $destructionCallback Callback destruction.
+     *
+     * @return array Array of old storage items.
+     */
+    public function destroy($destructionCallback = null)
+    {
+        $oldStorage = $this->storage;
+        
+        if(is_callable($destructionCallback)) {
+            array_map($destructionCallback, $this->storage);
+        }
+        
+        $this->storage = [];
+
+        return $oldStorage;
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplArrayStorage::exists
+     *
+     * Exchange the array for another one..
+     * An alias of AbstractInput::exchangeArray method.
+     *
+     * @param array $values <p>
+     *                      The new array or object to exchange with the current array.
+     *                      </p>
+     *
+     * @return array the old array.
+     */
+    public function exchange(array $values)
+    {
+        return $this->exchangeArray($values);
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
      * SplArrayStorage::exchangeArray
      *
      * Exchange the array for another one.
@@ -450,24 +545,6 @@ class SplArrayStorage implements
     public function isEmpty()
     {
         return (bool)empty($this->storage);
-    }
-
-    // ------------------------------------------------------------------------
-
-    /**
-     * SplArrayStorage::has
-     *
-     * Checks if a value exists in the storage.
-     *
-     * @param mixed $needle The searched value.
-     * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
-     *                      the types of the needle in the haystack.
-     *
-     * @return bool
-     */
-    public function has($needle, $strict = false)
-    {
-        return in_array($needle, $this->getArrayCopy(), $strict);
     }
 
     // ------------------------------------------------------------------------

@@ -74,6 +74,13 @@ class SplArrayObject extends \ArrayObject
 
     // ------------------------------------------------------------------------
 
+    /**
+     * SplArrayObject::offsetGet
+     * 
+     * @param mixed $offset
+     *
+     * @return bool|mixed
+     */
     public function offsetGet($offset)
     {
         if ($this->offsetExists($offset) === false) {

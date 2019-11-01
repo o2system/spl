@@ -278,7 +278,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the filtered array.
      */
-    public function filter($callback, $flag = 0)
+    public function getFilter($callback, $flag = 0)
     {
         return array_filter($this->getArrayCopy(), $callback, $flag);
     }
