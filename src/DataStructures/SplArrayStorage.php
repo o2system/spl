@@ -344,7 +344,7 @@ class SplArrayStorage implements
     // ------------------------------------------------------------------------
 
     /**
-     * Env::destroy
+     * SplArrayStorage::destroy
      *
      * Removes all object from the storage and perform each object destruction.
      * 
