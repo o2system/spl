@@ -1,4 +1,4 @@
-[![O2System Framework](http://o2system.id/assets/img/logo/logo-white-200px.png?logo)](http://o2system.id)
+![alt text](https://www.o2system.id/assets/img/covers/cover-o2system-atom-spl.png "O2System SPL Atom")
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/o2system/spl/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/o2system/spl/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/o2system/spl/badges/build.png?b=master)](https://scrutinizer-ci.com/g/o2system/spl/build-status/master)
@@ -34,12 +34,25 @@ It's made up primarily of commonly needed data structure classes, iterators, han
 ### Standard PHP Iterators
 - ArrayIterator
 
+### Standard PHP Design Patterns
+- Creational
+  - Factory
+  - Singleton
+- Structural
+  - Assemble
+  - Composite
+  - Facade
+  - Provider
+  - Repository
+
 ### Standard PHP Setters & Collectors Traits
-- OptionSetterTrait
-- ConfigCollectorTrait
-- ErrorCollectorTrait
-- FileExtensionCollectorTrait
-- FilePathCollectorTrait
+- Collectors
+  - ConfigCollectorTrait
+  - ErrorCollectorTrait
+  - FileExtensionCollectorTrait
+  - FilePathCollectorTrait
+- Setters
+  - OptionSetterTrait
 
 ### Composer Installation
 The best way to install O2System Spl is to use [Composer](https://getcomposer.org)
