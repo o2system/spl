@@ -31,6 +31,12 @@ class SplServiceRegistry extends SplClassInfo
      */
     private $instance;
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplServiceRegistry::__construct
+     * @param $service
+     */
     public function __construct($service)
     {
         if (is_object($service)) {
@@ -41,11 +47,25 @@ class SplServiceRegistry extends SplClassInfo
         parent::__construct($service);
     }
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplServiceRegistry::getClassName
+     *
+     * @return mixed|string
+     */
     public function getClassName()
     {
         return get_class_name($this->name);
     }
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplServiceRegistry::getInstance
+     *
+     * @return object
+     */
     public function &getInstance()
     {
         if (empty($this->instance)) {

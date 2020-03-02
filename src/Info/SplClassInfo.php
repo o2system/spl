@@ -20,14 +20,21 @@ namespace O2System\Spl\Info;
  *
  * @package O2System\Spl\Info
  */
-class SplClassInfo extends \ReflectionClass
+class SplClassInfo
 {
     /**
-     * Class Name
+     * SplClassInfo::$name
      *
      * @var string
      */
     public $name;
+
+    /**
+     * SplClassInfo::$reflection
+     *
+     * @var \ReflectionClass
+     */
+    protected $reflection;
 
     // ------------------------------------------------------------------------
 
@@ -43,7 +50,7 @@ class SplClassInfo extends \ReflectionClass
         }
 
         if (class_exists($className)) {
-            parent::__construct($className);
+            $this->name = $className;
         }
     }
 
@@ -79,6 +86,19 @@ class SplClassInfo extends \ReflectionClass
 
     // ------------------------------------------------------------------------
 
+    public function getReflection()
+    {
+        if (empty($this->name)) {
+            throw new \RuntimeException('Internal error: SplClassInfo failed to retrieve the reflection object');
+        }
+
+        if(empty($this->reflection)) {
+            $this->reflection = new \ReflectionClass($this->name);
+        }
+
+        return $this->reflection;
+    }
+
     /**
      * SplClassInfo::getFileInfo
      *
@@ -92,7 +112,7 @@ class SplClassInfo extends \ReflectionClass
             throw new \RuntimeException('Internal error: SplClassInfo failed to retrieve the reflection object');
         }
 
-        return new SplNamespaceInfo($this->name, $this->getFileName());
+        return new SplNamespaceInfo($this->name, $this->getReflection()->getFileName());
     }
 
     // ------------------------------------------------------------------------
@@ -111,5 +131,28 @@ class SplClassInfo extends \ReflectionClass
         }
 
         return new SplFileInfo($this->getFileName());
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplClassInfo::__call
+     *
+     * @param string  $method
+     * @param array   $args
+     *
+     * @return mixed
+     */
+    public function __call($method, array $args = [])
+    {
+        if (method_exists($this, $method)) {
+            return call_user_func_array([$this, $method], $args);
+        } else {
+            $reflection = $this->getReflection();
+
+            if(method_exists($reflection, $method)) {
+                return call_user_func_array([$reflection, $method], $args);
+            }
+        }
     }
 }

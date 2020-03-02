@@ -31,6 +31,8 @@ class SplFileInfo extends \SplFileInfo
      */
     private $mime;
 
+    // ------------------------------------------------------------------------
+
     /**
      * SplFileInfo::__construct
      *
@@ -43,12 +45,34 @@ class SplFileInfo extends \SplFileInfo
         if (file_exists($filePath)) {
             $this->mime = finfo_file(finfo_open(FILEINFO_MIME_TYPE), $filePath);
         }
+        
+        $mimes = require(__DIR__ . '/../Config/Mimes.php');
+        
+        if(array_key_exists($this->getExtension(), $mimes)) {
+            $this->mime = $mimes[$this->getExtension()];
+        }
     }
 
-    public function getMime()
+    // ------------------------------------------------------------------------
+
+    /**
+     * SplFileInfo::getMime
+     * 
+     * @param bool $allPossibilities
+     * @return string|array
+     */
+    public function getMime($allPossibilities = false)
     {
+        if($allPossibilities === false) {
+            if(is_array($this->mime)) {
+                return reset($this->mime);
+            }
+        }
+        
         return $this->mime;
     }
+
+    // ------------------------------------------------------------------------
 
     /**
      * SplFileInfo::getFilename
@@ -60,6 +84,8 @@ class SplFileInfo extends \SplFileInfo
         return str_replace('.' . $this->getExtension(), '', parent::getFilename());
     }
 
+    // ------------------------------------------------------------------------
+    
     /**
      * SplFileInfo::getBasename
      *
@@ -75,6 +101,8 @@ class SplFileInfo extends \SplFileInfo
 
         return str_replace('.' . $this->getExtension(), '.' . trim($suffix, '.'), parent::getFilename());
     }
+
+    // ------------------------------------------------------------------------
 
     /**
      * SplFileInfo::getDirectoryInfo

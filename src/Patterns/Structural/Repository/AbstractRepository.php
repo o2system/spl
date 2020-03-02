@@ -382,7 +382,7 @@ abstract class AbstractRepository implements
      */
     final public function serialize()
     {
-        return serialize($this->storage);
+        return @serialize($this->storage);
     }
 
     // ------------------------------------------------------------------------
