@@ -19,15 +19,35 @@ namespace O2System\Spl\Patterns\Structural\Assemble;
  */
 abstract class AbstractAssemble implements CollectorInterface
 {
+    /**
+     * AbstractAssemble::$collection
+     * 
+     * @var array 
+     */
     protected $collection = [];
 
-    public function collect()
-    {
+    // ------------------------------------------------------------------------
 
+    /**
+     * AbstractAssemble::collect
+     * 
+     * @param string $offset
+     * @param mixed  $value
+     */
+    public function collect($offset, $value)
+    {
+        $this->collection[$offset] = $value;
     }
 
-    public function &getCollection($offset)
-    {
+    // ------------------------------------------------------------------------
 
+    /**
+     * AbstractAssemble::getCollection
+     * 
+     * @return array
+     */
+    public function &getCollection()
+    {
+        return $this->collection;
     }
 }

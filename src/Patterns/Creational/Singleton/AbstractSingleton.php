@@ -17,7 +17,7 @@ namespace O2System\Spl\Patterns\Creational\Singleton;
  * Class AbstractSingleton
  * @package O2System\Spl\Patterns\Creational\Singleton
  */
-class AbstractSingleton implements InstanceInterface
+abstract class AbstractSingleton implements InstanceInterface
 {
     /**
      * AbstractSingleton::$instance

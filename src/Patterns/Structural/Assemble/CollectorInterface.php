@@ -22,9 +22,8 @@ interface CollectorInterface
     /**
      * CollectorInterface::collect
      *
-     * Collection process.
-     *
-     * @return void
+     * @param string $offset
+     * @param mixed  $value
      */
-    public function collect();
+    public function collect($offset, $value);
 }

@@ -38,6 +38,20 @@ class SplArrayStorage implements
     // ------------------------------------------------------------------------
 
     /**
+     * SplArrayStorage::__construct
+     *
+     * @param array $data
+     */
+    public function __construct(array $data = [])
+    {
+        if(count($data)) {
+            $this->append($data);
+        }
+    }
+
+    // ------------------------------------------------------------------------
+
+    /**
      * SplArrayStorage::exists
      *
      * Checks if the data exists on the storage.

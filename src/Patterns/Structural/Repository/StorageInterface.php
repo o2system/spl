@@ -19,7 +19,16 @@ namespace O2System\Spl\Patterns\Structural\Repository;
  */
 interface StorageInterface
 {
+    /**
+     * StorageInterface::store
+     * 
+     * @param string $offset
+     * @param mixed $data
+     * @return void
+     */
     public function store($offset, $data);
+
+    // ------------------------------------------------------------------------
 
     /**
      * StorageInterface::search
