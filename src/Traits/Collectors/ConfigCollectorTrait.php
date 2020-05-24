@@ -14,6 +14,7 @@
 namespace O2System\Spl\Traits\Collectors;
 
 // ------------------------------------------------------------------------
+
 use O2System\Kernel\DataStructures\Config;
 
 /**
@@ -29,6 +30,8 @@ trait ConfigCollectorTrait
      * @type array
      */
     protected $config = [];
+
+    // ------------------------------------------------------------------------
 
     /**
      * Add Config
@@ -89,7 +92,7 @@ trait ConfigCollectorTrait
      *
      * @access   public
      *
-     * @param array|string $key
+     * @param array|string|int|Config $key
      *
      * @return static
      */

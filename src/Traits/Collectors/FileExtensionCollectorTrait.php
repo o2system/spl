@@ -22,13 +22,34 @@ namespace O2System\Spl\Traits\Collectors;
  */
 trait FileExtensionCollectorTrait
 {
+    /**
+     * FileExtensionCollectorTrait::$fileExtensions
+     *
+     * @var array
+     */
     protected $fileExtensions = [];
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * FileExtensionCollectorTrait::getFileExtensions
+     *
+     * @return array
+     */
     public function getFileExtensions()
     {
         return $this->fileExtensions;
     }
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * FileExtensionCollectorTrait::setFileExtensions
+     *
+     * @param array $fileExtensions
+     * 
+     * @return static
+     */
     public function setFileExtensions(array $fileExtensions)
     {
         $this->fileExtensions = $fileExtensions;
@@ -36,6 +57,15 @@ trait FileExtensionCollectorTrait
         return $this;
     }
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * FileExtensionCollectorTrait::addFileExtension
+     *
+     * @param array $fileExtensions
+     * 
+     * @return static
+     */
     public function addFileExtensions(array $fileExtensions)
     {
         foreach ($fileExtensions as $fileExtension) {
@@ -45,6 +75,15 @@ trait FileExtensionCollectorTrait
         return $this;
     }
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * FileExtensionCollectorTrait::addFileExtension
+     *
+     * @param string $fileExtension
+     * 
+     * @return static
+     */
     public function addFileExtension($fileExtension)
     {
         $fileExtension = '.' . trim($fileExtension, '.');

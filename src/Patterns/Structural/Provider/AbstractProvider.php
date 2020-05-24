@@ -13,6 +13,8 @@
 
 namespace O2System\Spl\Patterns\Structural\Provider;
 
+// ------------------------------------------------------------------------
+
 use O2System\Spl\Iterators\ArrayIterator;
 
 /**

@@ -86,6 +86,12 @@ class SplClassInfo
 
     // ------------------------------------------------------------------------
 
+    /**
+     * SplClassInfo::getReflection
+     * 
+     * @return \ReflectionClass
+     * @throws \ReflectionException
+     */
     public function getReflection()
     {
         if (empty($this->name)) {
@@ -98,6 +104,8 @@ class SplClassInfo
 
         return $this->reflection;
     }
+
+    // ------------------------------------------------------------------------
 
     /**
      * SplClassInfo::getFileInfo

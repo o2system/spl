@@ -18,7 +18,7 @@ namespace O2System\Spl\DataStructures;
 /**
  * O2System Standard PHP Libraries ArrayObject
  *
- * @package O2System\Core\SPL
+ * @package O2System\Spl\DataStructures
  */
 class SplArrayObject extends \ArrayObject
 {

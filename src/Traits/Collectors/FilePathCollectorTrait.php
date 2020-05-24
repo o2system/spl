@@ -16,28 +16,37 @@ namespace O2System\Spl\Traits\Collectors;
 // ------------------------------------------------------------------------
 
 /**
- * Class PathCollectorTrait
+ * Class FilePathCollectorTrait
  *
  * @package O2System\Spl\Traits\Collectors
  */
 trait FilePathCollectorTrait
 {
     /**
-     * Sub Path
+     * FilePathCollectorTrait::$fileDirName
      *
      * @type string|null
      */
     protected $fileDirName = null;
 
-    // ------------------------------------------------------------------------
-
     /**
+     * FilePathCollectorTrait::$filePaths
+     *
      * List of Paths
      *
      * @type array
      */
     protected $filePaths = [];
 
+    // ------------------------------------------------------------------------
+
+    /**
+     * FilePathCollectorTrait::setFileDirName
+     *
+     * @param $fileDirName
+     * 
+     * @return static
+     */
     public function setFileDirName($fileDirName)
     {
         $this->fileDirName = $fileDirName;
@@ -47,10 +56,17 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
+    /**
+     * FilePathCollectorTrait::removeFilePath
+     *
+     * @param string $filePath
+     * 
+     * @return static
+     */
     public function removeFilePath($filePath)
     {
         if (false !== ($key = array_search($filePath, $this->filePaths))) {
-            unset($this->filePaths[ $key ]);
+            unset($this->filePaths[$key]);
         }
 
         return $this;
@@ -58,6 +74,13 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
+    /**
+     * FilePathCollectorTrait::getFilePaths
+     *
+     * @param bool $reverse
+     * 
+     * @return array
+     */
     public function getFilePaths($reverse = false)
     {
         return ($reverse === true ? array_reverse($this->filePaths) : $this->filePaths);
@@ -65,6 +88,13 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
+    /**
+     * FilePathCollectorTrait::setFilePaths
+     *
+     * @param array $filePaths
+     * 
+     * @return static
+     */
     public function setFilePaths(array $filePaths)
     {
         $this->filePaths = [];
@@ -75,6 +105,13 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
+    /**
+     * FilePathCollectorTrait::addFilePaths
+     * 
+     * @param array $filePaths
+     * 
+     * @return static
+     */
     public function addFilePaths(array $filePaths)
     {
         foreach ($filePaths as $filePath) {
@@ -86,6 +123,14 @@ trait FilePathCollectorTrait
 
     // ------------------------------------------------------------------------
 
+    /**
+     * FilePathCollectorTrait::addFilePath
+     *
+     * @param string          $filePath
+     * @param string|int|null $offset
+     * 
+     * @return static
+     */
     public function addFilePath($filePath, $offset = null)
     {
         $filePath = rtrim(
@@ -105,12 +150,20 @@ trait FilePathCollectorTrait
     }
 
     // ------------------------------------------------------------------------
-    
+
+    /**
+     * FilePathCollectorTrait::pushFilePath
+     *
+     * @param string          $filePath
+     * @param string|int|null $offset
+     * 
+     * @return static
+     */
     public function pushFilePath($filePath, $offset = null)
     {
-        if (is_dir($filePath) AND ! in_array($filePath, $this->filePaths)) {
+        if (is_dir($filePath) AND !in_array($filePath, $this->filePaths)) {
             if (isset($offset)) {
-                $this->filePaths[ $offset ] = $filePath;
+                $this->filePaths[$offset] = $filePath;
             } else {
                 $this->filePaths[] = $filePath;
             }

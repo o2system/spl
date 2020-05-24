@@ -13,6 +13,8 @@
 
 namespace O2System\Spl\Patterns\Structural\Repository;
 
+// ------------------------------------------------------------------------
+
 use O2System\Spl\Iterators\ArrayIterator;
 
 /**

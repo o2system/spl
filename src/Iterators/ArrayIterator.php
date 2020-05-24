@@ -21,7 +21,7 @@ use O2System\Spl\DataStructures\Traits\ArrayFunctionsTrait;
 /**
  * O2System Standard PHP Libraries ArrayIterator
  *
- * @package O2System\Core\SPL
+ * @package O2System\Spl\Iterators
  */
 class ArrayIterator extends \ArrayIterator implements \JsonSerializable
 {

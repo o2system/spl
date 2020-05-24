@@ -133,6 +133,8 @@ trait ErrorCollectorTrait
      *
      * @param int    $code    Error code.
      * @param string $message Error message.
+     * 
+     * @return static
      */
     public function addError($code, $message)
     {
@@ -141,5 +143,7 @@ trait ErrorCollectorTrait
         } else {
             $this->errors[ $code ] = $message;
         }
+        
+        return $this;
     }
 }
