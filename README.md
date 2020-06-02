@@ -1,4 +1,4 @@
-![alt text](https://www.o2system.id/assets/img/covers/cover-o2system-atom-spl.png "O2System SPL Atom")
+![alt text](https://repository-images.githubusercontent.com/67767410/7ec75b00-5c98-11ea-91dd-67353fc7a1ad "O2System SPL Atom")
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/o2system/spl/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/o2system/spl/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/o2system/spl/badges/build.png?b=master)](https://scrutinizer-ci.com/g/o2system/spl/build-status/master)
