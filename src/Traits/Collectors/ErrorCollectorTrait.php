@@ -73,13 +73,13 @@ trait ErrorCollectorTrait
     // ------------------------------------------------------------------------
 
     /**
-     * ErrorCollectorTrait::getLatestErrorMessage
+     * ErrorCollectorTrait::getLastErrorMessage
      *
      * Returns latest error message.
      *
      * @return string|bool Returns FALSE if Failed.
      */
-    public function getLatestErrorMessage()
+    public function getLastErrorMessage()
     {
         if (count($this->errors)) {
             return end($this->errors);
@@ -91,13 +91,13 @@ trait ErrorCollectorTrait
     // ------------------------------------------------------------------------
 
     /**
-     * ErrorCollectorTrait::getLatestErrorCode
+     * ErrorCollectorTrait::getLastErrorCode
      *
      * Returns latest error code.
      *
      * @return int|bool Returns FALSE if Failed.
      */
-    public function getLatestErrorCode()
+    public function getLastErrorCode()
     {
         if (count($this->errors)) {
             end($this->errors);
