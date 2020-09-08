@@ -31,7 +31,7 @@
   },
   "require": {
     "php": "^7.2.0",
-    "o2system/psr": "*"
+    "o2system/psr": "^v1.2"
   },
   "autoload": {
     "psr-4": {
