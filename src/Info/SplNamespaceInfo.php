@@ -39,8 +39,9 @@ class SplNamespaceInfo
     /**
      * SplNamespaceInfo::__construct
      *
-     * @param mixed             $namespace
+     * @param mixed $namespace
      * @param null|string|array $path
+     * @throws \ReflectionException
      */
     public function __construct($namespace, $path = null)
     {

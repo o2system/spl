@@ -74,9 +74,9 @@ class SplClosureContainer implements \Countable, ContainerInterface
      *
      * @return bool
      */
-    public function has($offset)
+    public function has(string $offset): bool
     {
-        return (bool)isset($this->closures[ $offset ]);
+        return isset($this->closures[ $offset ]);
     }
 
     // ------------------------------------------------------------------------

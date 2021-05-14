@@ -63,7 +63,7 @@ class SplClassInfo
      *
      * @return string
      */
-    public function getClass()
+    public function getClass():string
     {
         return $this->name;
     }
@@ -77,7 +77,7 @@ class SplClassInfo
      *
      * @return string
      */
-    public function getParameter()
+    public function getParameter():string
     {
         $parts = explode('\\', $this->name);
 
@@ -113,6 +113,7 @@ class SplClassInfo
      * Gets class file info metadata.
      *
      * @return \O2System\Spl\Info\SplNamespaceInfo
+     * @throws \ReflectionException
      */
     public function getNamespaceInfo()
     {

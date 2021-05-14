@@ -47,7 +47,7 @@ trait FilePathCollectorTrait
      * 
      * @return static
      */
-    public function setFileDirName($fileDirName)
+    public function setFileDirName($fileDirName):self
     {
         $this->fileDirName = $fileDirName;
 
@@ -63,7 +63,7 @@ trait FilePathCollectorTrait
      * 
      * @return static
      */
-    public function removeFilePath($filePath)
+    public function removeFilePath(string $filePath):self
     {
         if (false !== ($key = array_search($filePath, $this->filePaths))) {
             unset($this->filePaths[$key]);
@@ -81,7 +81,7 @@ trait FilePathCollectorTrait
      * 
      * @return array
      */
-    public function getFilePaths($reverse = false)
+    public function getFilePaths(bool $reverse = false): array
     {
         return ($reverse === true ? array_reverse($this->filePaths) : $this->filePaths);
     }
@@ -126,12 +126,12 @@ trait FilePathCollectorTrait
     /**
      * FilePathCollectorTrait::addFilePath
      *
-     * @param string          $filePath
+     * @param string $filePath
      * @param string|int|null $offset
      * 
      * @return static
      */
-    public function addFilePath($filePath, $offset = null)
+    public function addFilePath(string $filePath, $offset = null)
     {
         $filePath = rtrim(
                 str_replace(['\\', '/'], DIRECTORY_SEPARATOR, $filePath),
@@ -154,12 +154,12 @@ trait FilePathCollectorTrait
     /**
      * FilePathCollectorTrait::pushFilePath
      *
-     * @param string          $filePath
+     * @param string $filePath
      * @param string|int|null $offset
      * 
      * @return static
      */
-    public function pushFilePath($filePath, $offset = null)
+    public function pushFilePath(string $filePath, $offset = null)
     {
         if (is_dir($filePath) AND !in_array($filePath, $this->filePaths)) {
             if (isset($offset)) {

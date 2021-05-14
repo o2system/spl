@@ -84,7 +84,7 @@ trait FileExtensionCollectorTrait
      * 
      * @return static
      */
-    public function addFileExtension($fileExtension)
+    public function addFileExtension(string $fileExtension)
     {
         $fileExtension = '.' . trim($fileExtension, '.');
 

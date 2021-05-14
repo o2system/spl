@@ -54,7 +54,7 @@ class SplServiceRegistry extends SplClassInfo
      *
      * @return mixed|string
      */
-    public function getClassName()
+    public function getClassName(): string
     {
         return get_class_name($this->name);
     }

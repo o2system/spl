@@ -15,7 +15,7 @@ namespace O2System\Spl\Traits\Collectors;
 
 // ------------------------------------------------------------------------
 
-use O2System\Kernel\DataStructures\Config;
+namespace O2System\Spl\Traits\Collectors;
 
 /**
  * Class ConfigCollectorTrait

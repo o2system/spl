@@ -158,12 +158,12 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @see http://php.net/manual/en/function.array-unique.php
      *
-     * @param int  $sortFlags     The optional second parameter sort_flags may be used to modify the sorting behavior
+     * @param int $sortFlags     The optional second parameter sort_flags may be used to modify the sorting behavior
      * @param bool $exchangeArray Exchange the array into the filtered array.
      *
      * @return array Returns the filtered array.
      */
-    public function unique($sortFlags = SORT_STRING, $exchangeArray = false)
+    public function unique(int $sortFlags = SORT_STRING, bool $exchangeArray = false)
     {
         $unique = array_unique($this->getArrayCopy(), $sortFlags);
 
@@ -187,7 +187,7 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      * @return array of the old storage.
      * @since 5.1.0
      */
-    public function exchangeArray(array $values)
+    public function exchangeArray(array $values): array
     {
         $oldStorage = $this->getArrayCopy();
         parent::__construct($values);
@@ -206,7 +206,7 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge(array $values)
+    public function merge(array $values): array
     {
         $storage = $this->getArrayCopy();
         $storage = array_merge($storage, $values);
@@ -229,9 +229,10 @@ class ArrayIterator extends \ArrayIterator implements \JsonSerializable
      */
     public function remove($needle)
     {
-        if (false !== ($position = array_search($needle, $this->getArrayCopy()))) {
-            $firstStorage = array_splice($this->getArrayCopy(), 0, $position);
-            $endStorage = array_splice($this->getArrayCopy(), $position + 1);
+        $arrayCopy = $this->getArrayCopy();
+        if (false !== ($position = array_search($needle, $arrayCopy))) {
+            $firstStorage = array_splice($arrayCopy, 0, $position);
+            $endStorage = array_splice($arrayCopy, $position + 1);
 
             parent::__construct(array_merge($firstStorage, $endStorage));
         }

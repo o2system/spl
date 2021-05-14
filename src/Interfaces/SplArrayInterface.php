@@ -29,7 +29,7 @@ interface SplArrayInterface
      *
      * @return bool
      */
-    public function isEmpty();
+    public function isEmpty(): bool;
 
     // ------------------------------------------------------------------------
 
@@ -39,12 +39,12 @@ interface SplArrayInterface
      * Checks if a value exists in the storage.
      *
      * @param mixed $needle The searched value.
-     * @param bool  $strict If the third parameter strict is set to TRUE then the in_array() function will also check
+     * @param bool $strict If the third parameter strict is set to TRUE then the in_array() function will also check
      *                      the types of the needle in the haystack.
      *
      * @return bool
      */
-    public function has($needle, $strict = false);
+    public function has($needle, bool $strict = false): bool;
 
     // ------------------------------------------------------------------------
 
@@ -55,5 +55,5 @@ interface SplArrayInterface
      *
      * @return array A copy of the storage.
      */
-    public function getArrayCopy();
+    public function getArrayCopy(): array;
 }

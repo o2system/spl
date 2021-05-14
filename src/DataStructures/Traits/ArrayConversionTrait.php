@@ -35,7 +35,7 @@ trait ArrayConversionTrait
      *
      * @return SplArrayObject
      */
-    public function __toObject($depth = 0)
+    public function __toObject(int $depth = 0): SplArrayObject
     {
         return $this->___toObjectIterator($this->getArrayCopy(), ($depth == 0 ? 'ALL' : $depth));
     }
@@ -53,7 +53,7 @@ trait ArrayConversionTrait
      *
      * @return SplArrayObject
      */
-    private function ___toObjectIterator($array, $depth = 'ALL', $counter = 0)
+    private function ___toObjectIterator($array, $depth = 'ALL', $counter = 0): SplArrayObject
     {
         $object = new SplArrayObject();
 

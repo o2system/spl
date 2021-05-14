@@ -51,9 +51,9 @@ class SplArrayObject extends \ArrayObject
      *
      * @return bool
      */
-    public function isEmpty()
+    public function isEmpty(): bool
     {
-        return ($this->count() == 0 ? true : false);
+        return $this->count() == 0;
     }
 
     // -----------------------------------------------------------------------
@@ -63,13 +63,13 @@ class SplArrayObject extends \ArrayObject
      *
      * @see http://php.net/manual/en/arrayobject.offsetget.php
      *
-     * @param string $offset The offset with the value.
+     * @param string $key The offset with the value.
      *
      * @return mixed The value at the specified index or false.
      */
-    public function __get($offset)
+    public function __get(string $key)
     {
-        return $this->offsetGet($offset);
+        return $this->offsetGet($key);
     }
 
     // ------------------------------------------------------------------------
@@ -77,17 +77,17 @@ class SplArrayObject extends \ArrayObject
     /**
      * SplArrayObject::offsetGet
      * 
-     * @param mixed $offset
+     * @param mixed $key
      *
      * @return bool|mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet($key)
     {
-        if ($this->offsetExists($offset) === false) {
+        if ($this->offsetExists($key) === false) {
             return false;
         }
 
-        return parent::offsetGet($offset);
+        return parent::offsetGet($key);
     }
 
     // ------------------------------------------------------------------------
@@ -104,8 +104,8 @@ class SplArrayObject extends \ArrayObject
         if ($this->count() > 0) {
             $camelcaseStorage = [];
 
-            foreach ($this->getArrayCopy() as $offset => $value) {
-                $camelcaseStorage[ camelcase($offset) ] = $value;
+            foreach ($this->getArrayCopy() as $key => $value) {
+                $camelcaseStorage[ camelcase($key) ] = $value;
             }
 
             $this->exchangeArray($camelcaseStorage);

@@ -46,7 +46,7 @@ abstract class AbstractAssemble implements CollectorInterface
      * 
      * @return array
      */
-    public function &getCollection()
+    public function &getCollection(): array
     {
         return $this->collection;
     }

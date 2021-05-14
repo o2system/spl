@@ -15,7 +15,7 @@ namespace O2System\Spl\Traits\Collectors;
 
 // ------------------------------------------------------------------------
 
-use O2System\Kernel\DataStructures\Options;
+namespace O2System\Spl\Traits\Collectors;
 
 /**
  * Class OptionsCollectorTrait
@@ -93,12 +93,12 @@ trait OptionsCollectorTrait
      *
      * @return mixed
      */
-    final public function getOptions($key = null, $offset = null)
+    final public function getOptions(string $key = null, $offset = null)
     {
         if (isset($key)) {
             if (isset($this->options[ $key ])) {
                 if (isset($offset)) {
-                    return isset($this->options[ $key ][ $offset ]) ? $this->options[ $key ][ $offset ] : null;
+                    return $this->options[$key][$offset] ?? null;
                 }
 
                 return $this->options[ $key ];

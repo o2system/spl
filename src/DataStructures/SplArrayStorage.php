@@ -61,7 +61,7 @@ class SplArrayStorage implements
      *
      * @return bool Returns TRUE on success or FALSE on failure.
      */
-    public function exists($offset)
+    public function exists(string $offset): bool
     {
         return $this->__isset($offset);
     }
@@ -151,7 +151,7 @@ class SplArrayStorage implements
      *
      * @return void
      */
-    public function store($offset, $value)
+    public function store(string $offset, $value)
     {
         $this->__set($offset, $value);
     }
@@ -331,7 +331,7 @@ class SplArrayStorage implements
      *
      * @return array The array merged copy of the resulting array
      */
-    public function merge(array $values)
+    public function merge(array $values): array
     {
         $storage = $this->getArrayCopy();
         $storage = array_merge($storage, $values);
@@ -350,7 +350,7 @@ class SplArrayStorage implements
      *
      * @return array A copy of the storage.
      */
-    public function getArrayCopy()
+    public function getArrayCopy(): array
     {
         return $this->storage;
     }
@@ -362,11 +362,11 @@ class SplArrayStorage implements
      *
      * Removes all object from the storage and perform each object destruction.
      * 
-     * @param callable $destructionCallback Callback destruction.
+     * @param callable|null $destructionCallback Callback destruction.
      *
      * @return array Array of old storage items.
      */
-    public function destroy($destructionCallback = null)
+    public function destroy(callable $destructionCallback = null): array
     {
         $oldStorage = $this->storage;
         
@@ -393,7 +393,7 @@ class SplArrayStorage implements
      *
      * @return array the old array.
      */
-    public function exchange(array $values)
+    public function exchange(array $values): array
     {
         return $this->exchangeArray($values);
     }

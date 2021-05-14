@@ -61,7 +61,7 @@ class SplFileInfo extends \SplFileInfo
      * @param bool $allPossibilities
      * @return string|array
      */
-    public function getMime($allPossibilities = false)
+    public function getMime(bool $allPossibilities = false)
     {
         if($allPossibilities === false) {
             if(is_array($this->mime)) {
@@ -93,7 +93,7 @@ class SplFileInfo extends \SplFileInfo
      *
      * @return string
      */
-    public function getBasename($suffix = null)
+    public function getBasename($suffix = null): string
     {
         if (is_null($suffix)) {
             return parent::getBasename();

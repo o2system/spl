@@ -37,7 +37,7 @@ trait ArrayFunctionsTrait
      *
      * @return SplArrayObject
      */
-    public function getCombine(array $keys)
+    public function getCombine(array $keys): SplArrayObject
     {
         $arrayCombine = array_combine($keys, $this->getArrayCopy());
 
@@ -58,7 +58,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns an array of all the keys of the array copy.
      */
-    public function getKeys($searchValue = null, $strict = false)
+    public function getKeys($searchValue = null, $strict = false): array
     {
         if (isset($searchValue)) {
             return array_keys($this->getArrayCopy(), $searchValue, $strict);
@@ -78,7 +78,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns an indexed array of values.
      */
-    public function getValues()
+    public function getValues(): array
     {
         return array_values($this->getArrayCopy());
     }
@@ -106,7 +106,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the slice. If the offset is larger than the size of the array then returns an empty array.
      */
-    public function getSlice($offset = 0, $length = null, $preserveKeys = false)
+    public function getSlice($offset = 0, $length = null, $preserveKeys = false): array
     {
         return array_slice($this->getArrayCopy(), $offset, $length, $preserveKeys);
     }
@@ -127,7 +127,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the slices. If the offset is larger than the size of the array then returns an empty array.
      */
-    public function getSlices(array $lengths, $preserveKeys = false)
+    public function getSlices(array $lengths, $preserveKeys = false): array
     {
         $arraySlices = [];
 
@@ -154,7 +154,7 @@ trait ArrayFunctionsTrait
      * @return array Returns a multidimensional numerically indexed array, starting with zero, with each dimension
      *               containing size elements.
      */
-    public function getChunk($size, $preserveKeys = false)
+    public function getChunk($size, $preserveKeys = false): array
     {
         return array_chunk($this->getArrayCopy(), $size, $preserveKeys);
     }
@@ -175,7 +175,7 @@ trait ArrayFunctionsTrait
      * @return array Returns a multidimensional numerically indexed array, starting with zero, with each dimension
      *               containing size elements.
      */
-    public function getChunks(array $sizes, $preserveKeys = false)
+    public function getChunks(array $sizes, $preserveKeys = false): array
     {
         $arrayChunks = [];
 
@@ -199,7 +199,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Return shuffle array of the array copy.
      */
-    public function getShuffle()
+    public function getShuffle(): array
     {
         $arrayCopy = $this->getArrayCopy();
         shuffle($arrayCopy);
@@ -219,7 +219,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the reversed array.
      */
-    public function getReverse($preserveKey = false)
+    public function getReverse($preserveKey = false): array
     {
         return array_reverse($this->getArrayCopy(), $preserveKey);
     }
@@ -242,7 +242,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns an array of values representing a single column from the input array.
      */
-    public function getColumn($columnKey, $indexKey = null)
+    public function getColumn($columnKey, $indexKey = null): array
     {
         return array_column($this->getArrayCopy(), $columnKey, $indexKey);
     }
@@ -258,7 +258,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns the flipped array on success and NULL on failure.
      */
-    public function getFlip()
+    public function getFlip(): array
     {
         return array_flip($this->getArrayCopy());
     }
@@ -274,11 +274,11 @@ trait ArrayFunctionsTrait
      *
      * @param callable $callback The callback function to use, if no callback is supplied, all entries of array equal
      *                           to FALSE (see converting to boolean) will be removed.
-     * @param int      $flag     Flag determining what arguments are sent to callback.
+     * @param int $flag     Flag determining what arguments are sent to callback.
      *
      * @return array Returns the filtered array.
      */
-    public function getFilter($callback, $flag = 0)
+    public function getFilter(callable $callback, int $flag = 0): array
     {
         return array_filter($this->getArrayCopy(), $callback, $flag);
     }
@@ -310,7 +310,7 @@ trait ArrayFunctionsTrait
      *
      * @return array Returns an associative array of values from array as keys and their count as value.
      */
-    public function getCountValues()
+    public function getCountValues(): array
     {
         return array_count_values($this->getArrayCopy());
     }
